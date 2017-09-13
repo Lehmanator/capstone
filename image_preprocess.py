@@ -12,20 +12,22 @@ datagen = image.ImageDataGenerator(
     fill_mode='nearest'
 )
 
-for path in os.listdir(os.getcwd()+'/images'):
+for path in os.listdir(os.getcwd()+'/images/downloaded/'):
     print(path)
-    try:
-        img = image.load_img('images/'+path)
-        x = image.img_to_array(img)
-        x = x.reshape((1,)+x.shape)
+    for imnum, imagepath in enumerate(os.listdir(os.getcwd()+'/images/downloaded/'+path)):
+        try:
+            mypath = os.getcwd() + '/images/downloaded/'+path+'/'+imagepath
+            img = image.load_img(mypath)
+            x = image.img_to_array(img)
+            x = x.reshape((1,)+x.shape)
 
-        i = 0
-        for batch in datagen.flow(x, batch_size=1, save_to_dir='./images/generated', save_prefix='p_logo', save_format='jpg'):
-            i += 1
-            if i > 20:
-                break
-    except IOError:
-        print("could not open file: " + path)
-
-
-
+            i = 0
+            if not os.path.exists(os.getcwd() + "/images/generated/" + path):
+                os.makedirs(os.getcwd() + "/images/generated/" + path)
+            for batch in datagen.flow(x, batch_size=1, save_to_dir='./images/generated/'+path, save_prefix='p_logo', save_format='jpg'):
+                i += 1
+                print("Processed image number "+str(imnum) + " for " + path) 
+                if i > 20:
+                    break
+        except IOError:
+            print("could not open file: " + imagepath)

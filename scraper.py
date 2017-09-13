@@ -18,7 +18,11 @@ def main():
     parser = argparse.ArgumentParser(description='Scrape Google images')
     parser.add_argument('-s', '--search', default='bananas', type=str, help='search term')
     parser.add_argument('-n', '--number', default=10, type=int, help="Number of images to download")
+    parser.add_argument('-d', '--directory', default='bananas', type=str, help='Name for directory to store images in')
     args = parser.parse_args()
+    if (args.directory == 'bananas'):
+        args.directory = args.search
+
     query = args.search  # raw_input(args.search)
     # max_images = args.num_images
     # save_directory = args.directory
@@ -77,7 +81,9 @@ def main():
         try:
             req = urllib2.Request(img, headers={'User-Agent': header})
             raw_img = urllib2.urlopen(req).read()
-            f = open(os.getcwd() + "/images/img" + "_" + str(i) + ".jpg", 'wb')
+            if not os.path.exists(os.getcwd() + "/images/downloaded/"+args.directory):
+                os.makedirs(os.getcwd() + "/images/downloaded/"+args.directory)
+            f = open(os.getcwd() + "/images/downloaded/"+args.directory+"/img" + "_" + str(i) + ".jpg", 'wb')
             f.write(raw_img)
             f.close()
         except Exception as e:
@@ -88,7 +94,6 @@ def main():
 
 
 if __name__ == '__main__':
-
     try:
         main()
     except KeyboardInterrupt:
