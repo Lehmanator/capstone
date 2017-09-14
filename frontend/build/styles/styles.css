@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Circles";
+    src: url("fonts/font.ttf");
+}
+@font-face {
+    font-family: "Circles";
+    src: url("fonts/font-bold.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Circles";
+    src: url("fonts/font-italic.ttf");
+    font-style: italic, oblique;
+}
+@font-face {
+    font-family: "Circles";
+    src: url("fonts/font-bold-italic.ttf");
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
+body {
+    font-family: "Circles"
+}
