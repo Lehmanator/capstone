@@ -26,6 +26,7 @@ public class UserApiController implements UserApi {
 
     public ResponseEntity<User> createUser(@ApiParam(value = "The user's name"  ) @RequestBody Newuser user) {
         // do some magic!
+
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 
