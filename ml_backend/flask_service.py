@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify, make_response
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D
-from keras.layers import Activation, Dropout, Flatten, Dense
-import base64
-import numpy
+from keras.layers import Conv2D, MaxPooling2D, Activation, Dropout, Flatten, Dense
+from scipy.misc import imresize
 from PIL import Image
 import cStringIO
-from scipy.misc import imresize
+import base64
+import numpy
 
 app = Flask(__name__)
 
