@@ -46,3 +46,8 @@ body {
     font-family: 'Circular Std';
     text-align: center;
 }
+
+hr.navbar-line {
+    color: #ff0000;
+}
+
