@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, abort
+import json
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Activation, Dropout, Flatten, Dense
 from scipy.misc import imresize
@@ -42,15 +43,16 @@ model.compile(loss='binary_crossentropy',
 @app.route('/process_image', methods=['POST'])
 def process_image():
     if request.method == "POST":
-        #data = request.get_json(force=True)  #json is being weird
-        #image_data = data['image']  #should give the image field of json but json being weird
-        #encoded_image = base64.b64encode(image_data) #if not base64 encode to base64
-
+        #TODO: Add source verification
         data = request.get_data() #send raw base64 binary data of image
-        image_data = data #kind of pointless right now, but needed for json POSTs
-
+        json_data = json.loads(data)
+        image_data = json_data['image'] #kind of pointless right now, but needed for json POSTs
+        if not image_data:
+            abort(401)
+            pass
         image_string = cStringIO.StringIO(base64.b64decode(image_data))  #decode image and store it in a string buffer
         image = Image.open(image_string).convert('RGB')  #open as a PIL image
+        print(image)
         image = numpy.array(image)  #create a numpy array from the PIL image
         image = imresize(image, (150, 150, 3), mode='RGB')  #resize image to 150x150x3 pixels
         imagearr = numpy.empty((1, 150,150,3))  #since predict expects an array create a numpy array to hold our 1 picture
@@ -58,6 +60,18 @@ def process_image():
         statistics = model.predict(imagearr)  #get the probability of PSU logo
         resp = make_response('{"P(PSU Logo)":' + str(statistics[0][0]) + '}')  #create the response
         resp.headers['Content-Type'] = "application/json"
-        return resp
+        return resp, 200
     else:
-        return "Not allowed"
+        abort(401)
+
+@app.errorhandler(401)
+def error401(errorData):
+    resp = make_response('{"error": "Unauthorized"}')
+    resp.headers['Content-Type'] = "application/json"
+    return resp, 401
+
+@app.errorhandler(400)
+def error400(errorData):
+    resp = make_response('{"error": "Bad Request"}')
+    resp.headers['Content-Type'] = "application/json"
+    return resp, 400
