@@ -47,7 +47,7 @@ body {
     text-align: center;
 }
 
-navbar-line {
-    color: #AFAFAF;
+hr.navbar-line {
+    color: #ff0000;
 }
 
