@@ -69,4 +69,18 @@ public class User {
   public void id(int id) {
     this.id = id;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof User) {
+      User that = (User) obj;
+      return (this.username.equals(that.username()) &&
+              this.password.equals(that.password()) &&
+              this.firstName.equals(that.firstName()) &&
+              this.lastName.equals(that.lastName()) &&
+              this.profilePicUrl.equals(that.profilePicUrl()) &&
+              this.id == that.id);
+    }
+    return false;
+  }
 }
