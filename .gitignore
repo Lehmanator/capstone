@@ -4,6 +4,8 @@
 logs
 *.log
 
+*.class
+
 # Runtime data
 pids
 *.pid
