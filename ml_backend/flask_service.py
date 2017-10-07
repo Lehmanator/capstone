@@ -31,7 +31,7 @@ model.add(Dense(64))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
-model.add(Activation('softmax'))
+model.add(Activation('sigmoid'))
 
 model.load_weights('first_try.h5')
 
@@ -52,7 +52,7 @@ def process_image():
             pass
         image_string = cStringIO.StringIO(base64.b64decode(image_data))  #decode image and store it in a string buffer
         image = Image.open(image_string).convert('RGB')  #open as a PIL image
-        print(image)
+        # print(image)
         image = numpy.array(image)  #create a numpy array from the PIL image
         image = imresize(image, (150, 150, 3), mode='RGB')  #resize image to 150x150x3 pixels
         imagearr = numpy.empty((1, 150,150,3))  #since predict expects an array create a numpy array to hold our 1 picture
