@@ -1,18 +1,25 @@
 package api;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Users {
   private volatile static Users instance = null;
+  private static DBHandler handler;
+
   private Map<String, User> users;
 
-  private Users() {
+  private Users() throws SQLException {
     users = new HashMap<>();
+    DBConnector connector = DBConnector.getInstance();
+    handler = new DBHandler(connector.getConnection(), connector.getAmazonS3());
   }
 
-  public static Users getInstance() {
+  public static Users getInstance() throws SQLException {
     if (instance == null) {
       synchronized (Users.class) {
         if (instance == null) {
@@ -27,7 +34,29 @@ public class Users {
     return users;
   }
 
-  public User getUser(String username) {
+  public User getUser(String username) throws SQLException {
+    if (users.containsKey(username)) {
+      return users.get(username);
+    } else {
+      List<String> params = new ArrayList<>();
+      params.add("username");
+      params.add("password");
+      params.add("firstname");
+      params.add("lastname");
+      params.add("profpicurl");
+      params.add("id");
+      String query = handler.createSelectUsersTableQuery(params, "username", username);
+      List<Map<String, Object>> responses = handler.executeQueryWithResults(query);
+      for (Map<String, Object> response : responses) {
+        User curr = new User((String) response.get("username"),
+            (String) response.get("password"),
+            (String) response.get("firstname"),
+            (String) response.get("lastname"),
+            (String) response.get("profpicurl"),
+            (Integer) response.get("id"));
+        users.put((String) response.get("username"), curr);
+      }
+    }
     return users.get(username);
   }
 
@@ -36,8 +65,6 @@ public class Users {
   }
 
   public void save() throws SQLException {
-    DBConnector connector = DBConnector.getInstance();
-    DBHandler handler = new DBHandler(connector.getConnection(), connector.getAmazonS3());
     for (User user : users.values()) {
       Map<String, String> params = new HashMap<>();
       params.put("password", user.password());
@@ -50,12 +77,20 @@ public class Users {
     }
   }
 
-  public void addUser(String username,
+  public void addNewUser(
+      String username,
       String password,
       String firstname,
       String lastname,
-      String profpicurl,
-      int id) {
-    users.put(username, new User(username, password, firstname, lastname, profpicurl, id));
+      String profpicurl) throws SQLException {
+    Map<String, String> params = new HashMap<>();
+    params.put("username", username);
+    params.put("password", password);
+    params.put("firstname", firstname);
+    params.put("lastname", lastname);
+    params.put("profilepic", profpicurl);
+    String query = handler.createInsertUsersTableQuery(params);
+    handler.executeQuery(query);
+    getUser(username);
   }
 }

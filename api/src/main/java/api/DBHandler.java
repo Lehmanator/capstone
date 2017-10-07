@@ -2,9 +2,11 @@ package api;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,8 +94,14 @@ public class DBHandler {
     return createUpdateQuery(params, LOGOS_TABLE, where, val);
   }
 
-  public void uploadImage(String userName, String name, File file) throws AmazonS3Exception {
-    awsClient.putObject(BUCKET_NAME, createFileName(userName, name), file);
+  public void uploadImage(
+      String userName,
+      String name,
+      InputStream stream,
+      ObjectMetadata metadata) throws AmazonS3Exception {
+    String fileName = createFileName(userName, name);
+    awsClient.putObject(BUCKET_NAME, fileName, stream, metadata);
+    awsClient.setObjectAcl(BUCKET_NAME, fileName, CannedAccessControlList.PublicRead);
   }
 
   public ObjectMetadata getImage(String userName, String name) throws AmazonS3Exception {
