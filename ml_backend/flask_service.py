@@ -31,7 +31,7 @@ model.add(Dense(64))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
-model.add(Activation('sigmoid'))
+model.add(Activation('softmax'))
 
 model.load_weights('first_try.h5')
 
@@ -75,3 +75,4 @@ def error400(errorData):
     resp = make_response('{"error": "Bad Request"}')
     resp.headers['Content-Type'] = "application/json"
     return resp, 400
+
