@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class CreateAccountController {
-  @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
+  @RequestMapping(value="/createAccount", method=RequestMethod.POST)
   public ApiResponse createAccount(
       @RequestParam("username") String username,
       @RequestParam("password") String password,
