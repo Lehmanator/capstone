@@ -2,19 +2,21 @@ package api;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class Users {
   private volatile static Users instance = null;
   private static DBHandler handler;
 
   private Map<String, User> users;
+  private Map<String, String> sessionKeys;
 
   private Users() throws SQLException {
     users = new HashMap<>();
+    sessionKeys = new HashMap<>();
     DBConnector connector = DBConnector.getInstance();
     handler = new DBHandler(connector.getConnection(), connector.getAmazonS3());
   }
@@ -92,5 +94,15 @@ public class Users {
     String query = handler.createInsertUsersTableQuery(params);
     handler.executeQuery(query);
     getUser(username);
+  }
+
+  public String createSessionKey(String username) {
+    String key = UUID.randomUUID().toString().replace("-", "");
+    sessionKeys.put(username, key);
+    return key;
+  }
+
+  public String getSessionKey(String username) {
+    return sessionKeys.get(username);
   }
 }

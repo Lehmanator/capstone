@@ -18,7 +18,8 @@ public class LoginController {
       User user = users.getUser(username);
       if (user != null) {
         if (user.password().equals(password)) {
-          return new Login(HttpStatus.OK, user);
+          String key = users.createSessionKey(user.username());
+          return new Login(HttpStatus.OK, user, key);
         }
       }
     } catch (SQLException exception) {
