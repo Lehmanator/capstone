@@ -5,4 +5,6 @@
 !.elasticbeanstalk/*.global.yml
 .ebextensions/pip.config
 lib/python2.7
-bin/activate bin/activate.csh bin/activate.fish bin/activate_this.py bin/easy_install bin/easy_install-2.7 bin/enhancer.py bin/enhancer.pyc bin/explode.py bin/explode.pyc bin/f2py bin/flask bin/gifmaker.py bin/gifmaker.pyc bin/markdown_py bin/painter.py bin/painter.pyc bin/pbr bin/pilconvert.py bin/pilconvert.pyc bin/pildriver.py bin/pildriver.pyc bin/pilfile.py bin/pilfile.pyc bin/pilfont.py bin/pilfont.pyc bin/pilprint.py bin/pilprint.pyc bin/pip bin/pip2 bin/pip2.7 bin/player.py bin/player.pyc bin/python bin/python-config bin/python2 bin/python2.7 bin/saved_model_cli bin/tensorboard bin/thresholder.py bin/thresholder.pyc bin/viewer.py bin/viewer.pyc bin/wheel
+!bin/activate 
+bin/**
+.Python
