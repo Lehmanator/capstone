@@ -1,32 +1,32 @@
 @font-face {
     font-family: 'Circular Std Book';
-    src: url('CircularStd-Book.eot');
-    src: url('CircularStd-Book.eot?#iefix') format('embedded-opentype'),
-        url('CircularStd-Book.woff') format('woff'),
-        url('CircularStd-Book.ttf') format('truetype'),
-        url('CircularStd-Book.svg#CircularStd-Book') format('svg');
+    src: url('../fonts/CircularStd-Book.eot');
+    src: url('../fonts/CircularStd-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/CircularStd-Book.woff') format('woff'),
+        url('../fonts/CircularStd-Book.ttf') format('truetype'),
+        url('../fonts/CircularStd-Book.svg#CircularStd-Book') format('svg');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Circular Std';
-    src: url('CircularStd-Bold.eot');
-    src: url('CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
-        url('CircularStd-Bold.woff') format('woff'),
-        url('CircularStd-Bold.ttf') format('truetype'),
-        url('CircularStd-Bold.svg#CircularStd-Bold') format('svg');
+    src: url('../fonts/CircularStd-Bold.eot');
+    src: url('../fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/CircularStd-Bold.woff') format('woff'),
+        url('../fonts/CircularStd-Bold.ttf') format('truetype'),
+        url('../fonts/CircularStd-Bold.svg#CircularStd-Bold') format('svg');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Circular Std Bold';
-    src: url('CircularStd-BoldItalic.eot');
-    src: url('CircularStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('CircularStd-BoldItalic.woff') format('woff'),
-        url('CircularStd-BoldItalic.ttf') format('truetype'),
-        url('CircularStd-BoldItalic.svg#CircularStd-BoldItalic') format('svg');
+    src: url('../fonts/CircularStd-BoldItalic.eot');
+    src: url('../fonts/CircularStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/CircularStd-BoldItalic.woff') format('woff'),
+        url('../fonts/CircularStd-BoldItalic.ttf') format('truetype'),
+        url('../fonts/CircularStd-BoldItalic.svg#CircularStd-BoldItalic') format('svg');
     font-weight: bold;
     font-style: italic;
 }
@@ -43,12 +43,68 @@
 }
 
 body {
-    font-family: 'Circular Std';
+  font-family: 'Circular Std', sans-serif;
     text-align: center;
 }
 
-hr.navbar-line {
-    color: #ff0000;
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #AFAFAF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background-color: white;
+  color: #d22f28;
+}
+ul li {
+  display: inline-block;
+  font-weight: bold;
+  width: 50%;
+  padding: 2px 0;
+  text-align: center;
+  cursor: pointer;
+  list-style-type: none;
+}
+ul li:last-child {
+  margin: 0;
+  padding: 0;
+  height: 2px;
+  background: #d22f28;
+  float: left;
+}
+
+ul li.active:nth-child(1) ~ li:last-child{
+  margin-left: 0;
+}
+
+ul li.active:nth-child(2) ~ li:last-child{
+  margin-left: 50%;
+}
+
+li:last-child {
+  -webkit-transition: margin-left 0.2s ease;
+  -moz-transition: margin-left 0.2s ease;
+  -o-transition: margin-left 0.2s ease;
+  transition: margin-left 0.2s ease;
+  position: relative;
+}
+
+.ml-navbar {
+  background-color: #fff;
+  border-color: #fff;
+}
+.container {
+  width: 50%;
+  margin: 0 auto;
 }
 
 .history-button{
