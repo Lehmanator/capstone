@@ -118,18 +118,12 @@ li:last-child {
 }
 
 .top-bar {
-    margin: 15px;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+    width: 100%;
 }
 
 .user-links {
     color: #484848;
     position: static;
-    margin-right: 15px;
     margin-top: 15px;
-    vertical-align: middle;
-    float: right;
     text-align: right;
 }
