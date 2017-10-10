@@ -22,6 +22,9 @@ class MLNavbar extends React.Component {
           </div>
         </div>
       </nav>
+      <div>
+        { this.props.children[this.state.activeIndex ]}
+      </div>
     </div>);
   }
 }

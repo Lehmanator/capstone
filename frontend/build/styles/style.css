@@ -107,3 +107,23 @@ li:last-child {
   margin: 0 auto;
 }
 
+.history-button{
+    color: #484848;
+    border-radius: 10px;
+    background-color: white;
+    height: 56px;
+    position: static;
+    margin-right: 15px;
+    float: left;
+}
+
+.top-bar {
+    width: 100%;
+}
+
+.user-links {
+    color: #484848;
+    position: static;
+    margin-top: 15px;
+    text-align: right;
+}
