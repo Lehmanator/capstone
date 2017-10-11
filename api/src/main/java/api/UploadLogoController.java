@@ -44,7 +44,7 @@ public class UploadLogoController {
             DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
             if (!image.isEmpty()) {
                 ObjectMetadata metadata = new ObjectMetadata();
-                metadata.addUserMetadata("name", image.getOriginalFilename());
+                metadata.addUserMetadata("name", name);
                 String id = UUID.randomUUID().toString().replace("-", "");
                 metadata.addUserMetadata("id", id);
 
