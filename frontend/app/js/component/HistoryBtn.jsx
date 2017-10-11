@@ -1,7 +1,5 @@
 // take in props as picture, name, and action for each button
 import React from 'react';
-// import logo from '../../static/images/athletics-logo.png';
-// import PropTypes from 'prop-types';
 
 const HistoryBtn = (props) => (
   <div>

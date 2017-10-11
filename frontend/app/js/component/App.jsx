@@ -7,19 +7,26 @@ import c1Logo from '../../static/images/c1tech.png';
 import ImageUploadView from './ImageUploadView';
 
 export default function App() {
+  const appChildren = [
+    { name: 'Upload Logo', value: <ImageUploadView /> },
+    { name: 'Credit Card Approval', value: <div><p>Goodbye</p></div> },
+  ];
+
   return (
     <div>
       <div className="row top-bar">
         <a src="" className="history-button col-md-1" ><img src={c1Logo} alt="Home" /></a>
         <HistoryBtn title={" Logo History"} logo={chipmunkLogo} className="col-md-2" />
-        <HistoryBtn title={" Credit Card Appoval History"} logo={creditCardLogo} className="col-md-2" />
+        <HistoryBtn title={" Credit Card Appoval History"}
+          logo={creditCardLogo} className="col-md-2"
+        />
         <div className="col-md-4"></div>
         <a src="" className="col-md-1 user-links">Help</a>
         <a src="" className="col-md-1 user-links">Settings</a>
         <a src="" className="col-md-1 user-links">Sign Out</a>
       </div>
       <div>
-        <MLNavbar children={[<ImageUploadView />, <div><p>Goodbye</p></div>]} />
+        <MLNavbar children={appChildren} />
       </div>
     </div>
   );

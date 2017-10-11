@@ -1,5 +1,6 @@
 import React from 'react';
 import ListElement from './ListElement';
+import PropTypes from 'prop-types';
 
 class MLNavbar extends React.Component {
   constructor(props) {
@@ -10,23 +11,42 @@ class MLNavbar extends React.Component {
     this.handleClick = (index) => this.setState({ activeIndex: index });
   }
   render() {
+    const len = this.props.children.length;
+    let titleElements = [];
+
+    for (let i = 0; i < len; i++) {
+      let listElementClassName = '';
+      if (i === 0) {
+        listElementClassName = 'active';
+      }
+      titleElements.push(<ListElement name={this.props.children[i].name}
+        className={listElementClassName} index={i}
+        isActive={ this.state.activeIndex === i} onClick={this.handleClick}
+      />);
+    }
+
     return (<div>
       <nav className="navbar navbar-default ml-navbar">
         <div className="container-fluid">
           <div className="navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <ListElement name="Upload Logo" index={0} className="active" isActive={ this.state.activeIndex === 0 } onClick={this.handleClick} />
-              <ListElement name="Credit Card Approval" index={1} isActive={ this.state.activeIndex === 1 } onClick={this.handleClick} />
+              {titleElements}
               <li />
             </ul>
           </div>
         </div>
       </nav>
       <div>
-        { this.props.children[this.state.activeIndex ]}
+        { this.props.children[this.state.activeIndex].value}
       </div>
     </div>);
   }
 }
+
+MLNavbar.propTypes = {
+  children: React.PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string.isRequired,
+      value: PropTypes.any.isRequired })).isRequired,
+};
 
 export default MLNavbar;
