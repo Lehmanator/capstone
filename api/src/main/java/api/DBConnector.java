@@ -39,7 +39,6 @@ public class DBConnector {
     String password = System.getenv("RDS_PASSWORD");
     String hostname = System.getenv("RDS_HOSTNAME");
     String port = System.getenv("RDS_PORT");
-
     String url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s",
         hostname,
         port,
