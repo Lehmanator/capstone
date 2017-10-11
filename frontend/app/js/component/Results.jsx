@@ -25,14 +25,16 @@ export default class Results extends React.Component {
       >
         <div style={{ width: '100%' }}>
           <div style={{ width: '100%', fontSize: titleHeight, textAlign: 'left' }} >
-          {/* eslint-disable-next-line no-dupe-keys */}
-          <p style={{ fontSize: '10vmin',
-            textAlign: 'left', width: this.props.width * 0.80 }}
-          >
-              {message}
-          </p>
+            <p style={{ fontSize: 'calc(10px + 9vmin)',
+                textAlign: 'left', width: '100%' }}
+            >
+                {message}
+            </p>
+            <p style={{ fontSize: 'calc(8px + 1vmin)', textAlign: 'left', width: '100%' }} >
+              Go to the Logo History page to see all your uploaded logos.
+            </p>
+            <hr />
           </div>
-          <hr />
           <div className="row">
             <img src={this.props.image}
               style={{ maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
