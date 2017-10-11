@@ -46,7 +46,7 @@ export default class FileUpload extends React.Component {
                           display: 'flex', alignItems: 'center' }}
       >
         <div style={{ width: '100%' }}>
-          <img src={UploadPic} style={{ height: this.props.height * 0.5 }}
+          <img src={UploadPic} style={{ maxHeight: this.props.height * 0.5, maxWidth: '100%' }}
             alt="Drag and Drop files here"
           />
           <h3 style={{ textAlign: 'center' }}>
@@ -67,7 +67,8 @@ export default class FileUpload extends React.Component {
                           display: 'flex', alignItems: 'center' }}
       >
         <div style={{ width: '100%' }}>
-          <img id="uploadedImage" src={currentImage} style={{ height: this.props.height * 0.5 }}
+          <img id="uploadedImage" src={currentImage}
+            style={{ maxHeight: this.props.height * 0.5, maxWidth: '100%' }}
             alt="Drag and Drop files here"
           />
           <h3 style={{ textAlign: 'center' }}>

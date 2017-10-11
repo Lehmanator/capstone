@@ -40,12 +40,12 @@ module.exports = {
         loaders: ['babel'],
       },
       {
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(gif|png|jpg|svg)$/,
         loader: 'file-loader',
         options: {
-          name:'[path][name].[ext]'
-        }
-      }
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
 };
