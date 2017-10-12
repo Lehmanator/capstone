@@ -7,6 +7,7 @@ const phaseEnum = {
   chooseImage: 1,
   processingImage: 2,
   displayResults: 3,
+  unknown: 4,
 };
 
 export default class ImageUploadView extends React.Component {
@@ -16,8 +17,6 @@ export default class ImageUploadView extends React.Component {
       imageFile: null, phase: phaseEnum.chooseImage, accepted: false };
     this.onGoodUpload = this.onGoodUpload.bind(this);
     this.onUploadImage = this.onUploadImage.bind(this);
-    this.setStateToFinished = this.setStateToFinished.bind(this);
-    console.log(phaseEnum.chooseImage);
   }
 
   onGoodUpload(uploadSuccessful, displayImage, imageFile) {
@@ -28,40 +27,29 @@ export default class ImageUploadView extends React.Component {
   }
 
   onUploadImage() {
-    console.log('Upload Image Called');
-    console.log(this.state.displayImage());
     this.setState({ phase: phaseEnum.processingImage });
     setTimeout(this.sendMessage.bind(this), 1000);
   }
 
-  setStateToFinished() {
-    console.log(this);
-    this.setState({ phase: phaseEnum.displayResults });
-  };
-
   sendMessage() {
-    console.log('Send Message Called');
     const file = this.state.imageFile();
-    console.log('Send Message Called');
     const messageHeaders = new Headers();
     messageHeaders.append('Access-Control-Allow-Origin', '*');
-    console.log(messageHeaders);
     const body = {
-      'image': this.state.displayImage(),
-      'name': file.name,
-      'user': 'John',
+      image: this.state.displayImage(),
+      name: file.name,
+      username: 'John',
     };
     const messageInit = { method: 'POST',
       headers: messageHeaders,
       body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }) };
-    console.log(messageInit);
 
-    fetch('http://localhost:8090/upload', messageInit).then((response) => this.setStateToFinished());
-    // .then((response) => response.json())
-    // .then((jsonData) => {
-    //   console.log(jsonData);
-    //   setStateToFinished();
-    // });
+    fetch('http://localhost:5001/upload', messageInit)
+    .then((response) => response.json())
+    .then((jsonData) => {
+      const accepted = jsonData.probability > 0.69;
+      this.setState({ phase: phaseEnum.displayResults, accepted });
+    });
   }
 
   renderFileUpload(width, height) {
@@ -79,7 +67,7 @@ export default class ImageUploadView extends React.Component {
   }
 
   renderDisplayResults(width, height) {
-    const image = this.state.getImage();
+    const image = this.state.displayImage();
     return (
       <Results width={width} height={height} image={image}
         accepted={this.state.accepted} style={{ margin: 'auto' }}
@@ -115,7 +103,6 @@ export default class ImageUploadView extends React.Component {
       default:
         break;
     }
-    console.log(this.state.phase);
 
     return (
           <div>
