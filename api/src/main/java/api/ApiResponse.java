@@ -12,10 +12,6 @@ public class ApiResponse extends ResponseEntity{
     this.status = status;
   }
 
-//  public ApiResponse(HttpStatus status) {
-//    this.status = status;
-//  }
-
   public HttpStatus getStatus() {
     return status;
   }
