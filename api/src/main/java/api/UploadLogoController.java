@@ -1,5 +1,6 @@
 package api;
 
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Base64;
@@ -58,7 +58,7 @@ public class UploadLogoController {
 	      String imageType = image.split(",")[1];
         InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(imageType));
 
-        //dbHandler.uploadImage(username, name, is, metadata);
+        dbHandler.uploadImage(username, name, is, metadata);
 
         //Run Recognition
         Map<String, String> json = new HashMap<>();
@@ -79,7 +79,7 @@ public class UploadLogoController {
                     //TODO: Upload to SQL
                     Map<String, String> map = new HashMap<>();
                     map.put("id", id);
-                    map.put("piclink", dbHandler.getImageUrl(username, name));
+//                    map.put("piclink", dbHandler.getImageUrl(username, name));
                     map.put("username", username);
                     map.put("time", new Timestamp(new java.util.Date().getTime()).toString());
                     map.put("result", probability.toString());
@@ -107,12 +107,12 @@ public class UploadLogoController {
       } else {
         return CompletableFuture.completedFuture(new Error(HttpStatus.BAD_REQUEST, "{\"message\":\"Image must be provided\"}"));
       }
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
+    } catch (AmazonS3Exception e) {
+      e.printStackTrace();
+      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be uploaded\"}"));
     } catch (SQLException e) {
       e.printStackTrace();
-      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}"));
+      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Database error\"}"));
     }
   }
 
