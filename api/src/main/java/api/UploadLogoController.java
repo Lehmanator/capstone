@@ -31,37 +31,65 @@ import java.util.logging.Logger;
 @RestController
 public class UploadLogoController {
 
-    private static String recognitionAPIKey = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
-    private static String imageRecognitionUri = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
+  private static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
+  private static String RECOGNITION_URI = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody ApiResponse upload(
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("name") String name,
-            @RequestParam("user") String username
-    ) {
-        try {
-            DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
-            if (!image.isEmpty()) {
-                ObjectMetadata metadata = new ObjectMetadata();
-                metadata.addUserMetadata("name", name);
-                String id = UUID.randomUUID().toString().replace("-", "");
-                metadata.addUserMetadata("id", id);
+  @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
+  public @ResponseBody
+  CompletableFuture<ApiResponse> upload(
+          @RequestParam("image") MultipartFile image,
+          @RequestParam("name") String name,
+          @RequestParam("user") String username
+  ) {
+    try {
+      DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
+      if (!image.isEmpty()) {
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.addUserMetadata("name", name);
+        String id = UUID.randomUUID().toString().replace("-", "");
+        metadata.addUserMetadata("id", id);
 
-                //Upload image to S3 bucket
-                String location = dbHandler.uploadImage(username, name, image.getInputStream(), metadata);
-                UploadApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", location, id);
-                return response;
-            } else {
-                return new Error(HttpStatus.BAD_REQUEST, "{\"message\":\"Image must be provided\"}");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}");
-        }
+        //Upload image to S3 bucket
+        dbHandler.uploadImage(username, name, image.getInputStream(), metadata);
+
+        //Run Recognition
+        String b64 = Base64.getEncoder().encodeToString(image.getBytes());
+        Map<String, String> json = new HashMap<>();
+        json.put("image", b64);
+        CompletableFuture<ApiResponse> future = new CompletableFuture<>();
+        Unirest.post(RECOGNITION_URI)
+                .body(json)
+                .asJsonAsync(new Callback<JsonNode>() {
+                  @Override
+                  public void completed(HttpResponse<JsonNode> httpResponse) {
+                    UploadApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, Float.parseFloat((String) httpResponse.getBody().getObject().get("P(PSU Logo)")));
+                    //TODO: Upload to SQL
+//                    dbHandler.createUpdateLogosTableQuery()
+                    future.complete(response);
+                  }
+
+                  @Override
+                  public void failed(UnirestException e) {
+                    e.printStackTrace();
+                    future.complete(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"The request failed. See server logs for details\"}"));
+                  }
+
+                  @Override
+                  public void cancelled() {
+                    future.complete(new Error(HttpStatus.REQUEST_TIMEOUT, "{\"message\":\"The request was cancelled\"}"));
+                  }
+                });
+        return future;
+      } else {
+        return CompletableFuture.completedFuture(new Error(HttpStatus.BAD_REQUEST, "{\"message\":\"Image must be provided\"}"));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}"));
     }
+  }
 
 }

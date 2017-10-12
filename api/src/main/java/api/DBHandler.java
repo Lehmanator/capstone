@@ -90,18 +90,18 @@ public class DBHandler {
         return createUpdateQuery(params, LOGOS_TABLE, where, val);
     }
 
-    public String uploadImage(
+    public void uploadImage(
             String userName,
             String name,
             InputStream stream,
             ObjectMetadata metadata) throws AmazonS3Exception {
         String fileName = createFileName(userName, name);
-        InitiateMultipartUploadResult result = awsClient.initiateMultipartUpload(new InitiateMultipartUploadRequest(BUCKET_NAME, fileName, metadata));
-        UploadPartResult result1 = awsClient.uploadPart(new UploadPartRequest().withUploadId(result.getUploadId()).withInputStream(stream));
-        CompleteMultipartUploadResult finalResult = awsClient.completeMultipartUpload(new CompleteMultipartUploadRequest(BUCKET_NAME, name, result.getUploadId(), Arrays.asList(result1.getPartETag())));
-//    awsClient.putObject(BUCKET_NAME, fileName, stream, metadata);
-        awsClient.setObjectAcl(BUCKET_NAME, fileName, CannedAccessControlList.PublicRead);
-        return finalResult.getLocation();
+//        InitiateMultipartUploadResult result = awsClient.initiateMultipartUpload(new InitiateMultipartUploadRequest(BUCKET_NAME, fileName, metadata));
+//        UploadPartResult result1 = awsClient.uploadPart(new UploadPartRequest().withUploadId(result.getUploadId()).withInputStream(stream));
+//        CompleteMultipartUploadResult finalResult = awsClient.completeMultipartUpload(new CompleteMultipartUploadRequest(BUCKET_NAME, name, result.getUploadId(), Arrays.asList(result1.getPartETag())));
+        awsClient.putObject(BUCKET_NAME, fileName, stream, metadata);
+//        awsClient.setObjectAcl(BUCKET_NAME, fileName, CannedAccessControlList.PublicRead);
+//        return finalResult.getLocation();
     }
 
     public ObjectMetadata getImage(String userName, String name) throws AmazonS3Exception {
