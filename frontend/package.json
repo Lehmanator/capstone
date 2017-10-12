@@ -44,6 +44,7 @@
     "react-dom": "^15.0.1",
     "react-swipe-views": "0.0.12",
     "webpack-dev-server": "^1.14.1",
-    "prop-types": "latest"
+    "prop-types": "latest",
+    "react-dropzone": "^4.1.3"
   }
 }
