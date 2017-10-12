@@ -49,8 +49,9 @@ public class CreateAccountController {
       metadata.setContentLength(contents.length);
       metadata.setContentType(image.getContentType());
       InputStream stream = new ByteArrayInputStream(contents);
-      handler.uploadImage(username, "profile_pic", stream, metadata);
-      return handler.getImageUrl(username, "profile_pic");
+      String fileName = "profile_pic" + image.getOriginalFilename().split(".")[0];
+      handler.uploadImage(username, fileName, stream, metadata);
+      return handler.getImageUrl(username, fileName);
     } catch (SQLException|IOException exception) {
       return null;
     }

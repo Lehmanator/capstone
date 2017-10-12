@@ -29,25 +29,23 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @EnableAsync
 public class UploadLogoController {
-
-  private static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
+  private final static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
   //TODO: Make this work from AWS
-   private static String RECOGNITION_URI = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
-//  private static String RECOGNITION_URI = "http://localhost:5000/process_image";
+  private final static String RECOGNITION_URI =
+      "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
 
   @CrossOrigin(origins = "http://localhost:8080")
   @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
   public @ResponseBody
   @Async
-  CompletableFuture<ApiResponse> upload(
-          @RequestBody UploadApiRequest body
-  ) {
+  CompletableFuture<ApiResponse> upload(@RequestBody UploadApiRequest body) {
     String image = body.getImage();
     String name = body.getName();
     String username = body.getUsername();
     try {
       // TODO: Make this work
-      DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
+      DBHandler dbHandler = new DBHandler(
+          DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.addUserMetadata("name", name);
@@ -73,8 +71,13 @@ public class UploadLogoController {
                 .asJsonAsync(new Callback<JsonNode>() {
                   @Override
                   public void completed(HttpResponse<JsonNode> httpResponse) {
-                    Float probability = ((Double) httpResponse.getBody().getObject().get("P(PSU Logo)")).floatValue();
-                    ApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, probability).getApiResponse();
+                    Float probability = ((Double) httpResponse.getBody()
+                        .getObject().get("P(PSU Logo)")).floatValue();
+                    ApiResponse response = new UploadApiResponse(
+                        HttpStatus.OK,
+                        "Image successfully uploaded",
+                        id,
+                        probability).getApiResponse();
                     System.out.println(response);
                     //TODO: Upload to SQL
                     Map<String, String> map = new HashMap<>();

@@ -6,7 +6,7 @@ logs
 
 *.class
 
-api/.idea/**
+api/.idea/*
 
 # Runtime data
 pids

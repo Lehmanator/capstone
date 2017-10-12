@@ -10,31 +10,32 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnector {
-    private static DBConnector instance = null;
-    private Connection connection;
-    private AmazonS3 amazonS3Service;
 
-    public DBConnector() throws SQLException {
-        connection = connectDB();
-        amazonS3Service = connectAws();
+  private static DBConnector instance = null;
+  private Connection connection;
+  private AmazonS3 amazonS3Service;
+
+  public DBConnector() throws SQLException {
+    connection = connectDB();
+    amazonS3Service = connectAws();
+  }
+
+  public Connection getConnection() {
+    return connection;
+  }
+
+  public AmazonS3 getAmazonS3() {
+    return amazonS3Service;
+  }
+
+  public static DBConnector getInstance() throws SQLException {
+    if (instance == null) {
+      instance = new DBConnector();
     }
+    return instance;
+  }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public AmazonS3 getAmazonS3() {
-        return amazonS3Service;
-    }
-
-    public static DBConnector getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DBConnector();
-        }
-        return instance;
-    }
-
-    private Connection connectDB() throws SQLException {
+  private Connection connectDB() throws SQLException {
     String dbName = System.getenv("RDS_DB_NAME");
     String userName = System.getenv("RDS_USERNAME");
     String password = System.getenv("RDS_PASSWORD");
@@ -47,11 +48,11 @@ public class DBConnector {
         userName,
         password);
     return DriverManager.getConnection(url);
-    }
+  }
 
-    private AmazonS3 connectAws() {
-        return AmazonS3ClientBuilder.standard()
-                .withRegion(Regions.US_EAST_2)
-                .withCredentials(new EnvironmentVariableCredentialsProvider()).build();
-    }
+  private AmazonS3 connectAws() {
+    return AmazonS3ClientBuilder.standard()
+        .withRegion(Regions.US_EAST_2)
+        .withCredentials(new EnvironmentVariableCredentialsProvider()).build();
+  }
 }
