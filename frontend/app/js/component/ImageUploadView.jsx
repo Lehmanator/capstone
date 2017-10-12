@@ -2,6 +2,7 @@ import React from 'react';
 import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
 import Results from './Results';
+import constants from './constants';
 
 const phaseEnum = {
   chooseImage: 1,
@@ -44,7 +45,7 @@ export default class ImageUploadView extends React.Component {
       headers: messageHeaders,
       body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }) };
 
-    fetch('http://localhost:5001/upload', messageInit)
+    fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
       const accepted = jsonData.probability > 0.69;
