@@ -17,7 +17,9 @@ export default class FileUpload extends React.Component {
     this.setState({
       currentImage: event.target.result,
     });
-    this.props.uploadHandler(true, this.getImage.bind(this));
+    this.props.uploadHandler(true,
+      this.getImageForDisplay.bind(this),
+      this.getImageForUpload.bind(this));
   }
 
   onClear() {
@@ -36,7 +38,12 @@ export default class FileUpload extends React.Component {
     });
   }
 
-  getImage() {
+  getImageForUpload() {
+    console.log('forUpload called');
+    return this.state.files[0];
+  }
+
+  getImageForDisplay() {
     return this.state.currentImage;
   }
 

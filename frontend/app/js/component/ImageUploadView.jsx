@@ -12,15 +12,16 @@ const phaseEnum = {
 export default class ImageUploadView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showButton: false, getImage: null,
-      phase: phaseEnum.chooseImage, accepted: false };
+    this.state = { showButton: false, displayImage: null,
+      imageFile: null, phase: phaseEnum.chooseImage, accepted: false };
     this.onGoodUpload = this.onGoodUpload.bind(this);
     this.onUploadImage = this.onUploadImage.bind(this);
+    this.setStateToFinished = this.setStateToFinished.bind(this);
     console.log(phaseEnum.chooseImage);
   }
 
-  onGoodUpload(uploadSuccessful, getImage) {
-    this.setState({ getImage });
+  onGoodUpload(uploadSuccessful, displayImage, imageFile) {
+    this.setState({ displayImage, imageFile });
     if (uploadSuccessful) {
       this.onUploadImage();
     }
@@ -28,8 +29,39 @@ export default class ImageUploadView extends React.Component {
 
   onUploadImage() {
     console.log('Upload Image Called');
-    console.log(this.state.getImage());
+    console.log(this.state.displayImage());
+    this.setState({ phase: phaseEnum.processingImage });
+    setTimeout(this.sendMessage.bind(this), 1000);
+  }
+
+  setStateToFinished() {
+    console.log(this);
     this.setState({ phase: phaseEnum.displayResults });
+  };
+
+  sendMessage() {
+    console.log('Send Message Called');
+    const file = this.state.imageFile();
+    console.log('Send Message Called');
+    const messageHeaders = new Headers();
+    messageHeaders.append('Access-Control-Allow-Origin', '*');
+    console.log(messageHeaders);
+    const body = {
+      'image': this.state.displayImage(),
+      'name': file.name,
+      'user': 'John',
+    };
+    const messageInit = { method: 'POST',
+      headers: messageHeaders,
+      body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }) };
+    console.log(messageInit);
+
+    fetch('http://localhost:8090/upload', messageInit).then((response) => this.setStateToFinished());
+    // .then((response) => response.json())
+    // .then((jsonData) => {
+    //   console.log(jsonData);
+    //   setStateToFinished();
+    // });
   }
 
   renderFileUpload(width, height) {
@@ -83,6 +115,7 @@ export default class ImageUploadView extends React.Component {
       default:
         break;
     }
+    console.log(this.state.phase);
 
     return (
           <div>
