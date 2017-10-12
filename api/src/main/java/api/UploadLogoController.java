@@ -29,8 +29,11 @@ import java.util.concurrent.CompletableFuture;
 public class UploadLogoController {
 
   private static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
-  private static String RECOGNITION_URI = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
+  //TODO: Make this work from AWS
+  // private static String imageRecognitionUri = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
+  private static String RECOGNITION_URI = "http://localhost:5000/process_image";
 
+  @CrossOrigin(origins = "http://localhost:8080")
   @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
   public @ResponseBody
   @Async
@@ -41,7 +44,8 @@ public class UploadLogoController {
     String name = body.getName();
     String username = body.getUsername();
     try {
-      DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
+      // TODO: Make this work
+      //DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.addUserMetadata("name", name);
@@ -49,13 +53,14 @@ public class UploadLogoController {
         metadata.addUserMetadata("id", id);
 
         //Upload image to S3 bucket
-        InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(image));
+	String imageType = image.split(",")[1];
+        InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(imageType));
 
-        dbHandler.uploadImage(username, name, is, metadata);
+        //dbHandler.uploadImage(username, name, is, metadata);
 
         //Run Recognition
         Map<String, String> json = new HashMap<>();
-        json.put("image", image);
+        json.put("image", imageType);
         Map<String, String> headers = new HashMap<>();
         headers.put("content-type", "application/json");
         headers.put("key", API_KEY);
@@ -67,6 +72,7 @@ public class UploadLogoController {
                   @Override
                   public void completed(HttpResponse<JsonNode> httpResponse) {
                     ApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, ((Double) httpResponse.getBody().getObject().get("P(PSU Logo)")).floatValue()).getApiResponse();
+                    System.out.println(response);
                     //TODO: Upload to SQL
 //                    dbHandler.createUpdateLogosTableQuery()
                     future.complete(response);
@@ -90,7 +96,7 @@ public class UploadLogoController {
 //    } catch (IOException e) {
 //      e.printStackTrace();
 //      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
-    } catch (SQLException e) {
+    } catch (Exception e) {
       e.printStackTrace();
       return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}"));
     }

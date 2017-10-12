@@ -4,9 +4,15 @@ package api;
  * Created by sushrutshringarputale on 10/12/17.
  */
 public class UploadApiRequest {
-  private String image;
-  private String name;
-  private String username;
+  public String image;
+  public String name;
+  public String username;
+
+  public UploadApiRequest() {
+    image = "";
+    name = "";
+    username = "";
+  }
 
   public UploadApiRequest(String image, String name, String username) {
     this.image = image;

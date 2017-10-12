@@ -13,7 +13,6 @@ import java.util.Map;
 @ResponseBody
 public class UploadApiResponse extends ApiResponse {
   private String id;
-  private String message;
   private Float probability;
   private Object response;
 
@@ -22,18 +21,17 @@ public class UploadApiResponse extends ApiResponse {
     this.response = response;
   }
 
-  private JSONObject getJson(Object response) {
+  private Map<String, Object> getJson(Object response) {
     Map<String, Object> map = new HashMap<>();
     map.put("response", response);
-    map.put("message", getMessage());
     map.put("probability", getProbability());
     map.put("id", getId());
-    return new JSONObject(map);
+    return map;
   }
 
 
   public UploadApiResponse(HttpStatus status, Object response, String id, Float probability) {
-    this(response, status);
+    super(response, status);
     this.response = response;
     this.id = id;
     this.probability = probability;
@@ -44,21 +42,12 @@ public class UploadApiResponse extends ApiResponse {
   }
 
 
-
   public String getId() {
     return id;
   }
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 
   public Float getProbability() {
