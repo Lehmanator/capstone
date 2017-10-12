@@ -6,26 +6,20 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.sun.javafx.util.Logging;
-import javafx.concurrent.Task;
-import org.apache.commons.logging.impl.Log4JLogger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by sushrutshringarputale on 10/10/17.
@@ -41,10 +35,11 @@ public class UploadLogoController {
   public @ResponseBody
   @Async
   CompletableFuture<ApiResponse> upload(
-          @RequestParam("image") MultipartFile image,
-          @RequestParam("name") String name,
-          @RequestParam("user") String username
+          @RequestBody UploadApiRequest body
   ) {
+    String image = body.getImage();
+    String name = body.getName();
+    String username = body.getUsername();
     try {
       DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
@@ -54,19 +49,24 @@ public class UploadLogoController {
         metadata.addUserMetadata("id", id);
 
         //Upload image to S3 bucket
-        dbHandler.uploadImage(username, name, image.getInputStream(), metadata);
+        InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(image));
+
+        dbHandler.uploadImage(username, name, is, metadata);
 
         //Run Recognition
-        String b64 = Base64.getEncoder().encodeToString(image.getBytes());
         Map<String, String> json = new HashMap<>();
-        json.put("image", b64);
+        json.put("image", image);
+        Map<String, String> headers = new HashMap<>();
+        headers.put("content-type", "application/json");
+        headers.put("key", API_KEY);
         CompletableFuture<ApiResponse> future = new CompletableFuture<>();
         Unirest.post(RECOGNITION_URI)
-                .body(json)
+                .headers(headers)
+                .body(new JSONObject(json))
                 .asJsonAsync(new Callback<JsonNode>() {
                   @Override
                   public void completed(HttpResponse<JsonNode> httpResponse) {
-                    UploadApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, Float.parseFloat((String) httpResponse.getBody().getObject().get("P(PSU Logo)")));
+                    ApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, ((Double) httpResponse.getBody().getObject().get("P(PSU Logo)")).floatValue()).getApiResponse();
                     //TODO: Upload to SQL
 //                    dbHandler.createUpdateLogosTableQuery()
                     future.complete(response);
@@ -87,9 +87,9 @@ public class UploadLogoController {
       } else {
         return CompletableFuture.completedFuture(new Error(HttpStatus.BAD_REQUEST, "{\"message\":\"Image must be provided\"}"));
       }
-    } catch (IOException e) {
-      e.printStackTrace();
-      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
     } catch (SQLException e) {
       e.printStackTrace();
       return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}"));

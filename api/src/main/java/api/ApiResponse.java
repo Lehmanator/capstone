@@ -9,6 +9,7 @@ public class ApiResponse extends ResponseEntity{
 
   public ApiResponse(Object body, HttpStatus status) {
     super(body, status);
+    this.status = status;
   }
 
 //  public ApiResponse(HttpStatus status) {
