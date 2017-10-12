@@ -11,6 +11,8 @@ import javafx.concurrent.Task;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +31,7 @@ import java.util.logging.Logger;
  * Created by sushrutshringarputale on 10/10/17.
  */
 @RestController
+@EnableAsync
 public class UploadLogoController {
 
   private static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
@@ -36,6 +39,7 @@ public class UploadLogoController {
 
   @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
   public @ResponseBody
+  @Async
   CompletableFuture<ApiResponse> upload(
           @RequestParam("image") MultipartFile image,
           @RequestParam("name") String name,
