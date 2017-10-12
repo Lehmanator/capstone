@@ -39,7 +39,6 @@ export default class FileUpload extends React.Component {
   }
 
   getImageForUpload() {
-    console.log('forUpload called');
     return this.state.files[0];
   }
 
