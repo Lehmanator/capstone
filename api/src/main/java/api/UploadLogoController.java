@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,8 +32,8 @@ public class UploadLogoController {
 
   private static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
   //TODO: Make this work from AWS
-  // private static String imageRecognitionUri = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
-  private static String RECOGNITION_URI = "http://localhost:5000/process_image";
+   private static String RECOGNITION_URI = "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
+//  private static String RECOGNITION_URI = "http://localhost:5000/process_image";
 
   @CrossOrigin(origins = "http://localhost:8080")
   @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
@@ -45,7 +47,7 @@ public class UploadLogoController {
     String username = body.getUsername();
     try {
       // TODO: Make this work
-      //DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
+      DBHandler dbHandler = new DBHandler(DBConnector.getInstance().getConnection(), DBConnector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.addUserMetadata("name", name);
@@ -53,7 +55,7 @@ public class UploadLogoController {
         metadata.addUserMetadata("id", id);
 
         //Upload image to S3 bucket
-	String imageType = image.split(",")[1];
+	      String imageType = image.split(",")[1];
         InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(imageType));
 
         //dbHandler.uploadImage(username, name, is, metadata);
@@ -71,10 +73,22 @@ public class UploadLogoController {
                 .asJsonAsync(new Callback<JsonNode>() {
                   @Override
                   public void completed(HttpResponse<JsonNode> httpResponse) {
-                    ApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, ((Double) httpResponse.getBody().getObject().get("P(PSU Logo)")).floatValue()).getApiResponse();
+                    Float probability = ((Double) httpResponse.getBody().getObject().get("P(PSU Logo)")).floatValue();
+                    ApiResponse response = new UploadApiResponse(HttpStatus.OK, "Image successfully uploaded", id, probability).getApiResponse();
                     System.out.println(response);
                     //TODO: Upload to SQL
-//                    dbHandler.createUpdateLogosTableQuery()
+                    Map<String, String> map = new HashMap<>();
+                    map.put("id", id);
+                    map.put("piclink", dbHandler.getImageUrl(username, name));
+                    map.put("username", username);
+                    map.put("time", new Timestamp(new java.util.Date().getTime()).toString());
+                    map.put("result", probability.toString());
+                    try {
+                      dbHandler.executeQuery(dbHandler.createInsertLogosTableQuery(map));
+                    } catch (SQLException e) {
+                      e.printStackTrace();
+                      response = new UploadApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to store the results", id, probability).getApiResponse();
+                    }
                     future.complete(response);
                   }
 
@@ -96,7 +110,7 @@ public class UploadLogoController {
 //    } catch (IOException e) {
 //      e.printStackTrace();
 //      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be read\"}"));
-    } catch (Exception e) {
+    } catch (SQLException e) {
       e.printStackTrace();
       return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Image could not be uploaded\"}"));
     }
