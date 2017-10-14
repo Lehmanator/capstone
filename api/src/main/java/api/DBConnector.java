@@ -8,9 +8,10 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class DBConnector {
-
+  private static Logger logger = Logger.getLogger(DBConnector.class.getName());
   private static DBConnector instance = null;
   private Connection connection;
   private AmazonS3 amazonS3Service;
@@ -36,7 +37,7 @@ public class DBConnector {
   }
 
   private Connection connectDB() throws SQLException {
-    String dbName = System.getenv("RDS_DB_NAME");
+    String dbName = System.getenv("RDS_DB_NAME_CAP");
     String userName = System.getenv("RDS_USERNAME");
     String password = System.getenv("RDS_PASSWORD");
     String hostname = System.getenv("RDS_HOSTNAME");

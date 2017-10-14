@@ -7,6 +7,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
@@ -29,6 +30,7 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @EnableAsync
 public class UploadLogoController {
+  private static Logger logger = Logger.getLogger(UploadLogoController.class.getName());
   private final static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
   //TODO: Make this work from AWS
   private final static String RECOGNITION_URI =
@@ -82,7 +84,7 @@ public class UploadLogoController {
                     //TODO: Upload to SQL
                     Map<String, String> map = new HashMap<>();
                     map.put("id", id);
-//                    map.put("piclink", dbHandler.getImageUrl(username, name));
+                    map.put("piclink", dbHandler.getImageUrl(username, name));
                     map.put("username", username);
                     map.put("time", new Timestamp(new java.util.Date().getTime()).toString());
                     map.put("result", probability.toString());

@@ -1,2 +1,17 @@
+api/Logos.class
+api/ApiResponse.class
+api/UploadLogoController.class
+api/Login.class
+api/LoginController.class
+api/UploadApiResponse.class
+api/Logo.class
+api/DBHandler.class
 api/UploadLogoController$1.class
+api/Application.class
+api/ApiResponseSuccess.class
+api/DBConnector.class
 api/UploadApiRequest.class
+api/Users.class
+api/Error.class
+api/CreateAccountController.class
+api/User.class
