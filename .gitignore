@@ -6,6 +6,9 @@ logs
 
 *.class
 
+frontend/build
+frontend/package-lock.json
+
 api/.idea/**
 api/target
 
