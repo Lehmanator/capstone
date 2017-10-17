@@ -1,6 +1,6 @@
 
 const constants = {
-  uploadImageUrl: 'http://localhost:5001/upload',
+  uploadImageUrl: 'https://api-capitalfun-dev.us-east-2.elasticbeanstalk.com/upload',
 };
 
 export default constants;
