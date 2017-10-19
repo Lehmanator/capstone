@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class CreateAccountController {
+  private static Logger logger = Logger.getLogger(CreateAccountController.class.getName());
+
   @RequestMapping(value="/createAccount", method=RequestMethod.POST)
   public ApiResponse createAccount(
       @RequestParam("username") String username,
@@ -26,6 +29,7 @@ public class CreateAccountController {
       makeUser(username, password, firstname, lastname, url);
       return new ApiResponseSuccess(HttpStatus.OK, "Successfully created account.");
     } catch (SQLException exception) {
+      logger.severe(exception.getMessage());
       return new Error(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot create account.");
     }
   }
@@ -49,9 +53,11 @@ public class CreateAccountController {
       metadata.setContentLength(contents.length);
       metadata.setContentType(image.getContentType());
       InputStream stream = new ByteArrayInputStream(contents);
-      handler.uploadImage(username, "profile_pic", stream, metadata);
-      return handler.getImageUrl(username, "profile_pic");
+      String fileName = "profile_pic." + image.getOriginalFilename().split("\\.")[1];
+      handler.uploadImage(username, fileName, stream, metadata);
+      return handler.getImageUrl(username, fileName);
     } catch (SQLException|IOException exception) {
+      logger.severe("GOT EXCEPTION: " + exception);
       return null;
     }
   }

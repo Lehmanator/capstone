@@ -10,7 +10,7 @@ public class Login extends ApiResponse {
   private String sessionKey;
 
   public Login(HttpStatus status, User user, String sessionKey) {
-    super(status);
+    super(user, status);
     this.firstname = user.firstName();
     this.lastname = user.lastName();
     this.username = user.username();
