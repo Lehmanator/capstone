@@ -51,6 +51,7 @@ body {
   display: inline-block;
   float: none;
   vertical-align: top;
+  margin-top: 15px;
 }
 
 .navbar .navbar-collapse {
@@ -154,6 +155,22 @@ li:last-child {
   background-color: #404040;
 }
 
+.nav-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
 @keyframes ripple {
   0% {
     transform: scale(0, 0);
@@ -171,21 +188,6 @@ li:last-child {
 
 .nav-button:focus:not(:active)::after {
   animation: ripple 1s ease-out;
-}
-
-
-.nav-button:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(255, 255, 255, .5);
-  opacity: 0;
-  border-radius: 100%;
-  transform: scale(1, 1) translate(-50%);
-  transform-origin: 50% 50%;
 }
 
 .nav-button:active:after {
@@ -210,3 +212,36 @@ li:last-child {
   text-decoration: underline;
   color: white;
 }
+
+.uploadImage {
+  width: 60%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropzone {
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  border-style: dashed;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.processingImage {
+  display: flex;
+  align-items: center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.resultImage {
+  display: flex;
+  align-items: center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
