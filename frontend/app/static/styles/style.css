@@ -1,50 +1,50 @@
 @font-face {
-    font-family: 'Circular Std Book';
-    src: url('../fonts/CircularStd-Book.eot');
-    src: url('../fonts/CircularStd-Book.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/CircularStd-Book.woff') format('woff'),
-        url('../fonts/CircularStd-Book.ttf') format('truetype'),
-        url('../fonts/CircularStd-Book.svg#CircularStd-Book') format('svg');
-    font-weight: 500;
-    font-style: normal;
+  font-family: 'Circular Std Book';
+  src: url('../fonts/CircularStd-Book.eot');
+  src: url('../fonts/CircularStd-Book.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/CircularStd-Book.woff') format('woff'),
+  url('../fonts/CircularStd-Book.ttf') format('truetype'),
+  url('../fonts/CircularStd-Book.svg#CircularStd-Book') format('svg');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Circular Std';
-    src: url('../fonts/CircularStd-Bold.eot');
-    src: url('../fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/CircularStd-Bold.woff') format('woff'),
-        url('../fonts/CircularStd-Bold.ttf') format('truetype'),
-        url('../fonts/CircularStd-Bold.svg#CircularStd-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
+  font-family: 'Circular Std';
+  src: url('../fonts/CircularStd-Bold.eot');
+  src: url('../fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/CircularStd-Bold.woff') format('woff'),
+  url('../fonts/CircularStd-Bold.ttf') format('truetype'),
+  url('../fonts/CircularStd-Bold.svg#CircularStd-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Circular Std Bold';
-    src: url('../fonts/CircularStd-BoldItalic.eot');
-    src: url('../fonts/CircularStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/CircularStd-BoldItalic.woff') format('woff'),
-        url('../fonts/CircularStd-BoldItalic.ttf') format('truetype'),
-        url('../fonts/CircularStd-BoldItalic.svg#CircularStd-BoldItalic') format('svg');
-    font-weight: bold;
-    font-style: italic;
+  font-family: 'Circular Std Bold';
+  src: url('../fonts/CircularStd-BoldItalic.eot');
+  src: url('../fonts/CircularStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/CircularStd-BoldItalic.woff') format('woff'),
+  url('../fonts/CircularStd-BoldItalic.ttf') format('truetype'),
+  url('../fonts/CircularStd-BoldItalic.svg#CircularStd-BoldItalic') format('svg');
+  font-weight: bold;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Circular Std Book';
-    src: url('CircularStd-BookItalic.eot');
-    src: url('CircularStd-BookItalic.eot?#iefix') format('embedded-opentype'),
-        url('CircularStd-BookItalic.woff') format('woff'),
-        url('CircularStd-BookItalic.ttf') format('truetype'),
-        url('CircularStd-BookItalic.svg#CircularStd-BookItalic') format('svg');
-    font-weight: 500;
-    font-style: italic;
+  font-family: 'Circular Std Book';
+  src: url('CircularStd-BookItalic.eot');
+  src: url('CircularStd-BookItalic.eot?#iefix') format('embedded-opentype'),
+  url('CircularStd-BookItalic.woff') format('woff'),
+  url('CircularStd-BookItalic.ttf') format('truetype'),
+  url('CircularStd-BookItalic.svg#CircularStd-BookItalic') format('svg');
+  font-weight: 500;
+  font-style: italic;
 }
 
 body {
   font-family: 'Circular Std', sans-serif;
-    text-align: center;
+  text-align: center;
 }
 
 .navbar .navbar-nav {
@@ -57,14 +57,15 @@ body {
   text-align: center;
 }
 
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav > li > a {
   color: #AFAFAF;
 }
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
   background-color: white;
   color: #d22f28;
 }
+
 ul li {
   display: inline-block;
   font-weight: bold;
@@ -74,6 +75,7 @@ ul li {
   cursor: pointer;
   list-style-type: none;
 }
+
 ul li:last-child {
   margin: 0;
   padding: 0;
@@ -82,11 +84,11 @@ ul li:last-child {
   float: left;
 }
 
-ul li.active:nth-child(1) ~ li:last-child{
+ul li.active:nth-child(1) ~ li:last-child {
   margin-left: 0;
 }
 
-ul li.active:nth-child(2) ~ li:last-child{
+ul li.active:nth-child(2) ~ li:last-child {
   margin-left: 50%;
 }
 
@@ -102,8 +104,109 @@ li:last-child {
   background-color: #fff;
   border-color: #fff;
 }
+
 .container {
   width: 50%;
   margin: 0 auto;
 }
 
+.top-bar {
+  background-color: #222222;
+  padding: 15px;
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  -moz-box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.top-bar .brand {
+  color: white;
+  height: 56px;
+  position: static;
+  margin-right: 15px;
+  float: left;
+  border: none;
+}
+
+.nav-button {
+  color: white;
+  height: 56px;
+  position: relative;
+  overflow: hidden;
+  margin-right: 15px;
+  float: left;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-transition: ease 1s;
+  -moz-transition: ease 1s;
+  -ms-transition: ease 1s;
+  -o-transition: ease 1s;
+  transition: ease 0.5s;
+}
+
+.nav-button img {
+  height: 50%;
+}
+
+.nav-button:hover {
+  background-color: #404040;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.nav-button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+
+.nav-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.nav-button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.nav-button:focus {
+  outline: none;
+}
+
+.user-links {
+  color: white;
+  position: relative;
+  margin-top: 15px;
+  text-align: right;
+}
+
+.user-links:hover {
+  text-decoration: underline;
+  color: white;
+}

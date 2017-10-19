@@ -39,6 +39,13 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel'],
       },
+      {
+        test: /\.(gif|png|jpg|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
 };

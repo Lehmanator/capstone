@@ -7,7 +7,11 @@ logs
 *.class
 *api/target/**
 
-api/.idea/*
+frontend/build
+frontend/package-lock.json
+
+api/.idea/**
+api/target
 
 # Runtime data
 pids
