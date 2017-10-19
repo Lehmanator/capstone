@@ -3,7 +3,7 @@ import React from 'react';
 
 const HistoryBtn = (props) => (
   <div>
-    <button className="history-button">
+    <button className="nav-button">
       <img src={props.logo} alt="Logo" />
       {props.title}
     </button>

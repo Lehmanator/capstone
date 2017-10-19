@@ -38,13 +38,14 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.7.4",
     "bootstrap": "^3.3.7",
+    "prop-types": "latest",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
+    "react-dropzone": "^4.1.3",
     "react-swipe-views": "0.0.12",
-    "webpack-dev-server": "^1.14.1",
-    "prop-types": "latest",
-    "react-dropzone": "^4.1.3"
+    "webpack-dev-server": "^1.14.1"
   }
 }
