@@ -2,6 +2,7 @@ import numpy as np
 import scipy as sci
 import matplotlib as plt
 
+
 class User:
     def __init__(self, credit_data, id_data):
         self.credit_data = credit_data
@@ -13,7 +14,7 @@ class CreditData:
     def __init__(self, var_dict):
         for var in var_dict.keys():
             self.vars = DistData(var, var_dict[var])
-            
+
     def gen_data(self):
         pass
 
@@ -27,19 +28,20 @@ class DistData:
 
 
 def mean(var_data):
-    sum = 0.0    
+    sum = 0.0
     for x in var_data:
         sum = sum + x
-    return sum/len(var_data)
+    return sum / len(var_data)
 
 
 def standard_dev(var_data):
     pass
 
-def find_dist(var_data):
-    # TODO Figure out how to do this. 
-    pass
 
+def find_dist(var_data):
+    # TODO Figure out how to do this.
+    sci.fit
+    pass
 
 
 def find_dist_params(dist_str, var_data):
@@ -60,14 +62,15 @@ def find_dist_params(dist_str, var_data):
         pass
     elif dist_str == 'poisson':
         pass
-    # TODO more distributions
+        # TODO more distributions
+
 
 def gen_dist(dist_str, params):
-    if dist_str == 'normal'
+    if dist_str == 'normal':
         return np.normal(**params)
-    # TODO more distributions
+        # TODO more distributions
+
 
 def histogram(var_data):
     count, bins, ignored = plt.hist(var_data, 50, normed=True)
     plt.show()
-
