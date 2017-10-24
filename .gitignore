@@ -10,7 +10,7 @@ logs
 frontend/build
 frontend/package-lock.json
 
-api/.idea/**
+api/.idea
 api/target
 
 # Runtime data
