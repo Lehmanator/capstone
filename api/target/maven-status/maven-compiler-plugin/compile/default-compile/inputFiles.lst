@@ -7,6 +7,7 @@
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/response/UploadApiResponse.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/CapitalfunApplication.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/users/generated/GeneratedUsersManager.java
+/Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/response/HistoryApiResponse.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/controller/CreateAccountController.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/handler/LogoHandler.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/SecurityConfiguration.java
@@ -27,6 +28,7 @@
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/users/generated/GeneratedUsersManagerImpl.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/response/ApiResponse.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/response/ApiResponseSuccess.java
+/Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/WebConfig.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/users/Users.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/CapitalfunApplicationImpl.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/S3Connector.java
@@ -37,6 +39,7 @@
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/logos/Logos.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/response/Error.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/logos/LogosManager.java
+/Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/controller/GetHistoryController.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/generated/GeneratedCapitalfunApplication.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/db/logos/generated/GeneratedLogosImpl.java
 /Users/mayankmmmx/Dropbox/Projects/capitalfun/api/src/main/java/api/SpeedmentConfiguration.java
