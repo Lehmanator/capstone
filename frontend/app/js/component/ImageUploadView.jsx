@@ -62,7 +62,7 @@ export default class ImageUploadView extends React.Component {
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
-      const accepted = jsonData.probability > 0.69;
+      const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
     });
   }
