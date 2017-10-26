@@ -42,7 +42,7 @@ export default class ImageUploadView extends React.Component {
     const body = {
       image: this.state.displayImage(),
       name: file.name,
-      username: 'John',
+      username: constants.defaultUser,
     };
     const messageInit = { method: 'POST',
       headers: messageHeaders,
