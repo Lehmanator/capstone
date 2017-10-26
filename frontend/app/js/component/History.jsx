@@ -21,7 +21,7 @@ export default class History extends React.Component {
     fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
-      this.setState({ phase: phaseEnum.display, images: jsonData.response });
+      this.setState({ phase: phaseEnum.display, images: jsonData.response.reverse() });
     });
   }
 

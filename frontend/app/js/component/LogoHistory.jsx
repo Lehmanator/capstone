@@ -45,18 +45,18 @@ export default class LogoHistory extends React.Component {
 
   renderExpanded() {
     let image = this.renderImage();
-
-    let probability = <h1>Probability - 0</h1>;
+    let probability = 0;
     if (this.props.probability) {
-      probability = <h1>Probability - {this.props.probability}</h1>;
+      probability = this.props.probability;
     }
+    let probabilityDisplay = <h1>Probability: {probability}</h1>;
 
     return (
       <div>
         <div className="panel-body">
           {image}
         </div>
-        <div className="panel-footer">{probability}</div>
+        <div className="panel-footer">{probabilityDisplay}</div>
       </div>
     );
   }
