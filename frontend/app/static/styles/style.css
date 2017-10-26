@@ -210,3 +210,12 @@ li:last-child {
   text-decoration: underline;
   color: white;
 }
+
+.logo-history-box {
+  color: black;
+  height: 100px;
+  overflow: hidden;
+  margin-right: 15px;
+  border: none;
+  border-radius: 25px;
+}
