@@ -4,7 +4,7 @@ import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
 import Results from './Results';
 import constants from './constants';
-import axios from 'axios';
+// import axios from 'axios';
 
 const phaseEnum = {
   chooseImage: 1,
@@ -49,16 +49,16 @@ export default class ImageUploadView extends React.Component {
       body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
     };
 
-    axios({
-      method: 'post',
-      url: constants.uploadImageUrl,
-      data: body,
-      headers: messageHeaders,
-    }).then(response => {
-      console.log(response);
-    }, error => {
-      console.error(error);
-    });
+    // axios({
+    //   method: 'post',
+    //   url: constants.uploadImageUrl,
+    //   data: body,
+    //   headers: messageHeaders,
+    // }).then(response => {
+    //   console.log(response);
+    // }, error => {
+    //   console.error(error);
+    // });
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {

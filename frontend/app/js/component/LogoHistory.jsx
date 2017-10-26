@@ -52,13 +52,13 @@ export default class LogoHistory extends React.Component {
     }
 
     return (
-<div>
-<div className="panel-body">
-{image}
-</div>
-<div className="panel-footer">{probability}</div>
-</div>
-);
+      <div>
+        <div className="panel-body">
+          {image}
+        </div>
+        <div className="panel-footer">{probability}</div>
+      </div>
+    );
   }
 
   render() {
@@ -84,9 +84,7 @@ export default class LogoHistory extends React.Component {
               <button onClick={this.changeCollapsed} style={{ width: '100%', height: '100%' }}>
                 <div className="panel-heading">
                   <div className="row" >
-                    <div className="col-md-2">
-                      <img src="" alt="Expand" />
-                    </div>
+                    <div className="col-md-2"></div>
                     <div className="col-md-6">
                       <h1 style={{ textAlign: 'left' }} > {name} </h1>
                     </div>
