@@ -32,7 +32,6 @@ def mean(var_data):
         sum = sum + x
     return sum/len(var_data)
 
-
 def standard_dev(var_data):
     pass
 
