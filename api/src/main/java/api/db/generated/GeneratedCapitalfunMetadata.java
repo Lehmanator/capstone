@@ -25,6 +25,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
         initPart0(sb);
         initPart1(sb);
         initPart2(sb);
+        initPart3(sb);
+        initPart4(sb);
         return sb.toString();
     }
     
@@ -52,6 +54,161 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "          {",
             "            \"expanded\" : true,",
             "            \"tables\" : [",
+            "              {",
+            "                \"foreignKeys\" : [",
+            "                  {",
+            "                    \"expanded\" : false,",
+            "                    \"foreignKeyColumns\" : [",
+            "                      {",
+            "                        \"foreignDatabaseName\" : \"capitalfun\",",
+            "                        \"foreignSchemaName\" : \"capitalfun\",",
+            "                        \"expanded\" : true,",
+            "                        \"name\" : \"username\",",
+            "                        \"foreignColumnName\" : \"username\",",
+            "                        \"id\" : \"username\",",
+            "                        \"foreignTableName\" : \"users\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }",
+            "                    ],",
+            "                    \"name\" : \"applications_ibfk_1\",",
+            "                    \"id\" : \"applications_ibfk_1\",",
+            "                    \"enabled\" : true",
+            "                  }",
+            "                ],",
+            "                \"expanded\" : true,",
+            "                \"primaryKeyColumns\" : [",
+            "                  {",
+            "                    \"expanded\" : true,",
+            "                    \"name\" : \"id\",",
+            "                    \"id\" : \"id\",",
+            "                    \"ordinalPosition\" : 1",
+            "                  }",
+            "                ],",
+            "                \"indexes\" : [",
+            "                  {",
+            "                    \"expanded\" : false,",
+            "                    \"unique\" : true,",
+            "                    \"name\" : \"PRIMARY\",",
+            "                    \"indexColumns\" : [",
+            "                      {",
+            "                        \"orderType\" : \"ASC\",",
+            "                        \"expanded\" : true,",
+            "                        \"name\" : \"id\",",
+            "                        \"id\" : \"id\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }",
+            "                    ],",
+            "                    \"id\" : \"PRIMARY\",",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"expanded\" : false,",
+            "                    \"unique\" : false,",
+            "                    \"name\" : \"username\",",
+            "                    \"indexColumns\" : [",
+            "                      {",
+            "                        \"orderType\" : \"ASC\",",
+            "                        \"expanded\" : true,",
+            "                        \"name\" : \"username\",",
+            "                        \"id\" : \"username\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }",
+            "                    ],",
+            "                    \"id\" : \"username\",",
+            "                    \"enabled\" : true",
+            "                  }",
+            "                ],",
+            "                \"isView\" : false,",
+            "                \"columns\" : [",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"autoIncrement\" : true,",
+            "                    \"name\" : \"id\",",
+            "                    \"id\" : \"id\",",
+            "                    \"ordinalPosition\" : 1,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.String\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"applicantName\",",
+            "                    \"id\" : \"applicantName\",",
+            "                    \"ordinalPosition\" : 2,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart1(StringBuilder sb) {
+        Stream.of(
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"age\",",
+            "                    \"id\" : \"age\",",
+            "                    \"ordinalPosition\" : 3,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"income\",",
+            "                    \"id\" : \"income\",",
+            "                    \"ordinalPosition\" : 4,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"creditScore\",",
+            "                    \"id\" : \"creditScore\",",
+            "                    \"ordinalPosition\" : 5,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"expenses\",",
+            "                    \"id\" : \"expenses\",",
+            "                    \"ordinalPosition\" : 6,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.String\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : false,",
+            "                    \"name\" : \"applicantId\",",
+            "                    \"id\" : \"applicantId\",",
+            "                    \"ordinalPosition\" : 7,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.String\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : true,",
+            "                    \"name\" : \"username\",",
+            "                    \"id\" : \"username\",",
+            "                    \"ordinalPosition\" : 8,",
+            "                    \"enabled\" : true",
+            "                  }",
+            "                ],",
+            "                \"name\" : \"applications\",",
+            "                \"id\" : \"applications\",",
+            "                \"packageName\" : \"api.db.applications\",",
+            "                \"enabled\" : true",
+            "              },",
             "              {",
             "                \"expanded\" : true,",
             "                \"foreignKeys\" : [",
@@ -86,7 +243,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"expanded\" : false,",
             "                    \"unique\" : true,",
-            "                    \"name\" : \"PRIMARY\",",
+            "                    \"name\" : \"PRIMARY\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart2(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"orderType\" : \"ASC\",",
@@ -135,12 +297,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"name\" : \"piclink\",",
             "                    \"id\" : \"piclink\",",
-            "                    \"ordinalPosition\" : 2,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart1(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\" : 2,",
             "                    \"enabled\" : true",
             "                  },",
             "                  {",
@@ -192,7 +349,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ],",
-            "                \"indexes\" : [",
+            "                \"indexes\" : ["
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart3(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"expanded\" : false,",
             "                    \"unique\" : false,",
@@ -241,12 +403,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                        \"orderType\" : \"ASC\",",
             "                        \"expanded\" : true,",
             "                        \"name\" : \"username\",",
-            "                        \"id\" : \"username\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart2(StringBuilder sb) {
-        Stream.of(
+            "                        \"id\" : \"username\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
@@ -298,7 +455,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"expanded\" : true,",
             "                    \"nullable\" : true,",
-            "                    \"name\" : \"lastname\",",
+            "                    \"name\" : \"lastname\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                    \"id\" : \"lastname\",",
             "                    \"ordinalPosition\" : 5,",
             "                    \"enabled\" : true",

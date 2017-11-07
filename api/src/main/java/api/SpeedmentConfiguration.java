@@ -2,6 +2,7 @@ package api;
 
 import api.db.CapitalfunApplication;
 import api.db.CapitalfunApplicationBuilder;
+import api.db.applications.ApplicationsManager;
 import api.db.logos.LogosManager;
 import api.db.users.UsersManager;
 import org.springframework.context.annotation.Bean;
@@ -38,5 +39,10 @@ public class SpeedmentConfiguration {
   @Bean
   public LogosManager getLogosManager(CapitalfunApplication app) {
     return app.getOrThrow(LogosManager.class);
+  }
+
+  @Bean
+  public ApplicationsManager getApplicationsManager(CapitalfunApplication app) {
+    return app.getOrThrow(ApplicationsManager.class);
   }
 }
