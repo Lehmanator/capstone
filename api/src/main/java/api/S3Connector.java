@@ -1,5 +1,6 @@
 package api;
 
+import api.handler.S3Handler;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
