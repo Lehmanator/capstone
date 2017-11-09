@@ -12,5 +12,5 @@ public abstract class ApiQuery {
         return headers;
     }
 
-    public abstract Map<String, String> getRequestBody();
+    public abstract Map getRequestBody();
 }

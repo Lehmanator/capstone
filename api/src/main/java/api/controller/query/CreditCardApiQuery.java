@@ -40,12 +40,12 @@ public class CreditCardApiQuery extends ApiQuery {
     }
 
     @Override
-    public Map<String, String> getRequestBody() {
-        Map<String, String> body = new HashMap<>();
-        body.put(creditScoreKey, "" + this.getCreditScore());
-        body.put(ageKey, "" + this.getAge());
-        body.put(expensesKey, "" + this.getExpenses());
-        body.put(incomeKey, "" + this.getIncome());
+    public Map<String, Integer> getRequestBody() {
+        Map<String, Integer> body = new HashMap<>();
+        body.put(creditScoreKey, this.getCreditScore());
+        body.put(ageKey, this.getAge());
+        body.put(expensesKey, this.getExpenses());
+        body.put(incomeKey, this.getIncome());
         return body;
     }
 }

@@ -20,6 +20,8 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.tomcat.util.bcel.Const;
@@ -60,7 +62,7 @@ public class UploadCreditCardHistoryController {
                 .asJsonAsync(new Callback<JsonNode>() {
                     @Override
                     public void completed(HttpResponse<JsonNode> httpResponse) {
-                        Float probability = ((Double) httpResponse.getBody()
+                        Float probability = ((Number) httpResponse.getBody()
                                 .getObject().get("P(Accepted)")).floatValue();
                         ApiResponse response = new CreditCardApiResponse(
                                 HttpStatus.OK,
