@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import UnivariateSpline
+import csv
 
 numfigs = 1
+
 
 class User:
     def __init__(self, c_data, id_data):
@@ -11,7 +13,6 @@ class User:
 
 
 class CreditData:
-    # TODO gather list of variables
     def __init__(self, var_dict, name):
         self.name = name
         self.vars = {}
@@ -26,6 +27,35 @@ class CreditData:
             figs.append(self.vars[prop].plot(num))
         return figs
 
+    def __str__(self):
+        s = ""
+        for var in self.vars:
+            s += var + "\n"
+            s += str(self.vars[var])
+        return s
+
+    def getdata(self):
+        """
+        :rtype: np.Array Two dimension array containing all the data in the object
+        """
+        result = []
+        for i in range(len(self.vars['age'].var_data['yes'])):
+            age = self.vars['age'].var_data['yes'][i]
+            income = self.vars['income'].var_data['yes'][i]
+            rent = self.vars['rent'].var_data['yes'][i]
+            scores = self.vars['scores'].var_data['yes'][i]
+            decision = int(1)
+            result.append([age, income, rent, scores, decision])
+            pass
+        for i in range(len(self.vars['age'].var_data['no'])):
+            age = self.vars['age'].var_data['no'][i]
+            income = self.vars['income'].var_data['no'][i]
+            rent = self.vars['rent'].var_data['no'][i]
+            scores = self.vars['scores'].var_data['no'][i]
+            decision = int(1)
+            result.append([age, income, rent, scores, decision])
+            pass
+        return np.array(result)
 
 class DistData:
     def __init__(self, name, v_data):
@@ -33,11 +63,13 @@ class DistData:
         self.var_data = v_data
         self.dist = self.__find_dist__(v_data)
 
+    def __str__(self):
+        return "name: " + str(self.name) + "var_data: " + str(self.var_data) + "dist: " + str(self.dist)
+
     @staticmethod
     def __find_dist__(var_data):
         # Assuming that var_data is dict containing two keys: "yes" and "no", with each key containing the input data
         # for credit score approvals and corresponding properties
-        # TODO Figure out how to do this.
         yes_data = var_data["yes"]
         no_data = var_data["no"]
         dists = {"yes": [], "no": []}
@@ -61,7 +93,7 @@ class DistData:
         plt.plot(x2, g(x2), 'r', label="no")
         plt.title(self.name)
         plt.legend(loc="upper left")
-        plt.xlabel("Income value")
+        plt.xlabel(self.name + " value")
         plt.ylabel("Frequency")
         return plt.figure(num)
         pass
@@ -84,9 +116,6 @@ def standard_dev(var_data):
     pass
 
 
-
-
-
 def gen_dist(dist_str, params):
     if dist_str == 'normal':
         return np.normal(**params)
@@ -100,22 +129,31 @@ def histogram(var_data):
 
 
 def read_data():
-    return {"income": {"yes": np.asarray(np.load("income_sample_yes"))[0].tolist(), "no": np.asarray(np.load("income_sample_no"))[0].tolist()}
-            # "age": {"yes": np.load("age_sample_yes"), "no": np.load("age_sample_no")},
-            # "scores": {"yes": np.load("scores_sample_yes"), "no": np.load("scores_sample_no")},
-            # "rent": {"yes": np.load("rent_sample_yes"), "no": np.load("rent_sample_no")}
+    return {"income": {"yes": np.load("income_sample_yes.npy"), "no": np.load("income_sample_no.npy")},
+            "age": {"yes": np.load("age_sample_yes.npy"), "no": np.load("age_sample_no.npy")},
+            "scores": {"yes": np.load("cscore_sample_yes.npy"), "no": np.load("cscore_sample_no.npy")},
+            "rent": {"yes": np.load("expenses_sample_yes.npy"), "no": np.load("expenses_sample_no.npy")}
             }
 
 
 var_data = read_data()
+# print var_data
 credit_data = CreditData(var_data, "orig")
-f = credit_data.plot()
-numfigs += len(f)
+# print credit_data
+# f = credit_data.plot()
+# numfigs += len(f)
 
 gen_dict = {}
 for i in credit_data.vars:
-    gen_dict[i] = {"yes": credit_data.vars[i].generate(5000, True), "no": credit_data.vars[i].generate(5000, False)}
+    gen_dict[i] = {"yes": credit_data.vars[i].generate(50000, True), "no": credit_data.vars[i].generate(50000, False)}
     pass
 gen_data = CreditData(gen_dict, "gen")
-g = gen_data.plot()
-plt.show()
+with open('gen_data.csv', 'wb') as file:
+    data = gen_data.getdata()
+    writer = csv.writer(file)
+    writer.writerow(["age", "income", "expenses", "scores", "decision"])
+    for i in data:
+        writer.writerow(i)
+# print(gen_data)
+# g = gen_data.plot()
+# plt.show()
