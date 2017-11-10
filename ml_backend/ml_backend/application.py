@@ -76,6 +76,37 @@ def process_image():
         abort(401)
 
 
+@application.route('/ccdata', methods=['POST'])
+@requirekey
+def ccdata():
+    application.logger.critical(request.headers)
+    if request.method == "POST":
+        data = request.get_data()
+        application.logger.debug(data)
+        try:
+            data = json.loads(data)
+        except ValueError:
+            abort(400, "Body not provided")
+        if not data:
+            abort(401)
+            pass
+        try:
+            cscore = data['credit_score']
+            age = data['age']
+            expenses = data['expenses']
+            income = data['income']
+        except KeyError:
+            abort(400, KeyError)
+        # TODO: ML Black magic
+        resp = make_response('{"P(Accepted)":'+str(69)+'}')
+        resp.headers['Content-Type'] = "application/json"
+        return resp, 200
+    else:
+        abort(401)
+        pass
+    pass
+
+
 @application.errorhandler(401)
 def error401(errorData):
     resp = make_response('{"error": "Unauthorized"}')
@@ -85,6 +116,6 @@ def error401(errorData):
 
 @application.errorhandler(400)
 def error400(errorData):
-    resp = make_response('{"error": "Bad Request"}')
+    resp = make_response('{"error": "Bad Request", "reason": '+str(errorData) + '}')
     resp.headers['Content-Type'] = "application/json"
     return resp, 400
