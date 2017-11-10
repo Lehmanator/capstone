@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: gw-rest-api
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+server:
+    port: 5000

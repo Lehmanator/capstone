@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import React from 'react';
 import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
 import Results from './Results';
 import constants from './constants';
+// import axios from 'axios';
 
 const phaseEnum = {
   chooseImage: 1,
@@ -34,21 +36,33 @@ export default class ImageUploadView extends React.Component {
 
   sendMessage() {
     const file = this.state.imageFile();
-    const messageHeaders = new Headers();
-    messageHeaders.append('Access-Control-Allow-Origin', '*');
+    const messageHeaders = {};
+    messageHeaders['Access-Control-Allow-Origin'] = '*';
+    messageHeaders['content-type'] = 'application/json';
     const body = {
       image: this.state.displayImage(),
       name: file.name,
-      username: 'John',
+      username: constants.defaultUser,
     };
     const messageInit = { method: 'POST',
       headers: messageHeaders,
-      body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }) };
+      body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
+    };
 
+    // axios({
+    //   method: 'post',
+    //   url: constants.uploadImageUrl,
+    //   data: body,
+    //   headers: messageHeaders,
+    // }).then(response => {
+    //   console.log(response);
+    // }, error => {
+    //   console.error(error);
+    // });
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
-      const accepted = jsonData.probability > 0.69;
+      const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
     });
   }
