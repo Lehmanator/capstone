@@ -147,7 +147,7 @@ for i in credit_data.vars:
     gen_dict[i] = {"yes": credit_data.vars[i].generate(50000, True), "no": credit_data.vars[i].generate(50000, False)}
     pass
 gen_data = CreditData(gen_dict, "gen")
-with open('gen_data.csv', 'wb') as file:
+with open('gen_data.csv', 'w') as file:
     data = gen_data.getdata()
     writer = csv.writer(file)
     writer.writerow(["age", "income", "expenses", "scores", "decision"])
