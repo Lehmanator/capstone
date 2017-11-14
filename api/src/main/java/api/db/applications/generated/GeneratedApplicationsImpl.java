@@ -7,6 +7,7 @@ import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.StringJoiner;
 
 /**
@@ -29,6 +30,7 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     private int expenses;
     private String applicantId;
     private String username;
+    private Double result;
     
     protected GeneratedApplicationsImpl() {
         
@@ -72,6 +74,11 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     @Override
     public Optional<String> getUsername() {
         return Optional.ofNullable(username);
+    }
+    
+    @Override
+    public OptionalDouble getResult() {
+        return OptionalUtil.ofNullable(result);
     }
     
     @Override
@@ -123,6 +130,12 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     }
     
     @Override
+    public Applications setResult(Double result) {
+        this.result = result;
+        return this;
+    }
+    
+    @Override
     public Optional<Users> findUsername(Manager<Users> foreignManager) {
         if (getUsername().isPresent()) {
             return foreignManager.stream().filter(Users.USERNAME.equal(getUsername().get())).findAny();
@@ -142,6 +155,7 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         sj.add("expenses = "      + Objects.toString(getExpenses()));
         sj.add("applicantId = "   + Objects.toString(getApplicantId()));
         sj.add("username = "      + Objects.toString(OptionalUtil.unwrap(getUsername())));
+        sj.add("result = "        + Objects.toString(OptionalUtil.unwrap(getResult())));
         return "ApplicationsImpl " + sj.toString();
     }
     
@@ -158,6 +172,7 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         if (this.getExpenses() != thatApplications.getExpenses()) {return false; }
         if (!Objects.equals(this.getApplicantId(), thatApplications.getApplicantId())) {return false; }
         if (!Objects.equals(this.getUsername(), thatApplications.getUsername())) {return false; }
+        if (!Objects.equals(this.getResult(), thatApplications.getResult())) {return false; }
         return true;
     }
     
@@ -172,6 +187,7 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         hash = 31 * hash + Integer.hashCode(getExpenses());
         hash = 31 * hash + Objects.hashCode(getApplicantId());
         hash = 31 * hash + Objects.hashCode(getUsername());
+        hash = 31 * hash + Objects.hashCode(getResult());
         return hash;
     }
 }

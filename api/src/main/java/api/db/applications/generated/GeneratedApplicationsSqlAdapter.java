@@ -12,6 +12,7 @@ import com.speedment.runtime.core.exception.SpeedmentException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static com.speedment.common.injector.State.RESOLVED;
+import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link api.db.applications.Applications}
@@ -41,14 +42,15 @@ public abstract class GeneratedApplicationsSqlAdapter {
     protected Applications apply(ResultSet resultSet) throws SpeedmentException {
         final Applications entity = createEntity();
         try {
-            entity.setId(            resultSet.getInt(1)    );
-            entity.setApplicantName( resultSet.getString(2) );
-            entity.setAge(           resultSet.getInt(3)    );
-            entity.setIncome(        resultSet.getInt(4)    );
-            entity.setCreditScore(   resultSet.getInt(5)    );
-            entity.setExpenses(      resultSet.getInt(6)    );
-            entity.setApplicantId(   resultSet.getString(7) );
-            entity.setUsername(      resultSet.getString(8) );
+            entity.setId(            resultSet.getInt(1)     );
+            entity.setApplicantName( resultSet.getString(2)  );
+            entity.setAge(           resultSet.getInt(3)     );
+            entity.setIncome(        resultSet.getInt(4)     );
+            entity.setCreditScore(   resultSet.getInt(5)     );
+            entity.setExpenses(      resultSet.getInt(6)     );
+            entity.setApplicantId(   resultSet.getString(7)  );
+            entity.setUsername(      resultSet.getString(8)  );
+            entity.setResult(        getDouble(resultSet, 9) );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }

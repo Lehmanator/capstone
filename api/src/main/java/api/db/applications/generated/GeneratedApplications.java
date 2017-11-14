@@ -7,11 +7,13 @@ import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
+import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.field.StringForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  * The generated base for the {@link api.db.applications.Applications}-interface
@@ -114,6 +116,17 @@ public interface GeneratedApplications {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link Applications} field that can be
+     * obtained using the {@link Applications#getResult()} method.
+     */
+    ComparableField<Applications, Double, Double> RESULT = ComparableField.create(
+        Identifier.RESULT,
+        o -> OptionalUtil.unwrap(o.getResult()),
+        Applications::setResult,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Applications. The id field corresponds to the
@@ -181,6 +194,14 @@ public interface GeneratedApplications {
      * @return the username of this Applications
      */
     Optional<String> getUsername();
+    
+    /**
+     * Returns the result of this Applications. The result field corresponds to
+     * the database column capitalfun.capitalfun.applications.result.
+     * 
+     * @return the result of this Applications
+     */
+    OptionalDouble getResult();
     
     /**
      * Sets the id of this Applications. The id field corresponds to the
@@ -258,6 +279,15 @@ public interface GeneratedApplications {
     Applications setUsername(String username);
     
     /**
+     * Sets the result of this Applications. The result field corresponds to the
+     * database column capitalfun.capitalfun.applications.result.
+     * 
+     * @param result to set of this Applications
+     * @return       this Applications instance
+     */
+    Applications setResult(Double result);
+    
+    /**
      * Queries the specified manager for the referenced Users. If no such Users
      * exists, an {@code NullPointerException} will be thrown.
      * 
@@ -275,7 +305,8 @@ public interface GeneratedApplications {
         CREDIT_SCORE   ("creditScore"),
         EXPENSES       ("expenses"),
         APPLICANT_ID   ("applicantId"),
-        USERNAME       ("username");
+        USERNAME       ("username"),
+        RESULT         ("result");
         
         private final String columnName;
         private final TableIdentifier<Applications> tableIdentifier;

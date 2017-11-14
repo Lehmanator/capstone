@@ -28,7 +28,8 @@ public interface GeneratedApplicationsManager extends Manager<Applications> {
         Applications.CREDIT_SCORE,
         Applications.EXPENSES,
         Applications.APPLICANT_ID,
-        Applications.USERNAME
+        Applications.USERNAME,
+        Applications.RESULT
     ));
     
     @Override

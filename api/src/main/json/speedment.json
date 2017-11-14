@@ -16,6 +16,7 @@
             "expanded" : true,
             "tables" : [
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -36,7 +37,6 @@
                     "enabled" : true
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -83,8 +83,8 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
                     "name" : "id",
@@ -103,8 +103,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "age",
                     "id" : "age",
@@ -113,8 +113,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "income",
                     "id" : "income",
@@ -123,8 +123,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "creditScore",
                     "id" : "creditScore",
@@ -133,8 +133,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "expenses",
                     "id" : "expenses",
@@ -157,6 +157,15 @@
                     "name" : "username",
                     "id" : "username",
                     "ordinalPosition" : 8,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "result",
+                    "id" : "result",
+                    "ordinalPosition" : 9,
                     "enabled" : true
                   }
                 ],

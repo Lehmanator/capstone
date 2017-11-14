@@ -55,6 +55,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "            \"expanded\" : true,",
             "            \"tables\" : [",
             "              {",
+            "                \"expanded\" : true,",
             "                \"foreignKeys\" : [",
             "                  {",
             "                    \"expanded\" : false,",
@@ -75,7 +76,6 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true",
             "                  }",
             "                ],",
-            "                \"expanded\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"expanded\" : true,",
@@ -122,8 +122,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                \"columns\" : [",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"expanded\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"autoIncrement\" : true,",
             "                    \"name\" : \"id\",",
@@ -147,8 +147,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"expanded\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"name\" : \"age\",",
             "                    \"id\" : \"age\",",
@@ -157,8 +157,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"expanded\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"name\" : \"income\",",
             "                    \"id\" : \"income\",",
@@ -167,8 +167,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"expanded\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"name\" : \"creditScore\",",
             "                    \"id\" : \"creditScore\",",
@@ -177,8 +177,8 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"expanded\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\",",
             "                    \"nullable\" : false,",
             "                    \"name\" : \"expenses\",",
             "                    \"id\" : \"expenses\",",
@@ -201,6 +201,15 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"username\",",
             "                    \"id\" : \"username\",",
             "                    \"ordinalPosition\" : 8,",
+            "                    \"enabled\" : true",
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.Double\",",
+            "                    \"expanded\" : true,",
+            "                    \"nullable\" : true,",
+            "                    \"name\" : \"result\",",
+            "                    \"id\" : \"result\",",
+            "                    \"ordinalPosition\" : 9,",
             "                    \"enabled\" : true",
             "                  }",
             "                ],",
@@ -234,7 +243,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"expanded\" : true,",
-            "                    \"name\" : \"id\",",
+            "                    \"name\" : \"id\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart2(StringBuilder sb) {
+        Stream.of(
             "                    \"id\" : \"id\",",
             "                    \"ordinalPosition\" : 1",
             "                  }",
@@ -243,12 +257,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"expanded\" : false,",
             "                    \"unique\" : true,",
-            "                    \"name\" : \"PRIMARY\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart2(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"PRIMARY\",",
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"orderType\" : \"ASC\",",
@@ -340,7 +349,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"name\" : \"username\",",
             "                    \"id\" : \"username\",",
-            "                    \"ordinalPosition\" : 1",
+            "                    \"ordinalPosition\" : 1"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart3(StringBuilder sb) {
+        Stream.of(
             "                  },",
             "                  {",
             "                    \"expanded\" : true,",
@@ -349,12 +363,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ],",
-            "                \"indexes\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart3(StringBuilder sb) {
-        Stream.of(
+            "                \"indexes\" : [",
             "                  {",
             "                    \"expanded\" : false,",
             "                    \"unique\" : false,",
@@ -446,7 +455,12 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"expanded\" : true,",
             "                    \"nullable\" : true,",
-            "                    \"name\" : \"firstname\",",
+            "                    \"name\" : \"firstname\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                    \"id\" : \"firstname\",",
             "                    \"ordinalPosition\" : 4,",
             "                    \"enabled\" : true",
@@ -455,12 +469,7 @@ public class GeneratedCapitalfunMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"expanded\" : true,",
             "                    \"nullable\" : true,",
-            "                    \"name\" : \"lastname\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart4(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"lastname\",",
             "                    \"id\" : \"lastname\",",
             "                    \"ordinalPosition\" : 5,",
             "                    \"enabled\" : true",
