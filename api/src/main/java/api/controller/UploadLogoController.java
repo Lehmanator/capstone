@@ -1,7 +1,9 @@
 package api.controller;
 
+import api.Constants;
+import api.controller.query.ApiQuery;
+import api.controller.query.ImageRecognitionQuery;
 import api.db.logos.LogosManager;
-import api.db.users.UsersManager;
 import api.response.ApiResponse;
 import api.response.Error;
 import api.S3Connector;
@@ -15,7 +17,9 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
 import java.util.logging.Logger;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,10 +43,6 @@ import java.util.concurrent.CompletableFuture;
 @EnableAsync
 public class UploadLogoController {
   private static Logger logger = Logger.getLogger(UploadLogoController.class.getName());
-  private final static String API_KEY = "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86";
-  //TODO: Make this work from AWS
-  private final static String RECOGNITION_URI =
-      "http://ml-backend-dev.us-east-2.elasticbeanstalk.com/process_image";
   private @Autowired LogosManager logos;
 
   @CrossOrigin(origins = "http://localhost:8080")
@@ -54,7 +54,6 @@ public class UploadLogoController {
     String name = body.getName();
     String username = body.getUsername();
     try {
-      // TODO: Make this work
       S3Handler s3Handler = new S3Handler(S3Connector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
         ObjectMetadata metadata = new ObjectMetadata();
@@ -69,15 +68,11 @@ public class UploadLogoController {
         s3Handler.uploadImage(username, name, is, metadata);
 
         //Run Recognition
-        Map<String, String> json = new HashMap<>();
-        json.put("image", imageType);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("content-type", "application/json");
-        headers.put("key", API_KEY);
+        ApiQuery query = new ImageRecognitionQuery(imageType);
         CompletableFuture<ApiResponse> future = new CompletableFuture<>();
-        Unirest.post(RECOGNITION_URI)
-                .headers(headers)
-                .body(new JSONObject(json))
+        Unirest.post(Constants.getImageRecognitionURI())
+                .headers(query.getRequestHeaders())
+                .body(new JSONObject(query.getRequestBody()))
                 .asJsonAsync(new Callback<JsonNode>() {
                   @Override
                   public void completed(HttpResponse<JsonNode> httpResponse) {
@@ -117,7 +112,7 @@ public class UploadLogoController {
       return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\":\"Image could not be uploaded\"}"));
     } catch (SQLException e) {
       e.printStackTrace();
-      return CompletableFuture.completedFuture(new Error(HttpStatus.INTERNAL_SERVER_ERROR, "{\"message\": \"Database error\"}"));
+      return CompletableFuture.completedFuture(Constants.databaseError());
     }
   }
 }
