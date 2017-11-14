@@ -2,8 +2,6 @@ package api.controller;
 
 public class CreditCardApiRequest {
 
-
-
     private String systemUser;
     private String applicantName;
     private String applicantID;
@@ -15,8 +13,14 @@ public class CreditCardApiRequest {
     public CreditCardApiRequest() {
     }
 
-    public CreditCardApiRequest(String systemUser, String applicantName, String applicantID,
-                                Integer age, Integer income, Integer creditScore, Integer expenses) {
+    public CreditCardApiRequest(
+            String systemUser,
+            String applicantName,
+            String applicantID,
+            Integer age,
+            Integer income,
+            Integer creditScore,
+            Integer expenses) {
         this.systemUser = systemUser;
         this.applicantName = applicantName;
         this.applicantID = applicantID;
