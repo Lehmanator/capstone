@@ -20,7 +20,7 @@ public class CreditCardDataHandler {
     }
 
     public Applications addApplication(String systemUser, String applicantName, String applicantID,
-                                       int age, int income, int creditScore, int expenses){
+                                       int age, int income, int creditScore, int expenses, double result){
         Applications application = new ApplicationsImpl();
         application.setUsername(systemUser);
         application.setApplicantName(applicantName);
@@ -29,6 +29,7 @@ public class CreditCardDataHandler {
         application.setIncome(income);
         application.setCreditScore(creditScore);
         application.setExpenses(expenses);
+        application.setResult(result);
         return applicationsManager.persist(application);
     }
 }

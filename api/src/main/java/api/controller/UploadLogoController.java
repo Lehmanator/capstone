@@ -4,7 +4,6 @@ import api.Constants;
 import api.controller.query.ApiQuery;
 import api.controller.query.ImageRecognitionQuery;
 import api.db.logos.LogosManager;
-import api.db.users.UsersManager;
 import api.response.ApiResponse;
 import api.response.Error;
 import api.S3Connector;
@@ -19,10 +18,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.tomcat.util.bcel.Const;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +43,6 @@ import java.util.concurrent.CompletableFuture;
 @EnableAsync
 public class UploadLogoController {
   private static Logger logger = Logger.getLogger(UploadLogoController.class.getName());
-  //TODO: Make this work from AWS
   private @Autowired LogosManager logos;
 
   @CrossOrigin(origins = "http://localhost:8080")
@@ -58,7 +54,6 @@ public class UploadLogoController {
     String name = body.getName();
     String username = body.getUsername();
     try {
-      // TODO: Make this work
       S3Handler s3Handler = new S3Handler(S3Connector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
         ObjectMetadata metadata = new ObjectMetadata();

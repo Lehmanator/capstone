@@ -71,7 +71,8 @@ public class UploadCreditCardHistoryController {
                         logger.info(response.toString());
                         CreditCardDataHandler handler = new CreditCardDataHandler(applications);
                         handler.addApplication(body.getSystemUser(), body.getApplicantName(), body.getApplicantID(),
-                                body.getAge(), body.getIncome(), body.getCreditScore(), body.getExpenses());
+                                body.getAge(), body.getIncome(), body.getCreditScore(), body.getExpenses(),
+                                probability.doubleValue());
                         future.complete(response);
                     }
 
