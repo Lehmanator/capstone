@@ -1,7 +1,6 @@
 package api.response;
 
 import api.db.applications.Applications;
-import api.db.logos.Logos;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
