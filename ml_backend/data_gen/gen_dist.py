@@ -8,7 +8,7 @@ numfigs = 1
 
 class Variable:
     def __init__(self, var_data):
-        self.data = var_data
+        self.data = np.array(var_data)
 
     def get_mean(self):
         sum = 0.0
@@ -149,16 +149,6 @@ def mean(var_data):
         sum = sum + x
     return sum / len(var_data)
 
-def standard_dev(var_data):
-    pass
-
-def variance(var_data):
-    pass
-
-def get_z_score(x, var_data):
-    pass
-
-
 def gen_dist(dist_str, params):
     if dist_str == 'normal':
         return np.normal(**params)
@@ -168,8 +158,6 @@ def gen_dist(dist_str, params):
 def histogram(var_data):
     count, bins, ignored = plt.hist(var_data, 50, normed=True)
     plt.show()
-    pass
-
 
 def read_data():
     return {"income": {"yes": np.load("income_sample_yes.npy"), "no": np.load("income_sample_no.npy")},
