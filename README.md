@@ -1,6 +1,6 @@
 # Machine Learning at Capital One
 ## CMPSC 483, Pennsylvania State Univerity
-### Tyler Abbatico, John Barczynski, Kyle Echenstein, Kyle Johnson, Sam Lehman, Mayank Makwana, Sush Shringarputale
+### Tyler Abbatico, John Barczynski, Kyle Eckenstine, Kyle Johnson, Sam Lehman, Mayank Makwana, Sush Shringarputale
 
 # Overview
 
