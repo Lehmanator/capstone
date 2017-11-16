@@ -8,7 +8,11 @@ Capital One continues to emerge in technology while providing financial services
 
 The Capital One project is focused around ML and presenting data in a useful and friendly way. This is acheived through two main projects implemented using Keras in Python for Machine Learning, Java Spring Framework, and React. The first project, a Penn State logo recognizer gave the project team the opportunity to familiarize themselves with the concepts of machine learning and the frameworks chosen for the project. The second, a Credit Card approval tool, applied the skills gained during the logo recognizer task to create a prototype for a system that could potentially be used somewhere like Capital On
 
-The deployed version of this project can be viewed at: [http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/](http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/)[https://d594x6z5780w4.cloudfront.net](https://d594x6z5780w4.cloudfront.net)?
+The deployed version of this project can be viewed at: 
+
+[http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/](http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/)
+
+[https://d594x6z5780w4.cloudfront.net](https://d594x6z5780w4.cloudfront.net)?
 
 # Frontend
 
