@@ -219,3 +219,7 @@ li:last-child {
   border: none;
   border-radius: 25px;
 }
+
+.credit-card-container {
+  padding:15px 15px;
+}

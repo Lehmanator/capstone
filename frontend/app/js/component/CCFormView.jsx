@@ -17,10 +17,12 @@ export default class CCFormView extends React.Component {
   }
 
   handleInputChange(event) {
+    console.log(event.target.name, event.key, event.target.value);
     const target = event.target;
     this.setState({
-      [target.name]: target.value + event.key,
+      [target.name]: target.value,
     });
+    console.log(this.state);
   }
 
   submitForm() {
@@ -37,18 +39,18 @@ export default class CCFormView extends React.Component {
         width: '60%', borderRadius: '40px', borderStyle: 'solid',
     }}>
         <div className="container-fluid credit-card-container">
-            <form style= {{ display: 'table', width: '100%' }}>
-              <FormField handleInputChange={this.handleInputChange } name="name" label="Name:" />
+            <form style= {{ display: 'table', width: '100%' }} formAction="">
+              <FormField handleInputChange={this.handleInputChange } name="name" label="Name:" type="string"/>
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="idNumber" label="ID Number:" />
+              <FormField handleInputChange={this.handleInputChange } name="idNumber" label="ID Number:" type="number"/>
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="age" label="Age:" />
+              <FormField handleInputChange={this.handleInputChange } name="age" label="Age:" type="number"/>
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="income" label="Income:" />
+              <FormField handleInputChange={this.handleInputChange } name="income" label="Income:" type="number"/>
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="creditScore" label="Credit Score:" />
+              <FormField handleInputChange={this.handleInputChange } name="creditScore" label="Credit Score:" type="number"/>
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="expenses" label="Expenses:" />
+              <FormField handleInputChange={this.handleInputChange} name="expenses" label="Expenses:" type="number"/>
               <br /><br />
               <button className="CCFormBtn" onClick={this.submitForm()}>
                 Submit

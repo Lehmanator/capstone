@@ -11,26 +11,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileUpload.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/component/FileUpload.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ImageUploadView.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/component/ImageUploadView.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+            <state relative-caret-position="885">
+              <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#32#58#0" expanded="true" />
+                <marker date="1510327296645" expanded="true" signature="1946:2021" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="1946:2027" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2063:2231" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2084:2220" ph="&lt;FileUpload/&gt;" />
+                <marker date="1510327296645" expanded="true" signature="2271:2378" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2418:2622" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2484:2611" ph="&lt;Results/&gt;" />
+                <marker date="1510327296645" expanded="true" signature="2691:2832" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2709:2824" ph="&lt;button/&gt;" />
+                <marker date="1510327296645" expanded="true" signature="2955:3334" ph="{...}" />
+                <marker date="1510327296645" expanded="true" signature="2990:3065" ph="..." />
+                <marker date="1510327296645" expanded="true" signature="3103:3182" ph="..." />
+                <marker date="1510327296645" expanded="true" signature="3219:3298" ph="..." />
+                <marker date="1510327296645" expanded="true" signature="3313:3328" ph="..." />
+                <marker date="1510327296645" expanded="true" signature="3359:3475" ph="&lt;div/&gt;" />
+                <marker date="1510327296645" expanded="true" signature="3377:3458" ph="&lt;center/&gt;" />
               </folding>
             </state>
           </provider>
@@ -39,22 +43,41 @@
       <file leaf-file-name="App.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/component/App.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="107" lean-forward="false" selection-start-line="21" selection-start-column="107" selection-end-line="21" selection-end-column="107" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#29#55#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="17" column="51" lean-forward="false" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormField.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/component/FormField.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CCFormView.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/component/CCFormView.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,8 +107,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="145" column="22" lean-forward="false" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
+            <state relative-caret-position="544">
+              <caret line="217" column="21" lean-forward="true" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -113,14 +136,21 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>credi</find>
+    </findStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/js/component/ImageUploadView.jsx" />
         <option value="$PROJECT_DIR$/app/js/component/HistoryBtn.jsx" />
         <option value="$PROJECT_DIR$/app/static/index.html" />
-        <option value="$PROJECT_DIR$/app/static/styles/style.css" />
         <option value="$PROJECT_DIR$/app/js/component/App.jsx" />
+        <option value="$PROJECT_DIR$/app/js/component/CCFormView.jsx" />
+        <option value="$PROJECT_DIR$/app/js/component/FormField.jsx" />
+        <option value="$PROJECT_DIR$/app/static/styles/style.css" />
       </list>
     </option>
   </component>
@@ -133,11 +163,10 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="22" />
+    <option name="width" value="1440" />
+    <option name="height" value="824" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -250,14 +279,15 @@
       <option name="presentableId" value="Default" />
       <updated>1505861256064</updated>
       <workItem from="1508367507866" duration="4124000" />
+      <workItem from="1510779012855" duration="1842000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5261000" />
+    <option name="totallyTimeSpent" value="7103000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="824" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="824" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -302,6 +332,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/ImageUploadView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#32#58#0" expanded="true" />
+            <marker date="1510327296645" expanded="true" signature="1946:2021" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="1946:2027" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2063:2231" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2084:2220" ph="&lt;FileUpload/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2271:2378" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2418:2622" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2484:2611" ph="&lt;Results/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2691:2832" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2709:2824" ph="&lt;button/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2955:3334" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2990:3065" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3103:3182" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3219:3298" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3313:3328" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3359:3475" ph="&lt;div/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="3377:3458" ph="&lt;center/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="107" lean-forward="false" selection-start-line="21" selection-start-column="107" selection-end-line="21" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/main.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="145" column="22" lean-forward="false" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/HistoryBtn.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/constants.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/FileUpload.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/component/constants.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -317,6 +442,22 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#32#58#0" expanded="true" />
+            <marker date="1510327296645" expanded="true" signature="1946:2021" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="1946:2027" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2063:2231" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2084:2220" ph="&lt;FileUpload/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2271:2378" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2418:2622" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2484:2611" ph="&lt;Results/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2691:2832" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2709:2824" ph="&lt;button/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2955:3334" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2990:3065" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3103:3182" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3219:3298" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3313:3328" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3359:3475" ph="&lt;div/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="3377:3458" ph="&lt;center/&gt;" />
           </folding>
         </state>
       </provider>
@@ -341,11 +482,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/component/ImageUploadView.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+        <state relative-caret-position="885">
+          <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#32#58#0" expanded="true" />
+            <marker date="1510327296645" expanded="true" signature="1946:2021" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="1946:2027" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2063:2231" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2084:2220" ph="&lt;FileUpload/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2271:2378" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2418:2622" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2484:2611" ph="&lt;Results/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2691:2832" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2709:2824" ph="&lt;button/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="2955:3334" ph="{...}" />
+            <marker date="1510327296645" expanded="true" signature="2990:3065" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3103:3182" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3219:3298" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3313:3328" ph="..." />
+            <marker date="1510327296645" expanded="true" signature="3359:3475" ph="&lt;div/&gt;" />
+            <marker date="1510327296645" expanded="true" signature="3377:3458" ph="&lt;center/&gt;" />
           </folding>
         </state>
       </provider>
@@ -358,18 +515,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="145" column="22" lean-forward="false" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="17" column="51" lean-forward="false" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -384,21 +549,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/component/App.jsx">
+    <entry file="file://$PROJECT_DIR$/app/js/component/CCFormView.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="107" lean-forward="false" selection-start-line="21" selection-start-column="107" selection-end-line="21" selection-end-column="107" />
+        <state relative-caret-position="277">
+          <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#29#55#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+    <entry file="file://$PROJECT_DIR$/app/static/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="544">
+          <caret line="217" column="21" lean-forward="true" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/component/FormField.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
