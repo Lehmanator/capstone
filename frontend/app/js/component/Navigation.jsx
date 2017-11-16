@@ -17,9 +17,11 @@ export default function Navigation() {
             <Link to="/history">
               <HistoryBtn title={" Logo History"} logo={chipmunkLogo} className="col-md-2" />
             </Link>
-            <HistoryBtn title={" Credit Card Appoval History" }
-              logo={creditCardLogo} className="col-md-2"
-            />
+            <Link to="/credit-history">
+              <HistoryBtn title={" Credit Card Appoval History" }
+                logo={creditCardLogo} className="col-md-2"
+              />
+            </Link>
           <div className="col-md-4" />
           <a src="" className="col-md-1 user-links">Help</a>
           <a src="" className="col-md-1 user-links">Settings</a>
