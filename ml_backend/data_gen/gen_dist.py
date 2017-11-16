@@ -8,10 +8,13 @@ numfigs = 1
 
 class Variable:
     def __init__(self, var_data):
-        pass
+        self.data = var_data
 
     def get_mean(self):
-        pass
+        sum = 0.0
+        for x in self.data:
+            sum = sum + x
+        return sum / len(self.data)
 
     def get_min(self):
         pass
@@ -26,6 +29,15 @@ class Variable:
         pass
 
     def get_percentile(self, x):
+        pass
+
+    def get_std_dev(self):
+        pass
+
+    def get_variance(self):
+        pass
+
+    def get_covariance(self, other_var):
         pass
 
     def visualize(self):
