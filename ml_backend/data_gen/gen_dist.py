@@ -6,6 +6,32 @@ import csv
 numfigs = 1
 
 
+class Variable:
+    def __init__(self, var_data):
+        pass
+
+    def get_mean(self):
+        pass
+
+    def get_min(self):
+        pass
+
+    def get_max(self):
+        pass
+
+    def get_median(self):
+        pass
+
+    def get_z_score(self):
+        pass
+
+    def get_percentile(self, x):
+        pass
+
+    def visualize(self):
+        pass
+
+
 class User:
     def __init__(self, c_data, id_data):
         self.credit_data = c_data
@@ -112,6 +138,12 @@ def mean(var_data):
     return sum / len(var_data)
 
 def standard_dev(var_data):
+    pass
+
+def variance(var_data):
+    pass
+
+def get_z_score(x, var_data):
     pass
 
 
