@@ -89,7 +89,9 @@ pip install sklearn
 
 ## Execution
 
-The flask CLI tool requires that the name of the flask app be provided as an environment variable.
+The flask CLI tool requires that the name of the flask app be provided as an environment variable. <br />
+
+
 |        Variable       |                   Description                  |
 |:---------------------:|:----------------------------------------------:|
 | FLASK_APP             | The name of the Flask App that needs to be run |
