@@ -10,7 +10,8 @@ export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = { phase: phaseEnum.downloading,
-                   history: [] };
+                   history: [],
+                   filters: [] };
   }
 
   componentDidMount() {
@@ -34,6 +35,10 @@ export default class History extends React.Component {
     return (<h2> Welcome to the history page </h2>);
   }
 
+  renderFilters() {
+    return null;
+  }
+
   renderHistoryItems(item, index) {
     // eslint-disable-next-line no-console
     console.log(item);
@@ -45,7 +50,15 @@ export default class History extends React.Component {
   renderHistory() {
     let history = null;
     if (this.state.history) {
-      history = this.state.history.map(
+      const items = this.state.history.filter((item) => {
+        let passes = true;
+        this.state.filters.forEach(
+          (filterFunction) => { passes = passes && filterFunction(item); }
+        );
+        return passes;
+      });
+
+      history = items.map(
         (item, index) => this.renderHistoryItems(item, index)
       );
     } else {
@@ -60,6 +73,7 @@ export default class History extends React.Component {
 
   render() {
     const header = this.renderPageHeader();
+    const filter = this.renderFilters();
     let body = this.renderUploading();
     if (this.state.phase === phaseEnum.display) {
       body = this.renderHistory();
@@ -68,6 +82,7 @@ export default class History extends React.Component {
     return (
       <div>
         {header}
+        {filter}
         {body}
       </div>
     );

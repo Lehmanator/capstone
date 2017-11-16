@@ -23,22 +23,45 @@ export default class CollapsablePanel extends React.Component {
     return null;
   }
 
-  renderExpanded() {
+  renderPanelHeading() {
+    const heading = this.renderHeading();
+    return (
+      <div className="panel-heading">
+        {heading}
+      </div>
+    );
+  }
+
+  renderPanelBody() {
     let body = this.renderBody();
+    return (
+      <div className="panel-body">
+        {body}
+      </div>
+    );
+  }
+
+  renderPanelFooter() {
     let footer = this.renderFooter();
+    return (
+      <div className="panel-footer">{footer}</div>
+    );
+  }
+
+  renderExpanded() {
+    let body = this.renderPanelBody();
+    let footer = this.renderPanelFooter();
 
     return (
       <div>
-        <div className="panel-body">
-          {body}
-        </div>
-        <div className="panel-footer">{footer}</div>
+        {body}
+        {footer}
       </div>
     );
   }
 
   render() {
-    let heading = this.renderHeading();
+    const headingPanel = this.renderPanelHeading();
 
     let expandableSection = null;
     if (!this.state.collapsed) {
@@ -52,9 +75,7 @@ export default class CollapsablePanel extends React.Component {
             <div className="panel-group">
               <div className="panel panel-default">
               <button onClick={this.changeCollapsed} style={{ width: '100%', height: '100%' }}>
-                <div className="panel-heading">
-                  {heading}
-                </div>
+                {headingPanel}
               </button>
               {expandableSection}
               </div>
