@@ -1,0 +1,13 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+target
+.idea
+.classpath
+.project
+.settings/*
+.vscode/*
+bin/*
+

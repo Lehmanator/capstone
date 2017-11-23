@@ -245,3 +245,11 @@ li:last-child {
   margin-right:auto;
 }
 
+.logo-history-box {
+  color: black;
+  height: 100px;
+  overflow: hidden;
+  margin-right: 15px;
+  border: none;
+  border-radius: 25px;
+}

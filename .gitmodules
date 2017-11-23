@@ -1,0 +1,3 @@
+[submodule "ml_backend/data_gen/CreditScoring"]
+	path = ml_backend/data_gen/CreditScoring
+	url = https://github.com/sushshring/CreditScoring
