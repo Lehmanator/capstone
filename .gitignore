@@ -68,3 +68,5 @@ pids
 node_modules
 .idea
 api/target/**
+frontend/build.zip
+ml_backend.zip

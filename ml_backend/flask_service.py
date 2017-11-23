@@ -1,13 +1,14 @@
-from flask import Flask, request, jsonify, make_response, abort
+from flask import Flask, request, make_response, abort
 import json
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Activation, Dropout, Flatten, Dense
 from scipy.misc import imresize
-from sklearn import svm
 from PIL import Image
 import cStringIO
 import base64
 import numpy
+from sklearn.externals import joblib
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -37,9 +38,11 @@ model.compile(loss='binary_crossentropy',
               optimizer='rmsprop',
               metrics=['accuracy'])
 
+ccmodel = joblib.load('first_try_cc.pkl')
+
 @app.before_request
 def checkSource():
-    if request.method != "POST" or request.headers['Access-Control-Set-Origin'] != "https://www.google.com":
+    if request.method != "POST":
         abort(401)
 
 
@@ -78,6 +81,7 @@ def ccdata():
         data = request.get_data()
         app.logger.debug(data)
         data = json.loads(data)
+        pprint(data)
         if not data:
             abort(401)
             pass
@@ -88,8 +92,9 @@ def ccdata():
             income = data['income']
         except KeyError:
             abort(400, KeyError)
-        # TODO: ML Black magic
-        resp = make_response('{"P(Accepted)":'+str(69)+'}')
+        predicted = ccmodel.predict_proba([[age, income, expenses, cscore]])
+        print predicted
+        resp = make_response('{"P(Accepted)":'+str(predicted[0][0])+'}')
         resp.headers['Content-Type'] = "application/json"
         return resp, 200
     else:
