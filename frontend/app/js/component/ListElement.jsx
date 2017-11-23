@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class listElement extends React.Component {
+export default class listElement extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = () => this.props.onClick(this.props.index);
@@ -19,5 +19,3 @@ listElement.propTypes = {
   name: PropTypes.string,
   index: PropTypes.number,
 };
-
-module.exports = listElement;
