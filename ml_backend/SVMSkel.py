@@ -42,3 +42,6 @@ predicted = model.predict(X_test)
 print accuracy_score(Y_test, predicted)
 
 # model.predict(Z) #can then predictnew values. Performs clasification on samples in Z
+
+#Taken from http://www.scipy-lectures.org/advanced/scikit-learn/#support-vector-machines-svms-for-classification
+# and http://scikit-learn.org/stable/modules/svm.html
