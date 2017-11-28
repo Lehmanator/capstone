@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Toaster, Intent } from '@blueprintjs/core';
-import { app, facebookProvider } from './Base';
+import { app, base, facebookProvider } from './Base';
 
 const loginStyles = {
   width: '80%',
@@ -51,6 +51,15 @@ class Login extends Component {
       } else {
         // sign user in w/ email
         return app.auth().signInWithEmailAndPassword(email, password);
+        // app.auth().signInWithEmailAndPassword(email, password);
+
+        // var rootRef = firebase.database().ref();
+        // var authData = rootRef.getAuth();
+
+        // if (authData) {
+        //   console.log("Authenticated user with uid:", authData.uid);
+        // }
+        // return;
       }
     })
     .then((user) => {
