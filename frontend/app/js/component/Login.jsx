@@ -1,5 +1,8 @@
 // /* eslint-disable */
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Toaster, Intent } from '@blueprintjs/core';
+import { app, facebookProvider } from './Base';
 
 const loginStyles = {
   width: "80%",
@@ -15,10 +18,20 @@ class Login extends Component {
     super(props);
     this.authWithFacebook = this.authWithFacebook.bind(this);
     this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
+    this.state = {
+      redirect: false
+    }
   }
 
   authWithFacebook() {
-    console.log('authenticated with Facebook');
+    app.auth().signInWithPopup(facebookProvider).then((result, error) => {
+      if (error) {
+        this.toaster.show({ intent: Intent.DANGER,
+          message: "Unable to sign in with Facebook"})
+      } else {
+        this.setState({ redirect: true })
+      }
+    })
   }
 
   authWithEmailPassword(event) {
@@ -31,8 +44,13 @@ class Login extends Component {
   }
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to='/' />
+    }
+
 		return (
       <div style={loginStyles}>
+        <Toaster ref={(element) => {this.toaster = element }} />
         <button style={{ width: '100%' }} className='pt-button'
           onClick={() => { this.authWithFacebook() }}>Log In with Facebook</button>
         <hr style={{marginTop: '10px', marginBottom: '10px'}} />
