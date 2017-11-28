@@ -1,9 +1,7 @@
 package api.db.logos.generated;
 
 import api.db.logos.Logos;
-import api.db.users.Users;
 import com.speedment.common.annotation.GeneratedCode;
-import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -26,7 +24,7 @@ public abstract class GeneratedLogosImpl implements Logos {
     private String piclink;
     private Timestamp time;
     private String result;
-    private String username;
+    private String userId;
     
     protected GeneratedLogosImpl() {
         
@@ -53,8 +51,8 @@ public abstract class GeneratedLogosImpl implements Logos {
     }
     
     @Override
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
     
     @Override
@@ -82,24 +80,19 @@ public abstract class GeneratedLogosImpl implements Logos {
     }
     
     @Override
-    public Logos setUsername(String username) {
-        this.username = username;
+    public Logos setUserId(String userId) {
+        this.userId = userId;
         return this;
-    }
-    
-    @Override
-    public Users findUsername(Manager<Users> foreignManager) {
-        return foreignManager.stream().filter(Users.USERNAME.equal(getUsername())).findAny().orElse(null);
     }
     
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("id = "       + Objects.toString(getId()));
-        sj.add("piclink = "  + Objects.toString(OptionalUtil.unwrap(getPiclink())));
-        sj.add("time = "     + Objects.toString(OptionalUtil.unwrap(getTime())));
-        sj.add("result = "   + Objects.toString(OptionalUtil.unwrap(getResult())));
-        sj.add("username = " + Objects.toString(getUsername()));
+        sj.add("id = "      + Objects.toString(getId()));
+        sj.add("piclink = " + Objects.toString(OptionalUtil.unwrap(getPiclink())));
+        sj.add("time = "    + Objects.toString(OptionalUtil.unwrap(getTime())));
+        sj.add("result = "  + Objects.toString(OptionalUtil.unwrap(getResult())));
+        sj.add("userId = "  + Objects.toString(getUserId()));
         return "LogosImpl " + sj.toString();
     }
     
@@ -112,8 +105,7 @@ public abstract class GeneratedLogosImpl implements Logos {
         if (!Objects.equals(this.getPiclink(), thatLogos.getPiclink())) {return false; }
         if (!Objects.equals(this.getTime(), thatLogos.getTime())) {return false; }
         if (!Objects.equals(this.getResult(), thatLogos.getResult())) {return false; }
-        if (!Objects.equals(this.getUsername(), thatLogos.getUsername())) {return false; }
-        return true;
+      return Objects.equals(this.getUserId(), thatLogos.getUserId());
     }
     
     @Override
@@ -123,7 +115,7 @@ public abstract class GeneratedLogosImpl implements Logos {
         hash = 31 * hash + Objects.hashCode(getPiclink());
         hash = 31 * hash + Objects.hashCode(getTime());
         hash = 31 * hash + Objects.hashCode(getResult());
-        hash = 31 * hash + Objects.hashCode(getUsername());
+        hash = 31 * hash + Objects.hashCode(getUserId());
         return hash;
     }
 }

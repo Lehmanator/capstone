@@ -40,11 +40,11 @@ public abstract class GeneratedLogosSqlAdapter {
     protected Logos apply(ResultSet resultSet) throws SpeedmentException {
         final Logos entity = createEntity();
         try {
-            entity.setId(       resultSet.getLong(1)      );
-            entity.setPiclink(  resultSet.getString(2)    );
-            entity.setTime(     resultSet.getTimestamp(3) );
-            entity.setResult(   resultSet.getString(4)    );
-            entity.setUsername( resultSet.getString(5)    );
+            entity.setId(      resultSet.getLong(1)      );
+            entity.setPiclink( resultSet.getString(2)    );
+            entity.setTime(    resultSet.getTimestamp(3) );
+            entity.setResult(  resultSet.getString(4)    );
+            entity.setUserId(  resultSet.getString(5)    );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }

@@ -1,4 +1,4 @@
-package api.controller;
+package api.controller.request;
 
 /**
  * Created by sushrutshringarputale on 10/12/17.
@@ -6,18 +6,18 @@ package api.controller;
 public class UploadApiRequest {
   public String image;
   public String name;
-  public String username;
+  public String userId;
 
   public UploadApiRequest() {
     image = "";
     name = "";
-    username = "";
+    userId = "";
   }
 
-  public UploadApiRequest(String image, String name, String username) {
+  public UploadApiRequest(String image, String name, String userId) {
     this.image = image;
     this.name = name;
-    this.username = username;
+    this.userId = userId;
   }
 
   public String getImage() {
@@ -36,11 +36,11 @@ public class UploadApiRequest {
     this.name = name;
   }
 
-  public String getUsername() {
-    return username;
+  public String getUserId() {
+    return userId;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 }

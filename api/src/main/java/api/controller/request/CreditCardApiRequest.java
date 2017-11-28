@@ -1,8 +1,7 @@
-package api.controller;
+package api.controller.request;
 
 public class CreditCardApiRequest {
-
-    private String systemUser;
+    private String token;
     private String applicantName;
     private String applicantID;
     private int age;
@@ -14,14 +13,14 @@ public class CreditCardApiRequest {
     }
 
     public CreditCardApiRequest(
-            String systemUser,
+            String token,
             String applicantName,
             String applicantID,
             Integer age,
             Integer income,
             Integer creditScore,
             Integer expenses) {
-        this.systemUser = systemUser;
+        this.token = token;
         this.applicantName = applicantName;
         this.applicantID = applicantID;
         this.age = age;
@@ -30,8 +29,8 @@ public class CreditCardApiRequest {
         this.expenses = expenses;
     }
 
-    public String getSystemUser() {
-        return systemUser;
+    public String getToken() {
+        return token;
     }
 
     public String getApplicantName() {
@@ -58,8 +57,8 @@ public class CreditCardApiRequest {
         return expenses;
     }
 
-    public void setSystemUser(String systemUser) {
-        this.systemUser = systemUser;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setApplicantName(String applicantName) {
