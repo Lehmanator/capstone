@@ -35,7 +35,7 @@ class Navigation extends Component {
             this.props.authenticated
               ?
                   <div>
-                    <Link src="" className="col-md-1 user-links" to="/signedOut">Sign Out</Link>
+                    <Link src="" className="col-md-1 user-links" to="/logout">Sign Out</Link>
                   </div>
               :
                   <div>

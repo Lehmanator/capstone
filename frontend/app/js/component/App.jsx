@@ -9,6 +9,7 @@ import Navigation from './Navigation';
 import Home from './Home';
 import History from './History';
 import Login from './Login';
+import Logout from './Logout';
 import { app, base } from './Base';
 
 class App extends Component {
@@ -41,10 +42,11 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loading === true) {
       return (
-        <div style={{ textAlign: 'center', position: 'aboslute', top: '25%', left: '50%' }}>
+        <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>
           <h3>Loading...</h3>
+          <Spinner />
         </div>
       );
     }
@@ -57,6 +59,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/history" component={History} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
         </div>
       </Router>
     );
