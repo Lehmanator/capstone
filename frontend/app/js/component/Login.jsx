@@ -1,9 +1,10 @@
 // /* eslint-disable */
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import {Toaster, Intent} from '@blueprintjs/core';
-import {app, facebookProvider} from './Base';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Toaster, Intent } from '@blueprintjs/core';
+import { app, facebookProvider, googleProvider } from './Base';
 import facebookIcon from '../../static/images/FB-f-Logo__blue_50.png';
+import googleIcon from '../../static/images/btn_google_signin_light_normal_web.png';
 
 export default class Login extends Component {
   constructor(props) {
@@ -23,7 +24,20 @@ export default class Login extends Component {
           message: 'Unable to sign in with Facebook',
         });
       } else {
-        this.setState({redirect: true});
+        this.setState({ redirect: true });
+      }
+    });
+  }
+
+  authWithGoogle() {
+    app.auth().signInWithPopup(googleProvider).then((result, error) => {
+      if (error) {
+        this.toaster.show({
+          intent: Intent.DANGER,
+          message: 'Unable to sign in with Google',
+        });
+      } else {
+        this.setState({ redirect: true });
       }
     });
   }
@@ -42,7 +56,7 @@ export default class Login extends Component {
         this.loginForm.reset();
         this.toaster.show({
           intent: Intent.WARNING,
-          message: 'Your email is already registered via Facebook. ' +
+          message: 'Your email is already registered via Facebook or Google. ' +
           'Try signing in with your Facebook account.',
         });
       } else {
@@ -63,7 +77,7 @@ export default class Login extends Component {
         console.log(user);
         if (user && user.email) {
           this.loginForm.reset();
-          this.setState({redirect: true});
+          this.setState({ redirect: true });
         }
       })
       .catch((error) => {
@@ -73,9 +87,8 @@ export default class Login extends Component {
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to={'/'}/>;
+      return <Redirect to={'/'} />;
     }
-
     return (
       <div className={'login-style'}>
         <Toaster ref={(element) => {
@@ -136,6 +149,12 @@ export default class Login extends Component {
           data-use-continue-as="true"
           onClick={() => {
             this.authWithFacebook();
+          }}
+        ></button>
+        <button
+          style={{ backgroundImage: `url(${googleIcon})`, width: '191px', height: '46px', marginLeft: '10px'}}
+          onClick={() => {
+            this.authWithGoogle();
           }}
         ></button>
       </div>
