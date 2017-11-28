@@ -23,6 +23,7 @@ class App extends Component {
 
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         this.setState({
           authenticated: true,
@@ -34,7 +35,7 @@ class App extends Component {
           loading: false,
         });
       }
-    })
+    });
   }
 
   componentWillUnmount() {
