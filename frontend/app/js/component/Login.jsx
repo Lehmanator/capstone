@@ -36,10 +36,24 @@ class Login extends Component {
 
   authWithEmailPassword(event) {
     event.preventDefault();
-    console.table([{
-      email: this.emailInput.value,
-      password: this.passwordInput.value,
-    }]);
+    const email = this.emailInput.value;
+    const password = this.passwordInput.value;
+
+    app.auth().fetchProvidersForEmail(email).then((providers) => {
+      if (providers.length === 0) {
+        // create user
+      } else if (providers.indexOf('password') === -1) {
+        // already registered via Facebook
+        this.loginForm.reset();
+        this.toaster.show({ intent: Intent.WARNING,
+          message: "Your email is already registered via Facebook. Try signing in with your Facebook account." });
+      } else {
+        // sign user in w/ email
+      }
+    })
+    .catch((error) => {
+      this.toaster.show({ intent: Intent.DANGER, message: error.message });
+    });
   }
 
   render() {
