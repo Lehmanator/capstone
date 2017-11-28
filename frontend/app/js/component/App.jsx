@@ -1,23 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   hashHistory,
 } from 'react-router-dom';
+import { Spinner } from '@blueprintjs/core';
 import Navigation from './Navigation';
 import Home from './Home';
 import History from './History';
+import Login from './Login';
+import Logout from './Logout';
+import { app, base } from './Base';
 
-const App = () => (
-  <Router history={hashHistory}>
-    <div>
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      authenticated: false,
+      loading: true,
+    };
+  }
 
-      <Navigation />
+  componentWillMount() {
+    this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({
+          authenticated: true,
+          loading: false,
+        });
+      } else {
+        this.setState({
+          authenticated: false,
+          loading: false,
+        });
+      }
+    });
+  }
 
-      <Route exact path="/" component={Home} />
-      <Route path="/history" component={History} />
-    </div>
-  </Router>
-);
+  componentWillUnmount() {
+    this.removeAuthListener();
+  }
 
+  render() {
+    if (this.state.loading === true) {
+      return (
+        <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>
+          <h3>Loading...</h3>
+          <Spinner />
+        </div>
+      );
+    }
+    return (
+      <Router history={hashHistory}>
+        <div>
+          <Navigation authenticated={this.state.authenticated} />
+
+          <Route exact path="/" render={(props) => <Home {...props} authenticated={this.state.authenticated} />} />
+          <Route path="/history" component={History} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+        </div>
+      </Router>
+    );
+  }
+}
 export default App;

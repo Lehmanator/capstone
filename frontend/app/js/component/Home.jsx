@@ -1,17 +1,31 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { Component } from 'react';
 import MLNavbar from './Navbar';
 import ImageUploadView from './ImageUploadView';
 
-export default function Home() {
-  const appChildren = [
-    { name: 'Upload Logo', value: <ImageUploadView /> },
-    { name: 'Credit Card Approval', value: <div><p>Goodbye</p></div> },
-  ];
+class Home extends React.Component {
+    render() {
+      const appChildren = [
+	    { name: 'Upload Logo', value: <ImageUploadView /> },
+	    { name: 'Credit Card Approval', value: <div><p>Goodbye</p></div> },
+	  ];
 
-  return (
-    <div>
-        <MLNavbar children={appChildren} />
-    </div>
-  );
+	  return (
+	    <div>
+	    {
+	    	this.props.authenticated
+	    	?
+	        <MLNavbar children={appChildren} />
+	        :
+	        <div>
+		        <h1>
+		        	Please login to continue
+		        </h1>
+	        </div>
+	    }
+	    </div>
+	  );
+    }
 }
+
+export default Home;

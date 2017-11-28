@@ -50,17 +50,16 @@ export default class ImageUploadView extends React.Component {
       name: file.name,
       username: constants.defaultUser,
     };
-    // const messageInit = { method: 'POST',
-    //   headers: messageHeaders,
-    //   body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
-    // };
+    const messageInit = { method: 'POST',
+      headers: messageHeaders,
+      body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
+    };
 
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
       const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
-      console.log(response);
     }, error => {
       const jsonError = error.response.data;
       console.log(jsonError);
