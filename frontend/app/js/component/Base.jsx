@@ -15,4 +15,4 @@ const base = Rebase.createClass(app.database());
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-export { app, base, facebookProvider, googleProvider};
+export { app, base, facebookProvider, googleProvider };

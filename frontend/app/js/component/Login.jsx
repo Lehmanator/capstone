@@ -57,7 +57,7 @@ export default class Login extends Component {
         this.toaster.show({
           intent: Intent.WARNING,
           message: 'Your email is already registered via Facebook or Google. ' +
-          'Try signing in with your Facebook account.',
+          'Try signing in with one of those options.',
         });
       }
       return app.auth().signInWithEmailAndPassword(email, password);
@@ -140,7 +140,8 @@ export default class Login extends Component {
           }}
         ></button>
         <button
-          style={{ backgroundImage: `url(${googleIcon})`, width: '191px', height: '46px', marginLeft: '10px'}}
+          style={{ backgroundImage: `url(${googleIcon})`, width: '191px',
+          height: '46px', marginLeft: '10px' }}
           onClick={() => {
             this.authWithGoogle();
           }}
