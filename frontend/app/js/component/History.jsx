@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import LogoHistory from './LogoHistory';
 import LoadingPic from '../../static/images/loading.gif';
@@ -33,7 +32,9 @@ export default class History extends React.Component {
           let link = item.link;
           let prob = parseFloat(item.result);
           const uploaded = new Date(item.time);
-          return <LogoHistory key={index} imgSrc={link} probability={prob} name={uploaded.toDateString()} />;
+          return (<LogoHistory key={index} imgSrc={link}
+            probability={prob} name={uploaded.toDateString()}
+          />);
         });
     } else {
       history = <h1>No items to display</h1>;
