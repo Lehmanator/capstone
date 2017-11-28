@@ -10,7 +10,7 @@ import Home from './Home';
 import History from './History';
 import Login from './Login';
 import Logout from './Logout';
-import { app, base } from './Base';
+import { app } from './Base';
 
 class App extends Component {
   constructor() {
@@ -23,7 +23,6 @@ class App extends Component {
 
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({
           authenticated: true,
@@ -56,7 +55,9 @@ class App extends Component {
         <div>
           <Navigation authenticated={this.state.authenticated} />
 
-          <Route exact path="/" render={(props) => <Home {...props} authenticated={this.state.authenticated} />} />
+          <Route exact path="/"
+            render={(props) => <Home {...props} authenticated={this.state.authenticated} />}
+          />
           <Route path="/history" component={History} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />

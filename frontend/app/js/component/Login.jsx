@@ -59,29 +59,17 @@ export default class Login extends Component {
           message: 'Your email is already registered via Facebook or Google. ' +
           'Try signing in with your Facebook account.',
         });
-      } else {
-        // sign user in w/ email
-        return app.auth().signInWithEmailAndPassword(email, password);
-        // app.auth().signInWithEmailAndPassword(email, password);
-
-        // var rootRef = firebase.database().ref();
-        // var authData = rootRef.getAuth();
-
-        // if (authData) {
-        //   console.log("Authenticated user with uid:", authData.uid);
-        // }
-        // return;
       }
+      return app.auth().signInWithEmailAndPassword(email, password);
     })
       .then((user) => {
-        console.log(user);
         if (user && user.email) {
           this.loginForm.reset();
           this.setState({ redirect: true });
         }
       })
       .catch((error) => {
-        this.toaster.show({intent: Intent.DANGER, message: error.message});
+        this.toaster.show({ intent: Intent.DANGER, message: error.message });
       });
   }
 
@@ -109,7 +97,7 @@ export default class Login extends Component {
             </h5>
           </div>
           <input
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             className="pt-input"
             name="email"
             type="email"
