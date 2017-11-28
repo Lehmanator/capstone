@@ -14,6 +14,12 @@ const phaseEnum = {
 };
 
 export default class ImageUploadView extends React.Component {
+
+  static renderProcessingView(width, height) {
+    return (
+      <ProcessingView width={width} height={height} style={{ margin: 'auto' }} />
+    );
+  }
   constructor(props) {
     super(props);
     this.state = { showButton: false, displayImage: null,
@@ -44,26 +50,27 @@ export default class ImageUploadView extends React.Component {
       name: file.name,
       username: constants.defaultUser,
     };
-    const messageInit = { method: 'POST',
-      headers: messageHeaders,
-      body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
-    };
-
-    // axios({
-    //   method: 'post',
-    //   url: constants.uploadImageUrl,
-    //   data: body,
+    // const messageInit = { method: 'POST',
     //   headers: messageHeaders,
-    // }).then(response => {
-    //   console.log(response);
-    // }, error => {
-    //   console.error(error);
-    // });
+    //   body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
+    // };
+
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
       const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
+      console.log(response);
+    }, error => {
+      const jsonError = error.response.data;
+      console.log(jsonError);
+      if (jsonError.probability) {
+        const accepted = jsonError.probability > 0.69;
+        this.setState({ phase: phaseEnum.displayResults, accepted });
+      } else {
+        this.setState({ phase: phaseEnum.unknown });
+        console.error(error);
+      }
     });
   }
 
@@ -74,13 +81,6 @@ export default class ImageUploadView extends React.Component {
       />
     );
   }
-
-  renderProcessingView(width, height) {
-    return (
-      <ProcessingView width={width} height={height} style={{ margin: 'auto' }} />
-    );
-  }
-
   renderDisplayResults(width, height) {
     const image = this.state.displayImage();
     return (
@@ -110,10 +110,13 @@ export default class ImageUploadView extends React.Component {
         displayView = this.renderFileUpload(width, height);
         break;
       case phaseEnum.processingImage:
-        displayView = this.renderProcessingView(width, height);
+        displayView = ImageUploadView.renderProcessingView(width, height);
         break;
       case phaseEnum.displayResults:
         displayView = this.renderDisplayResults(width, height);
+        break;
+      case phaseEnum.unknown:
+        // TODO: Display an error screen
         break;
       default:
         break;
@@ -121,10 +124,8 @@ export default class ImageUploadView extends React.Component {
 
     return (
           <div>
-            <center>
               {displayView}
               {button}
-            </center>
           </div>
         );
   }

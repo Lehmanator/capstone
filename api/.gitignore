@@ -5,3 +5,9 @@
 !.elasticbeanstalk/*.global.yml
 target
 .idea
+.classpath
+.project
+.settings/*
+.vscode/*
+bin/*
+

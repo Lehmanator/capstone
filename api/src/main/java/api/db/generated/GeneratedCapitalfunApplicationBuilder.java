@@ -3,6 +3,8 @@ package api.db.generated;
 import api.db.CapitalfunApplication;
 import api.db.CapitalfunApplicationBuilder;
 import api.db.CapitalfunApplicationImpl;
+import api.db.applications.ApplicationsManagerImpl;
+import api.db.applications.ApplicationsSqlAdapter;
 import api.db.logos.LogosManagerImpl;
 import api.db.logos.LogosSqlAdapter;
 import api.db.users.UsersManagerImpl;
@@ -26,8 +28,10 @@ public abstract class GeneratedCapitalfunApplicationBuilder extends AbstractAppl
     
     protected GeneratedCapitalfunApplicationBuilder() {
         super(CapitalfunApplicationImpl.class, GeneratedCapitalfunMetadata.class);
+        withManager(ApplicationsManagerImpl.class);
         withManager(LogosManagerImpl.class);
         withManager(UsersManagerImpl.class);
+        withComponent(ApplicationsSqlAdapter.class);
         withComponent(LogosSqlAdapter.class);
         withComponent(UsersSqlAdapter.class);
     }
