@@ -6,18 +6,18 @@ package api.controller.request;
 public class UploadApiRequest {
   public String image;
   public String name;
-  public String userId;
+  public String token;
 
   public UploadApiRequest() {
     image = "";
     name = "";
-    userId = "";
+    token = "";
   }
 
-  public UploadApiRequest(String image, String name, String userId) {
+  public UploadApiRequest(String image, String name, String token) {
     this.image = image;
     this.name = name;
-    this.userId = userId;
+    this.token = token;
   }
 
   public String getImage() {
@@ -36,11 +36,11 @@ public class UploadApiRequest {
     this.name = name;
   }
 
-  public String getUserId() {
-    return userId;
+  public String getToken() {
+    return token;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setToken(String userId) {
+    this.token = token;
   }
 }

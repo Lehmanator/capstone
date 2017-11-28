@@ -52,7 +52,7 @@ public class UploadLogoController {
   CompletableFuture<ApiResponse> upload(@RequestBody UploadApiRequest body) {
     String image = body.getImage();
     String name = body.getName();
-    String userId = TokenAuthenticator.verifyToken(body.getUserId());
+    String userId = TokenAuthenticator.verifyToken(body.getToken());
     logger.info("USERID IS: " + userId);
     if (userId == null) {
       return CompletableFuture.completedFuture(TokenAuthenticator.getAuthenticationErrorResponse());
