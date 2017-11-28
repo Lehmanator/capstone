@@ -10,7 +10,7 @@ export default class FormField extends React.Component {
   }
 
   handleChange(event) {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({data: event.target.value});
     this.props.handleInputChange(event);
   }
