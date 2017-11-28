@@ -1,4 +1,6 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import HistoryBtn from './HistoryBtn';
 import chipmunkLogo from '../../static/images/athletics-logo.png';
@@ -27,7 +29,7 @@ class Navigation extends Component {
                 />
                 </div>
             :
-              <div className="col-md-4"></div> 
+              <div className="col-md-4"></div>
           }
 
           <div className="col-md-4" />
@@ -50,3 +52,7 @@ class Navigation extends Component {
   }
 }
 export default Navigation;
+
+Navigation.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+};

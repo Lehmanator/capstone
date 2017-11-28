@@ -1,8 +1,8 @@
 // /* eslint-disable */
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import {Toaster, Intent} from '@blueprintjs/core';
-import {app, facebookProvider} from './Base';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Toaster, Intent } from '@blueprintjs/core';
+import { app, facebookProvider } from './Base';
 import facebookIcon from '../../static/images/FB-f-Logo__blue_50.png';
 
 export default class Login extends Component {
@@ -23,7 +23,7 @@ export default class Login extends Component {
           message: 'Unable to sign in with Facebook',
         });
       } else {
-        this.setState({redirect: true});
+        this.setState({ redirect: true });
       }
     });
   }
@@ -45,35 +45,23 @@ export default class Login extends Component {
           message: 'Your email is already registered via Facebook. ' +
           'Try signing in with your Facebook account.',
         });
-      } else {
-        // sign user in w/ email
-        return app.auth().signInWithEmailAndPassword(email, password);
-        // app.auth().signInWithEmailAndPassword(email, password);
-
-        // var rootRef = firebase.database().ref();
-        // var authData = rootRef.getAuth();
-
-        // if (authData) {
-        //   console.log("Authenticated user with uid:", authData.uid);
-        // }
-        // return;
       }
+      return app.auth().signInWithEmailAndPassword(email, password);
     })
       .then((user) => {
-        console.log(user);
         if (user && user.email) {
           this.loginForm.reset();
-          this.setState({redirect: true});
+          this.setState({ redirect: true });
         }
       })
       .catch((error) => {
-        this.toaster.show({intent: Intent.DANGER, message: error.message});
+        this.toaster.show({ intent: Intent.DANGER, message: error.message });
       });
   }
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to={'/'}/>;
+      return <Redirect to={'/'} />;
     }
 
     return (
@@ -96,7 +84,7 @@ export default class Login extends Component {
             </h5>
           </div>
           <input
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             className="pt-input"
             name="email"
             type="email"

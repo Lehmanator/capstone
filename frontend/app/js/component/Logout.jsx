@@ -9,17 +9,17 @@ class Logout extends Component {
     this.state = {
       redirect: false,
     };
-  };
+  }
 
   componentWillMount() {
-    app.auth().signOut().then((user) => {
+    app.auth().signOut().then(() => {
       this.setState({ redirect: true });
     });
-  };
+  }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to='/' />;
+      return <Redirect to="/" />;
     }
 
     return (
@@ -28,7 +28,7 @@ class Logout extends Component {
         <Spinner />
       </div>
     );
-  };
+  }
 }
 
 export default Logout;
