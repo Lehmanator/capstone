@@ -42,6 +42,7 @@ class Login extends Component {
     app.auth().fetchProvidersForEmail(email).then((providers) => {
       if (providers.length === 0) {
         // create user
+        return app.auth().createUserWithEmailAndPassword(email, password);
       } else if (providers.indexOf('password') === -1) {
         // already registered via Facebook
         this.loginForm.reset();
@@ -49,6 +50,13 @@ class Login extends Component {
           message: "Your email is already registered via Facebook. Try signing in with your Facebook account." });
       } else {
         // sign user in w/ email
+        return app.auth().signInWithEmailAndPassword(email, password);
+      }
+    })
+    .then((user) => {
+      if (user && user.email) {
+        this.loginForm.reset();
+        this.setState({redirect: true});
       }
     })
     .catch((error) => {
