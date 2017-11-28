@@ -54,10 +54,9 @@ class App extends Component {
     return (
       <Router history={hashHistory}>
         <div>
-
           <Navigation authenticated={this.state.authenticated} />
 
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={(props) => <Home {...props} authenticated={this.state.authenticated} />} />
           <Route path="/history" component={History} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
