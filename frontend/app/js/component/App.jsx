@@ -8,6 +8,7 @@ import { Spinner } from '@blueprintjs/core';
 import Navigation from './Navigation';
 import Home from './Home';
 import History from './History';
+import CCHistory from './CCHistory';
 import Login from './Login';
 import Logout from './Logout';
 import { app } from './Base';
@@ -59,6 +60,7 @@ class App extends Component {
             render={(props) => <Home {...props} authenticated={this.state.authenticated} />}
           />
           <Route path="/history" component={History} />
+          <Route path="/credit-history" component={CCHistory} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
         </div>

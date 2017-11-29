@@ -20,14 +20,16 @@ class Navigation extends Component {
           {
             this.props.authenticated
             ?
-              <div>
-                <Link to="/history">
-                  <HistoryBtn title={" Logo History"} logo={chipmunkLogo} className="col-md-2" />
-                </Link>
-                <HistoryBtn title={ "Credit Card Appoval History" }
+            <div>
+              <Link to="/history">
+                <HistoryBtn title={" Logo History"} logo={chipmunkLogo} className="col-md-2" />
+              </Link>
+              <Link to="/credit-history">
+                <HistoryBtn title={" Credit Card Appoval History" }
                   logo={creditCardLogo} className="col-md-2"
                 />
-                </div>
+              </Link>
+            </div>
             :
               <div className="col-md-4"></div>
           }
