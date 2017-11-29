@@ -2,7 +2,7 @@ import React from 'react';
 import constants from './constants';
 import BaseHistory from './BaseHistory';
 import CreditCardHistory from './CreditCardHistory';
-import CCHistoryFilter from './CCHistoryFilter';
+// import CCHistoryFilter from './CCHistoryFilter';
 
 export default class CCHistory extends BaseHistory {
   constructor(props) {
@@ -37,8 +37,9 @@ export default class CCHistory extends BaseHistory {
   }
 
   renderFilters() {
-    return (
-      <CCHistoryFilter onFilter={this.onFilter} />
-    );
+    // return (
+    //   <CCHistoryFilter onFilter={this.onFilter} />
+    // );
+    return null;
   }
 }
