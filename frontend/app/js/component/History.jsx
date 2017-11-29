@@ -4,8 +4,8 @@ import constants from './constants';
 import BaseHistory from './BaseHistory';
 
 export default class History extends BaseHistory {
-  getHistoryURL() {
-    return `${constants.historyUrl}?username=${constants.defaultUser}`;
+  getHistoryURL(token) {
+    return `${constants.historyUrl}?token=${token}`;
   }
 
   renderHistoryItems(item, index) {

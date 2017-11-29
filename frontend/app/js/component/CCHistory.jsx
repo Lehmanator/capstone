@@ -14,8 +14,8 @@ export default class CCHistory extends BaseHistory {
     return (<h2> Credit Card Application History </h2>);
   }
 
-  getHistoryURL() {
-    return `${constants.creditHistoryUrl}?username=${constants.defaultUser}`;
+  getHistoryURL(token) {
+    return `${constants.creditHistoryUrl}?token=${token}`;
   }
 
   renderHistoryItems(item, index) {

@@ -42,9 +42,9 @@ public class S3Handler {
 //        return finalResult.getLocation();
   }
 
-  public ObjectMetadata getImage(String userName, String name) throws AmazonS3Exception {
-    S3Object object = awsClient.getObject(BUCKET_NAME, createFileName(userName, name));
-    return object.getObjectMetadata();
+  public InputStream getFile(String fileName) throws AmazonS3Exception {
+    S3Object object = awsClient.getObject(BUCKET_NAME, fileName);
+    return object.getObjectContent();
   }
 
   public String getImageUrl(String userName, String name) {

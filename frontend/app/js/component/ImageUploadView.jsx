@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import React from 'react';
 import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
 import Results from './Results';
 import constants from './constants';
-// import axios from 'axios';
+import { makeRequestWithToken } from './Base';
 
 const phaseEnum = {
   chooseImage: 1,
@@ -14,12 +13,20 @@ const phaseEnum = {
 };
 
 export default class ImageUploadView extends React.Component {
+
+  static renderProcessingView(width, height) {
+    return (
+      <ProcessingView width={width} height={height} style={{ margin: 'auto' }} />
+    );
+  }
   constructor(props) {
     super(props);
     this.state = { showButton: false, displayImage: null,
       imageFile: null, phase: phaseEnum.chooseImage, accepted: false };
     this.onGoodUpload = this.onGoodUpload.bind(this);
     this.onUploadImage = this.onUploadImage.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+    this.sendMessageWithToken = this.sendMessageWithToken.bind(this);
   }
 
   onGoodUpload(uploadSuccessful, displayImage, imageFile) {
@@ -31,10 +38,14 @@ export default class ImageUploadView extends React.Component {
 
   onUploadImage() {
     this.setState({ phase: phaseEnum.processingImage });
-    setTimeout(this.sendMessage.bind(this), 1000);
+    setTimeout(this.sendMessageWithToken, 1000);
   }
 
-  sendMessage() {
+  sendMessageWithToken() {
+    makeRequestWithToken(this.sendMessage);
+  }
+
+  sendMessage(userToken) {
     const file = this.state.imageFile();
     const messageHeaders = {};
     messageHeaders['Access-Control-Allow-Origin'] = '*';
@@ -42,28 +53,27 @@ export default class ImageUploadView extends React.Component {
     const body = {
       image: this.state.displayImage(),
       name: file.name,
-      username: constants.defaultUser,
+      token: userToken,
     };
     const messageInit = { method: 'POST',
       headers: messageHeaders,
       body: new Blob([JSON.stringify(body, null, 2)], { type: 'application/json' }),
     };
 
-    // axios({
-    //   method: 'post',
-    //   url: constants.uploadImageUrl,
-    //   data: body,
-    //   headers: messageHeaders,
-    // }).then(response => {
-    //   console.log(response);
-    // }, error => {
-    //   console.error(error);
-    // });
     fetch(constants.uploadImageUrl, messageInit)
     .then((response) => response.json())
     .then((jsonData) => {
       const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
+    }, error => {
+      const jsonError = error.response.data;
+      if (jsonError.probability) {
+        const accepted = jsonError.probability > 0.69;
+        this.setState({ phase: phaseEnum.displayResults, accepted });
+      } else {
+        this.setState({ phase: phaseEnum.unknown });
+        console.error(error); // eslint-disable-line no-console
+      }
     });
   }
 
@@ -74,13 +84,6 @@ export default class ImageUploadView extends React.Component {
       />
     );
   }
-
-  renderProcessingView(width, height) {
-    return (
-      <ProcessingView width={width} height={height} style={{ margin: 'auto' }} />
-    );
-  }
-
   renderDisplayResults(width, height) {
     const image = this.state.displayImage();
     return (
@@ -110,10 +113,13 @@ export default class ImageUploadView extends React.Component {
         displayView = this.renderFileUpload(width, height);
         break;
       case phaseEnum.processingImage:
-        displayView = this.renderProcessingView(width, height);
+        displayView = ImageUploadView.renderProcessingView(width, height);
         break;
       case phaseEnum.displayResults:
         displayView = this.renderDisplayResults(width, height);
+        break;
+      case phaseEnum.unknown:
+        // TODO: Display an error screen
         break;
       default:
         break;
@@ -121,10 +127,8 @@ export default class ImageUploadView extends React.Component {
 
     return (
           <div>
-            <center>
               {displayView}
               {button}
-            </center>
           </div>
         );
   }

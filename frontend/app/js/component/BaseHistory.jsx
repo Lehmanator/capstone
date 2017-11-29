@@ -1,5 +1,6 @@
 import React from 'react';
 import LoadingPic from '../../static/images/loading.gif';
+import { makeRequestWithToken } from './Base';
 
 const phaseEnum = {
   downloading: 1,
@@ -15,20 +16,24 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    const url = this.getHistoryURL();
-    if (url) {
-      fetch(url)
-        .then((response) => response.json())
-        .then((jsonData) => {
-          this.setState({ phase: phaseEnum.display, history: jsonData.response.reverse() });
-        });
-    }
+    makeRequestWithToken(this.sendMessage.bind(this));
   }
 
   // SECTION: Override these in the child class
 
   getHistoryURL() {
     return null;
+  }
+
+  sendMessage(token) {
+    const url = this.getHistoryURL(token);
+    if (url) {
+      fetch(url)
+          .then((response) => response.json())
+          .then((jsonData) => {
+            this.setState({ phase: phaseEnum.display, history: jsonData.response.reverse() });
+          });
+    }
   }
 
   renderPageHeader() {

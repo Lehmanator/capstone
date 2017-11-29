@@ -1,6 +1,6 @@
 # Machine Learning at Capital One
 ## CMPSC 483, Pennsylvania State Univerity
-### Tyler Abbatico, John Barczynski, Kyle Eckenstine, Kyle Johnson, Sam Lehman, Mayank Makwana, Sush Shringarputale
+### Tyler Abbatico, John Barczynski, Kyle Eckenstine, Kyle Johnson, Sam Lehman, Mayank Makwana, Sushrut Shringarputale
 
 # Overview
 
@@ -8,13 +8,17 @@ Capital One continues to emerge in technology while providing financial services
 
 The Capital One project is focused around ML and presenting data in a useful and friendly way. This is acheived through two main projects implemented using Keras in Python for Machine Learning, Java Spring Framework, and React. The first project, a Penn State logo recognizer gave the project team the opportunity to familiarize themselves with the concepts of machine learning and the frameworks chosen for the project. The second, a Credit Card approval tool, applied the skills gained during the logo recognizer task to create a prototype for a system that could potentially be used somewhere like Capital On
 
-The deployed version of this project can be viewed at: [http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/](http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/)
+The deployed version of this project can be viewed at: 
+
+[http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/](http://aws-website-john-2jt3q.s3-website-us-east-1.amazonaws.com/)
+
+[https://d594x6z5780w4.cloudfront.net](https://d594x6z5780w4.cloudfront.net)?
 
 # Frontend
 
 ![Homepage of the ML Upload System](data/resized.png)
 
-The frontend of the system is a [React](https://reactjs.org/) project using several common components, such as React-Router [React-Router](https://github.com/ReactTraining/react-router) and [React Dropzone](https://github.com/react-dropzone/react-dropzone) for  various effects. This system can be run locally using the [node package manager (NPM)](https://www.npmjs.com/).
+The frontend of the system is a [React](https://reactjs.org/) project using several common components, such as [React-Router](https://github.com/ReactTraining/react-router) and [React Dropzone](https://github.com/react-dropzone/react-dropzone) for  various effects. This system can be run locally using the [node package manager (NPM)](https://www.npmjs.com/).
 
 ## Installation
 
@@ -88,6 +92,13 @@ pip install sklearn
 ```
 
 ## Execution
+
+The flask CLI tool requires that the name of the flask app be provided as an environment variable. <br />
+
+
+|        Variable       |                   Description                  |
+|:---------------------:|:----------------------------------------------:|
+| FLASK_APP             | The name of the Flask App that needs to be run |
 
 To run the ML service locally using (*pre-compiled* weights), simply start flask:
 

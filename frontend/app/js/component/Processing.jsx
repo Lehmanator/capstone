@@ -5,8 +5,8 @@ import UploadingPic from '../../static/images/loading.gif';
 export default class ProcessingView extends React.Component {
   renderDisplayField() {
     return (
-      <div style={{ width: this.props.width, height: this.props.height,
-                          display: 'flex', alignItems: 'center' }}
+      <div className="processingImage" style={{ width: this.props.width, height: this.props.height,
+                         }}
       >
         <div style={{ width: '100%' }}>
           <img src={UploadingPic} style={{ height: this.props.height * 0.5 }}
