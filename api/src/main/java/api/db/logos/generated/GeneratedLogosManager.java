@@ -25,7 +25,7 @@ public interface GeneratedLogosManager extends Manager<Logos> {
         Logos.PICLINK,
         Logos.TIME,
         Logos.RESULT,
-        Logos.USERNAME
+        Logos.USER_ID
     ));
     
     @Override

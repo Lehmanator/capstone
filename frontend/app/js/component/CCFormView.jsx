@@ -30,7 +30,7 @@ export default class CCFormView extends React.Component {
     messageHeaders['Access-Control-Allow-Origin'] = '*';
     messageHeaders['content-type'] = 'application/json';
     const request = {
-      systemUser: constants.defaultUser,
+      token: "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86",
       applicantName: this.state.name,
       applicantID: this.state.idNumber,
       age: this.state.age,

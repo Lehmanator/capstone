@@ -1,16 +1,13 @@
 package api.db.logos.generated;
 
 import api.db.logos.Logos;
-import api.db.users.Users;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.StringField;
-import com.speedment.runtime.field.StringForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -73,13 +70,12 @@ public interface GeneratedLogos {
     );
     /**
      * This Field corresponds to the {@link Logos} field that can be obtained
-     * using the {@link Logos#getUsername()} method.
+     * using the {@link Logos#getUserId()} method.
      */
-    StringForeignKeyField<Logos, String, Users> USERNAME = StringForeignKeyField.create(
-        Identifier.USERNAME,
-        Logos::getUsername,
-        Logos::setUsername,
-        Users.USERNAME,
+    StringField<Logos, String> USER_ID = StringField.create(
+        Identifier.USER_ID,
+        Logos::getUserId,
+        Logos::setUserId,
         TypeMapper.identity(),
         false
     );
@@ -117,12 +113,12 @@ public interface GeneratedLogos {
     Optional<String> getResult();
     
     /**
-     * Returns the username of this Logos. The username field corresponds to the
-     * database column capitalfun.capitalfun.logos.username.
+     * Returns the userId of this Logos. The userId field corresponds to the
+     * database column capitalfun.capitalfun.logos.userId.
      * 
-     * @return the username of this Logos
+     * @return the userId of this Logos
      */
-    String getUsername();
+    String getUserId();
     
     /**
      * Sets the id of this Logos. The id field corresponds to the database
@@ -161,30 +157,21 @@ public interface GeneratedLogos {
     Logos setResult(String result);
     
     /**
-     * Sets the username of this Logos. The username field corresponds to the
-     * database column capitalfun.capitalfun.logos.username.
+     * Sets the userId of this Logos. The userId field corresponds to the
+     * database column capitalfun.capitalfun.logos.userId.
      * 
-     * @param username to set of this Logos
-     * @return         this Logos instance
+     * @param userId to set of this Logos
+     * @return       this Logos instance
      */
-    Logos setUsername(String username);
-    
-    /**
-     * Queries the specified manager for the referenced Users. If no such Users
-     * exists, an {@code NullPointerException} will be thrown.
-     * 
-     * @param foreignManager the manager to query for the entity
-     * @return               the foreign entity referenced
-     */
-    Users findUsername(Manager<Users> foreignManager);
+    Logos setUserId(String userId);
     
     enum Identifier implements ColumnIdentifier<Logos> {
         
-        ID       ("id"),
-        PICLINK  ("piclink"),
-        TIME     ("time"),
-        RESULT   ("result"),
-        USERNAME ("username");
+        ID      ("id"),
+        PICLINK ("piclink"),
+        TIME    ("time"),
+        RESULT  ("result"),
+        USER_ID ("userId");
         
         private final String columnName;
         private final TableIdentifier<Logos> tableIdentifier;

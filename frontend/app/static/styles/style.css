@@ -254,6 +254,22 @@ li:last-child {
   border-radius: 25px;
 }
 
-.credit-card-container {
-  padding:15px 15px;
+.login-style {
+  width: 80%;
+  max-width: 315px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.pt-input {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.login-btn {
+  border: none;
+  width:100%;
 }
