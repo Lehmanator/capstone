@@ -1,4 +1,3 @@
-// /* eslint-disable */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Toaster, Intent } from '@blueprintjs/core';

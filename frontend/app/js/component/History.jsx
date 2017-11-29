@@ -23,12 +23,8 @@ export default class History extends React.Component {
   sendMessage(token) {
     const url = `${constants.historyUrl}?token=${token}`;
     fetch(url)
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((jsonData) => {
-      console.log(jsonData);
       this.setState({ phase: phaseEnum.display, images: jsonData.response.reverse() });
     });
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
@@ -62,23 +61,18 @@ export default class ImageUploadView extends React.Component {
     };
 
     fetch(constants.uploadImageUrl, messageInit)
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((jsonData) => {
-      console.log(jsonData);
       const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ phase: phaseEnum.displayResults, accepted });
     }, error => {
       const jsonError = error.response.data;
-      console.log(jsonError);
       if (jsonError.probability) {
         const accepted = jsonError.probability > 0.69;
         this.setState({ phase: phaseEnum.displayResults, accepted });
       } else {
         this.setState({ phase: phaseEnum.unknown });
-        console.error(error);
+        console.error(error); // eslint-disable-line no-console
       }
     });
   }
