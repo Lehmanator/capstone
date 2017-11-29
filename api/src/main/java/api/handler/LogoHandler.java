@@ -15,16 +15,16 @@ public class LogoHandler {
     this.logos = logos;
   }
 
-  public List<Logos> getLogos(String username) {
-    return logos.stream().filter(Logos.USERNAME.equal(username)).collect(Collectors.toList());
+  public List<Logos> getLogos(String userId) {
+    return logos.stream().filter(Logos.USER_ID.equal(userId)).collect(Collectors.toList());
   }
 
-  public Logos addLogo(String piclink, String username, String result) {
+  public void addLogo(String piclink, String userId, String result) {
     Logos newLogo = new LogosImpl();
     newLogo.setPiclink(piclink);
-    newLogo.setUsername(username);
+    newLogo.setUserId(userId);
     newLogo.setTime(new Timestamp(new Date().getTime()));
     newLogo.setResult(result);
-    return logos.persist(newLogo);
+    logos.persist(newLogo);
   }
 }

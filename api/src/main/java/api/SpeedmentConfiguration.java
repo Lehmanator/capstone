@@ -4,7 +4,6 @@ import api.db.CapitalfunApplication;
 import api.db.CapitalfunApplicationBuilder;
 import api.db.applications.ApplicationsManager;
 import api.db.logos.LogosManager;
-import api.db.users.UsersManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,11 +28,6 @@ public class SpeedmentConfiguration {
         .withPassword(password)
         .withSchema(schema)
         .build();
-  }
-
-  @Bean
-  public UsersManager getUsersManager(CapitalfunApplication app) {
-    return app.getOrThrow(UsersManager.class);
   }
 
   @Bean

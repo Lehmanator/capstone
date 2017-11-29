@@ -1,7 +1,5 @@
 package api;
 
-import api.db.users.Users;
-import api.db.users.UsersManager;
 import com.amazonaws.services.organizations.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
