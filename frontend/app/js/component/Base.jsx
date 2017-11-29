@@ -18,8 +18,6 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 function makeRequestWithToken(onToken) {
   app.auth().currentUser.getIdToken(true)
   .then(idToken => {
-    // eslint-disable-next-line no-console
-    console.log('Token Recieved from user: Calling request function');
     onToken(idToken);
   }).catch(err => {
     console.log(err); // eslint-disable-line no-console
