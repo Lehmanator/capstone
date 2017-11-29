@@ -4,9 +4,9 @@ package api.controller.request;
  * Created by sushrutshringarputale on 10/12/17.
  */
 public class UploadApiRequest {
-  public String image;
-  public String name;
-  public String token;
+  private String image;
+  private String name;
+  private String token;
 
   public UploadApiRequest() {
     image = "";

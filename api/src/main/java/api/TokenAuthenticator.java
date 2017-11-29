@@ -13,7 +13,7 @@ public class TokenAuthenticator {
   private static Logger logger = Logger.getLogger(TokenAuthenticator.class.getName());
 
   public static String verifyToken(String token) {
-    System.out.println(token);
+    logger.info("dis:" + token);
     try {
       FirebaseAuthenticator auth = FirebaseAuthenticator.getInstance();
       FirebaseToken decodedToken = auth.getFirebaseAuth().verifyIdTokenAsync(token).get();

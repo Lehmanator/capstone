@@ -53,7 +53,6 @@ public class UploadLogoController {
     String image = body.getImage();
     String name = body.getName();
     String userId = TokenAuthenticator.verifyToken(body.getToken());
-    logger.info("USERID IS: " + userId);
     if (userId == null) {
       return CompletableFuture.completedFuture(TokenAuthenticator.getAuthenticationErrorResponse());
     }
