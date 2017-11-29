@@ -2,6 +2,7 @@ import React from 'react';
 import LogoHistory from './LogoHistory';
 import LoadingPic from '../../static/images/loading.gif';
 import constants from './constants';
+import { makeRequestWithToken } from './Base';
 
 const phaseEnum = {
   downloading: 1,
@@ -16,7 +17,11 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    const url = `${constants.historyUrl}?username=${constants.defaultUser}`;
+    makeRequestWithToken(this.sendMessage.bind(this));
+  }
+
+  sendMessage(token) {
+    const url = `${constants.historyUrl}?token=${token}`;
     fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {

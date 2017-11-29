@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import React from 'react';
 import FileUpload from './FileUpload';
 import ProcessingView from './Processing';
 import Results from './Results';
 import constants from './constants';
-// import axios from 'axios';
+import { makeRequestWithToken } from './Base';
 
 const phaseEnum = {
   chooseImage: 1,
@@ -26,6 +25,8 @@ export default class ImageUploadView extends React.Component {
       imageFile: null, phase: phaseEnum.chooseImage, accepted: false };
     this.onGoodUpload = this.onGoodUpload.bind(this);
     this.onUploadImage = this.onUploadImage.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+    this.sendMessageWithToken = this.sendMessageWithToken.bind(this);
   }
 
   onGoodUpload(uploadSuccessful, displayImage, imageFile) {
@@ -37,10 +38,14 @@ export default class ImageUploadView extends React.Component {
 
   onUploadImage() {
     this.setState({ phase: phaseEnum.processingImage });
-    setTimeout(this.sendMessage.bind(this), 1000);
+    setTimeout(this.sendMessageWithToken, 1000);
   }
 
-  sendMessage() {
+  sendMessageWithToken() {
+    makeRequestWithToken(this.sendMessage);
+  }
+
+  sendMessage(userToken) {
     const file = this.state.imageFile();
     const messageHeaders = {};
     messageHeaders['Access-Control-Allow-Origin'] = '*';
@@ -48,7 +53,7 @@ export default class ImageUploadView extends React.Component {
     const body = {
       image: this.state.displayImage(),
       name: file.name,
-      username: constants.defaultUser,
+      token: userToken,
     };
     const messageInit = { method: 'POST',
       headers: messageHeaders,
@@ -62,13 +67,12 @@ export default class ImageUploadView extends React.Component {
       this.setState({ phase: phaseEnum.displayResults, accepted });
     }, error => {
       const jsonError = error.response.data;
-      console.log(jsonError);
       if (jsonError.probability) {
         const accepted = jsonError.probability > 0.69;
         this.setState({ phase: phaseEnum.displayResults, accepted });
       } else {
         this.setState({ phase: phaseEnum.unknown });
-        console.error(error);
+        console.error(error); // eslint-disable-line no-console
       }
     });
   }
