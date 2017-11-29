@@ -49,8 +49,8 @@ public abstract class GeneratedApplicationsSqlAdapter {
             entity.setCreditScore(   resultSet.getInt(5)     );
             entity.setExpenses(      resultSet.getInt(6)     );
             entity.setApplicantId(   resultSet.getString(7)  );
-            entity.setUsername(      resultSet.getString(8)  );
-            entity.setResult(        getDouble(resultSet, 9) );
+            entity.setResult(        getDouble(resultSet, 8) );
+            entity.setUserId(        resultSet.getString(9)  );
         } catch (final SQLException sqle) {
             throw new SpeedmentException(sqle);
         }

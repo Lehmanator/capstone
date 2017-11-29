@@ -7,8 +7,6 @@ import api.db.applications.ApplicationsManagerImpl;
 import api.db.applications.ApplicationsSqlAdapter;
 import api.db.logos.LogosManagerImpl;
 import api.db.logos.LogosSqlAdapter;
-import api.db.users.UsersManagerImpl;
-import api.db.users.UsersSqlAdapter;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.common.injector.Injector;
 import com.speedment.runtime.core.internal.AbstractApplicationBuilder;
@@ -30,10 +28,8 @@ public abstract class GeneratedCapitalfunApplicationBuilder extends AbstractAppl
         super(CapitalfunApplicationImpl.class, GeneratedCapitalfunMetadata.class);
         withManager(ApplicationsManagerImpl.class);
         withManager(LogosManagerImpl.class);
-        withManager(UsersManagerImpl.class);
         withComponent(ApplicationsSqlAdapter.class);
         withComponent(LogosSqlAdapter.class);
-        withComponent(UsersSqlAdapter.class);
     }
     
     @Override

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Toaster, Intent } from '@blueprintjs/core';
-import { app, facebookProvider } from './Base';
+import { app, facebookProvider, googleProvider } from './Base';
 import facebookIcon from '../../static/images/FB-f-Logo__blue_50.png';
+import googleIcon from '../../static/images/btn_google_signin_light_normal_web.png';
 
 export default class Login extends Component {
   constructor(props) {
@@ -27,6 +28,19 @@ export default class Login extends Component {
     });
   }
 
+  authWithGoogle() {
+    app.auth().signInWithPopup(googleProvider).then((result, error) => {
+      if (error) {
+        this.toaster.show({
+          intent: Intent.DANGER,
+          message: 'Unable to sign in with Google',
+        });
+      } else {
+        this.setState({ redirect: true });
+      }
+    });
+  }
+
   authWithEmailPassword(event) {
     event.preventDefault();
     const email = this.emailInput.value;
@@ -41,8 +55,8 @@ export default class Login extends Component {
         this.loginForm.reset();
         this.toaster.show({
           intent: Intent.WARNING,
-          message: 'Your email is already registered via Facebook. ' +
-          'Try signing in with your Facebook account.',
+          message: 'Your email is already registered via Facebook or Google. ' +
+          'Try signing in with one of those options.',
         });
       }
       return app.auth().signInWithEmailAndPassword(email, password);
@@ -62,7 +76,6 @@ export default class Login extends Component {
     if (this.state.redirect === true) {
       return <Redirect to={'/'} />;
     }
-
     return (
       <div className={'login-style'}>
         <Toaster ref={(element) => {
@@ -123,6 +136,13 @@ export default class Login extends Component {
           data-use-continue-as="true"
           onClick={() => {
             this.authWithFacebook();
+          }}
+        ></button>
+        <button
+          style={{ backgroundImage: `url(${googleIcon})`, width: '191px',
+          height: '46px', marginLeft: '10px' }}
+          onClick={() => {
+            this.authWithGoogle();
           }}
         ></button>
       </div>

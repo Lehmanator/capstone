@@ -13,6 +13,7 @@ const config = {
 const app = firebase.initializeApp(config);
 const base = Rebase.createClass(app.database());
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 function makeRequestWithToken(onToken) {
   app.auth().currentUser.getIdToken(true)
@@ -25,5 +26,4 @@ function makeRequestWithToken(onToken) {
   });
 }
 
-
-export { app, base, facebookProvider, makeRequestWithToken };
+export { app, base, facebookProvider, googleProvider, makeRequestWithToken };
