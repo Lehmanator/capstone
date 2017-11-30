@@ -6,12 +6,11 @@ export default class FormField extends React.Component {
     this.state = {
       data: '',
     };
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    // console.log(this.state);
-    this.setState({data: event.target.value});
+    this.setState({ data: event.target.value });
     this.props.handleInputChange(event);
   }
 
@@ -22,12 +21,12 @@ export default class FormField extends React.Component {
         <label className="col-sm-3">
           {this.props.label}
         </label>
-        <input style={{border: 'none', borderBottom: '1px solid black'}}
-               className="col-sm-9"
-               name={this.props.name}
-               type={this.props.type}
-               value={this.state.data}
-               onChange={this.handleChange}
+        <input style={{ border: 'none', borderBottom: '1px solid black' }}
+          className="col-sm-9"
+          name={this.props.name}
+          type={this.props.type}
+          value={this.state.data}
+          onChange={this.handleChange}
         />
       </div>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PropTypes from 'prop-types';
 import AcceptedPic from '../../static/images/check-mark.png';
 import RejectedPic from '../../static/images/forbidden-mark.png';
@@ -7,12 +7,14 @@ export default class Results extends React.Component {
   renderDisplayField() {
     let acceptanceImage = null;
     let message = null;
+    const probability = this.props.probability;
+    const name = this.props.name;
 
     if (this.props.accepted) {
-      message = 'Valid';
+      message = 'Accepted';
       acceptanceImage = AcceptedPic;
     } else {
-      message = 'Invalid';
+      message = 'Denied';
       acceptanceImage = RejectedPic;
     }
 
@@ -25,26 +27,25 @@ export default class Results extends React.Component {
       >
         <div style={{ width: '100%' }}>
           <div style={{ width: '100%', fontSize: titleHeight, textAlign: 'left' }} >
-            <p style={{ fontSize: 'calc(10px + 9vmin)',
-                textAlign: 'left', width: '100%' }}
-            >
+            <p style={{ fontSize: 'calc(10px + 9vmin)', textAlign: 'left', width: '100%' }}>
                 {message}
-            </p>
-            <br /><br />
-            <p style={{ fontSize: '15px', textAlign: 'left', width: '100%' }} >
-              Go to the Logo History page to see all your uploaded logos.
             </p>
             <hr />
           </div>
           <div className="row">
-            <img src={this.props.image}
-              style={{ maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
-              alt="Original"
-            />
-            <img src={acceptanceImage}
-              style={{ maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
-              alt={message}
-            />
+            <div style={{ align: 'left' }}>
+              <div style={{ fontSize: 'calc(5px + 5vmin)', textAlign: 'left', width: '50%', maxHeight: this.props.height * 0.5, maxWidth: '50%' }}>
+                {name}
+                <br />
+                {'' + (probability.toFixed(2)*100) + '%' }
+              </div>
+            </div>
+            <div>
+              <img src={acceptanceImage}
+                style={{ align: 'right', maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
+                alt="accptanceImage Missing!"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -70,7 +71,6 @@ export default class Results extends React.Component {
 Results.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  image: PropTypes.string.isRequired,
   accepted: PropTypes.bool.isRequired,
 };
 

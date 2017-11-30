@@ -1,6 +1,14 @@
 ﻿import React from 'react';
 import FormField from './FormField';
 import constants from './constants';
+import Results from './CCResults';
+import { makeRequestWithToken } from './Base';
+
+const phaseEnum = {
+  enterData: 1,
+  displayResults: 2,
+  unknown: 3,
+};
 
 export default class CCFormView extends React.Component {
   constructor(props) {
@@ -12,9 +20,12 @@ export default class CCFormView extends React.Component {
       income: '',
       creditScore: '',
       expenses: '',
+      phase: phaseEnum.enterData,
+      probability: 0.0,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.submitFormWithToken = this.submitFormWithToken.bind(this);
   }
 
   handleInputChange(event) {
@@ -25,12 +36,17 @@ export default class CCFormView extends React.Component {
     });
   }
 
-  submitForm() {
+  submitFormWithToken() {
+    makeRequestWithToken(this.submitForm);
+  }
+
+  submitForm(userToken) {
+    this.setState({ phase: phaseEnum.displayResults });
     const messageHeaders = {};
     messageHeaders['Access-Control-Allow-Origin'] = '*';
     messageHeaders['content-type'] = 'application/json';
     const request = {
-      token: "c2geZf8u9PeAGBiwTlw2hjaT0B6ZGz86",
+      token: userToken,
       applicantName: this.state.name,
       applicantID: this.state.idNumber,
       age: this.state.age,
@@ -48,36 +64,71 @@ export default class CCFormView extends React.Component {
     .then((response) => response.json())
     .then((jsonData) => {
       const accepted = jsonData.probability > constants.positivityThreshold;
+      this.setState({ probability: jsonData.probability });
+      this.setState({ phase: phaseEnum.displayResults, accepted });
       console.log(jsonData);
       console.log(accepted);
     });
   }
 
-  render() {
+
+  renderDataEntry() {
     return (
       <div className="row" style={{ margin: 'auto', padding: '15px',
         width: '60%', borderRadius: '40px', borderStyle: 'solid',
     }}>
         <div className="container-fluid credit-card-container">
-            {/* <form style= {{ display: 'table', width: '100%' }} formAction=""> */}
-              <FormField handleInputChange={this.handleInputChange } name="name" label="Name:" type="string"/>
+              <FormField handleInputChange={this.handleInputChange } name="name" label="Name:" type="string" />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="idNumber" label="ID Number:" type="number"/>
+              <FormField handleInputChange={this.handleInputChange } name="idNumber" label="ID Number:" type="number" />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="age" label="Age:" type="number"/>
+              <FormField handleInputChange={this.handleInputChange } name="age" label="Age:" type="number" />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="income" label="Income:" type="number"/>
+              <FormField handleInputChange={this.handleInputChange } name="income" label="Income:" type="number" />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="creditScore" label="Credit Score:" type="number"/>
+              <FormField handleInputChange={this.handleInputChange } name="creditScore" label="Credit Score:" type="number" />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange} name="expenses" label="Expenses:" type="number"/>
+              <FormField handleInputChange={this.handleInputChange} name="expenses" label="Expenses:" type="number" />
               <br /><br />
-              <button className="CCFormBtn" onClick={this.submitForm}>
+              <button className="CCFormBtn" onClick={this.submitFormWithToken}>
                 Submit
               </button>
-            {/* </form> */}
         </div>
       </div>
     );
+  }
+
+  renderDisplayResults(width, height)  {
+    return (
+      <Results width={width} height={height} probability={this.state.probability} name={this.state.name}
+        accepted={this.state.accepted} style={{ margin: 'auto' }}
+      />
+    );
+  }
+
+  render() {
+    let displayView = null;
+
+    const { width, height } = { width: '60%', height: 500 };
+
+    switch (this.state.phase) {
+      case phaseEnum.enterData:
+        displayView = this.renderDataEntry();
+        break;
+      case phaseEnum.displayResults:
+        displayView = this.renderDisplayResults(width, height);
+        break;
+      case phaseEnum.unknown:
+        // TODO: Display an error screen
+        break;
+      default:
+        break;
+    }
+
+    return (
+          <div>
+              {displayView}
+          </div>
+        );
   }
 }
