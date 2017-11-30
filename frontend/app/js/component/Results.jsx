@@ -20,8 +20,8 @@ export default class Results extends React.Component {
     const titleHeight = this.props.height * 0.2 + 'px';
 
     return (
-      <div style={{ width: this.props.width, height: this.props.height,
-                          display: 'flex', alignItems: 'center' }}
+      <div className="resultImage" style={{ width: this.props.width, height: this.props.height,
+                          }}
       >
         <div style={{ width: '100%' }}>
           <div style={{ width: '100%', fontSize: titleHeight, textAlign: 'left' }} >
@@ -30,7 +30,7 @@ export default class Results extends React.Component {
             >
                 {message}
             </p>
-            <p style={{ fontSize: 'calc(8px + 1vmin)', textAlign: 'left', width: '100%' }} >
+            <p style={{ fontSize: '15px', textAlign: 'left', width: '100%' }} >
               Go to the Logo History page to see all your uploaded logos.
             </p>
             <hr />

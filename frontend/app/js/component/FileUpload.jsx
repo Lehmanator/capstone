@@ -48,9 +48,7 @@ export default class FileUpload extends React.Component {
 
   renderUploadImage() {
     return (
-      <div style={{ width: this.props.width, height: this.props.height,
-                          display: 'flex', alignItems: 'center' }}
-      >
+      <div className="uploadImage" >
         <div style={{ width: '100%' }}>
           <img src={UploadPic} style={{ maxHeight: this.props.height * 0.5, maxWidth: '100%' }}
             alt="Drag and Drop files here"
@@ -100,8 +98,7 @@ export default class FileUpload extends React.Component {
     return (
         <section>
         <div className="dropzone"
-          style={{ width: this.props.width, height: this.props.height,
-                   borderRadius: '40px', borderStyle: 'dashed' }}
+          style={{ width: this.props.width, height: this.props.height }}
         >
             <Dropzone style={{ width: '100%', height: '100%' }}
               {...this.props} onDrop={this.onDrop}

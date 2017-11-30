@@ -15,14 +15,15 @@ public class CreditCardDataHandler {
         this.applicationsManager = applicationsManager;
     }
 
-    public List<Applications> getApplications(String username) {
-        return applicationsManager.stream().filter(Applications.USERNAME.equal(username)).collect(Collectors.toList());
+    public List<Applications> getApplications(String userId) {
+        return applicationsManager.stream().filter(
+            Applications.USER_ID.equal(userId)).collect(Collectors.toList());
     }
 
-    public Applications addApplication(String systemUser, String applicantName, String applicantID,
+    public void addApplication(String userId, String applicantName, String applicantID,
                                        int age, int income, int creditScore, int expenses, double result){
         Applications application = new ApplicationsImpl();
-        application.setUsername(systemUser);
+        application.setUserId(userId);
         application.setApplicantName(applicantName);
         application.setApplicantId(applicantID);
         application.setAge(age);
@@ -30,6 +31,6 @@ public class CreditCardDataHandler {
         application.setCreditScore(creditScore);
         application.setExpenses(expenses);
         application.setResult(result);
-        return applicationsManager.persist(application);
+        applicationsManager.persist(application);
     }
 }

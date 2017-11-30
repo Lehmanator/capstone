@@ -1,18 +1,14 @@
 package api.db.applications.generated;
 
 import api.db.applications.Applications;
-import api.db.users.Users;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
-import com.speedment.runtime.field.StringForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 /**
@@ -106,24 +102,23 @@ public interface GeneratedApplications {
     );
     /**
      * This Field corresponds to the {@link Applications} field that can be
-     * obtained using the {@link Applications#getUsername()} method.
-     */
-    StringForeignKeyField<Applications, String, Users> USERNAME = StringForeignKeyField.create(
-        Identifier.USERNAME,
-        o -> OptionalUtil.unwrap(o.getUsername()),
-        Applications::setUsername,
-        Users.USERNAME,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link Applications} field that can be
      * obtained using the {@link Applications#getResult()} method.
      */
     ComparableField<Applications, Double, Double> RESULT = ComparableField.create(
         Identifier.RESULT,
         o -> OptionalUtil.unwrap(o.getResult()),
         Applications::setResult,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Applications} field that can be
+     * obtained using the {@link Applications#getUserId()} method.
+     */
+    StringField<Applications, String> USER_ID = StringField.create(
+        Identifier.USER_ID,
+        Applications::getUserId,
+        Applications::setUserId,
         TypeMapper.identity(),
         false
     );
@@ -188,20 +183,20 @@ public interface GeneratedApplications {
     String getApplicantId();
     
     /**
-     * Returns the username of this Applications. The username field corresponds
-     * to the database column capitalfun.capitalfun.applications.username.
-     * 
-     * @return the username of this Applications
-     */
-    Optional<String> getUsername();
-    
-    /**
      * Returns the result of this Applications. The result field corresponds to
      * the database column capitalfun.capitalfun.applications.result.
      * 
      * @return the result of this Applications
      */
     OptionalDouble getResult();
+    
+    /**
+     * Returns the userId of this Applications. The userId field corresponds to
+     * the database column capitalfun.capitalfun.applications.userId.
+     * 
+     * @return the userId of this Applications
+     */
+    String getUserId();
     
     /**
      * Sets the id of this Applications. The id field corresponds to the
@@ -270,15 +265,6 @@ public interface GeneratedApplications {
     Applications setApplicantId(String applicantId);
     
     /**
-     * Sets the username of this Applications. The username field corresponds to
-     * the database column capitalfun.capitalfun.applications.username.
-     * 
-     * @param username to set of this Applications
-     * @return         this Applications instance
-     */
-    Applications setUsername(String username);
-    
-    /**
      * Sets the result of this Applications. The result field corresponds to the
      * database column capitalfun.capitalfun.applications.result.
      * 
@@ -288,13 +274,13 @@ public interface GeneratedApplications {
     Applications setResult(Double result);
     
     /**
-     * Queries the specified manager for the referenced Users. If no such Users
-     * exists, an {@code NullPointerException} will be thrown.
+     * Sets the userId of this Applications. The userId field corresponds to the
+     * database column capitalfun.capitalfun.applications.userId.
      * 
-     * @param foreignManager the manager to query for the entity
-     * @return               the foreign entity referenced
+     * @param userId to set of this Applications
+     * @return       this Applications instance
      */
-    Optional<Users> findUsername(Manager<Users> foreignManager);
+    Applications setUserId(String userId);
     
     enum Identifier implements ColumnIdentifier<Applications> {
         
@@ -305,8 +291,8 @@ public interface GeneratedApplications {
         CREDIT_SCORE   ("creditScore"),
         EXPENSES       ("expenses"),
         APPLICANT_ID   ("applicantId"),
-        USERNAME       ("username"),
-        RESULT         ("result");
+        RESULT         ("result"),
+        USER_ID        ("userId");
         
         private final String columnName;
         private final TableIdentifier<Applications> tableIdentifier;
