@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response, abort
+from flask import Flask, request, make_response, abort
 import json
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Activation, Dropout, Flatten, Dense
@@ -8,6 +8,7 @@ from functools import wraps
 import cStringIO
 import base64
 import numpy
+from sklearn.externals import joblib
 
 application = Flask(__name__)
 
@@ -36,6 +37,8 @@ model.load_weights('first_try.h5')
 model.compile(loss='binary_crossentropy',
               optimizer='rmsprop',
               metrics=['accuracy'])
+
+ccmodel = joblib.load('first_try_cc.pkl')
 
 
 def requirekey(view_function):
@@ -79,14 +82,9 @@ def process_image():
 @application.route('/ccdata', methods=['POST'])
 @requirekey
 def ccdata():
-    application.logger.critical(request.headers)
     if request.method == "POST":
         data = request.get_data()
-        application.logger.debug(data)
-        try:
-            data = json.loads(data)
-        except ValueError:
-            abort(400, "Body not provided")
+        data = json.loads(data)
         if not data:
             abort(401)
             pass
@@ -97,8 +95,9 @@ def ccdata():
             income = data['income']
         except KeyError:
             abort(400, KeyError)
-        # TODO: ML Black magic
-        resp = make_response('{"P(Accepted)":'+str(69)+'}')
+        predicted = ccmodel.predict_proba([[age, income, expenses, cscore]])
+        print predicted
+        resp = make_response('{"P(Accepted)":'+str(predicted[0][0])+'}')
         resp.headers['Content-Type'] = "application/json"
         return resp, 200
     else:

@@ -90,7 +90,7 @@ class CreditData:
             income = self.vars['income'].var_data['no'][i]
             rent = self.vars['rent'].var_data['no'][i]
             scores = self.vars['scores'].var_data['no'][i]
-            decision = int(1)
+            decision = int(0)
             result.append([age, income, rent, scores, decision])
             pass
         return np.array(result)
@@ -176,10 +176,10 @@ credit_data = CreditData(var_data, "orig")
 
 gen_dict = {}
 for i in credit_data.vars:
-    gen_dict[i] = {"yes": credit_data.vars[i].generate(100000, True), "no": credit_data.vars[i].generate(100000, False)}
+    gen_dict[i] = {"yes": credit_data.vars[i].generate(25000, True), "no": credit_data.vars[i].generate(25000, False)}
     pass
 gen_data = CreditData(gen_dict, "gen")
-with open('gen_data.csv', 'wb') as file:
+with open('test_data.csv', 'wb') as file:
     data = gen_data.getdata()
     writer = csv.writer(file)
     writer.writerow(["age", "income", "expenses", "scores", "decision"])

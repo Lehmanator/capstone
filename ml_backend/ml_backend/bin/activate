@@ -40,14 +40,13 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/sushrutshringarputale/Desktop/capitalfun/ml_backend/ml_backend"
+VIRTUAL_ENV="/Users/sushrutshringarputale/Library/Mobile Documents/com~apple~CloudDocs/Penn State/Year 4/Sem 1/CMPSC 483W/cmpsc483f17capone/ml_backend/ml_backend"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
-FLASK_APP="flask_service.py"
-export FLASK_APP
+
 # unset PYTHONHOME if set
 if ! [ -z "${PYTHONHOME+_}" ] ; then
     _OLD_VIRTUAL_PYTHONHOME="$PYTHONHOME"
@@ -77,5 +76,3 @@ pydoc () {
 if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
     hash -r 2>/dev/null
 fi
-
-sudo easy_install -U pip
