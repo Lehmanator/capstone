@@ -34,16 +34,18 @@ export default class Results extends React.Component {
           </div>
           <div className="row">
             <div style={{ align: 'left' }}>
-              <div style={{ fontSize: 'calc(5px + 5vmin)', textAlign: 'left', width: '50%', maxHeight: this.props.height * 0.5, maxWidth: '50%' }}>
+              <div style={{ fontSize: 'calc(5px + 5vmin)', textAlign: 'left',
+                width: '50%', maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
+              >
                 {name}
                 <br />
-                {'' + (probability.toFixed(2)*100) + '%' }
+                {`${(probability.toFixed(2) * 100)}%` }
               </div>
             </div>
             <div>
               <img src={acceptanceImage}
                 style={{ align: 'right', maxHeight: this.props.height * 0.5, maxWidth: '50%' }}
-                alt="accptanceImage Missing!"
+                alt="accptance Missing!"
               />
             </div>
           </div>
@@ -72,6 +74,8 @@ Results.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   accepted: PropTypes.bool.isRequired,
+  probability: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 Results.defaultProps = {

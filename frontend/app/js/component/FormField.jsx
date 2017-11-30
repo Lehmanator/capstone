@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class FormField extends React.Component {
   constructor(props) {
@@ -32,3 +33,11 @@ export default class FormField extends React.Component {
     );
   }
 }
+
+FormField.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
+

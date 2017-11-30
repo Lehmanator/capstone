@@ -29,7 +29,6 @@ export default class CCFormView extends React.Component {
   }
 
   handleInputChange(event) {
-    // console.log(event.target.name, event.key, event.target.value);
     const target = event.target;
     this.setState({
       [target.name]: target.value,
@@ -58,7 +57,7 @@ export default class CCFormView extends React.Component {
       headers: messageHeaders,
       body: new Blob([JSON.stringify(request, null, 2)], { type: 'application/json' }),
     };
-    console.log(messageInit);
+    console.log(messageInit); // eslint-disable-line no-console
 
     fetch(constants.ccUploadData, messageInit)
     .then((response) => response.json())
@@ -66,8 +65,8 @@ export default class CCFormView extends React.Component {
       const accepted = jsonData.probability > constants.positivityThreshold;
       this.setState({ probability: jsonData.probability });
       this.setState({ phase: phaseEnum.displayResults, accepted });
-      console.log(jsonData);
-      console.log(accepted);
+      console.log(jsonData); // eslint-disable-line no-console
+      console.log(accepted); // eslint-disable-line no-console
     });
   }
 
@@ -78,17 +77,29 @@ export default class CCFormView extends React.Component {
         width: '60%', borderRadius: '40px', borderStyle: 'solid',
     }}>
         <div className="container-fluid credit-card-container">
-              <FormField handleInputChange={this.handleInputChange } name="name" label="Name:" type="string" />
+              <FormField handleInputChange={this.handleInputChange }
+                name="name" label="Name:" type="string"
+              />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="idNumber" label="ID Number:" type="number" />
+              <FormField handleInputChange={this.handleInputChange }
+                name="idNumber" label="ID Number:" type="number"
+              />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="age" label="Age:" type="number" />
+              <FormField handleInputChange={this.handleInputChange }
+                name="age" label="Age:" type="number"
+              />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="income" label="Income:" type="number" />
+              <FormField handleInputChange={this.handleInputChange }
+                name="income" label="Income:" type="number"
+              />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange } name="creditScore" label="Credit Score:" type="number" />
+              <FormField handleInputChange={this.handleInputChange }
+                name="creditScore" label="Credit Score:" type="number"
+              />
               <br /><br />
-              <FormField handleInputChange={this.handleInputChange} name="expenses" label="Expenses:" type="number" />
+              <FormField handleInputChange={this.handleInputChange}
+                name="expenses" label="Expenses:" type="number"
+              />
               <br /><br />
               <button className="CCFormBtn" onClick={this.submitFormWithToken}>
                 Submit
@@ -98,9 +109,10 @@ export default class CCFormView extends React.Component {
     );
   }
 
-  renderDisplayResults(width, height)  {
+  renderDisplayResults(width, height) {
     return (
-      <Results width={width} height={height} probability={this.state.probability} name={this.state.name}
+      <Results width={width} height={height}
+        probability={this.state.probability} name={this.state.name}
         accepted={this.state.accepted} style={{ margin: 'auto' }}
       />
     );
