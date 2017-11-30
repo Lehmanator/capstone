@@ -166,29 +166,25 @@ def read_data():
             "rent": {"yes": np.load("expenses_sample_yes.npy"), "no": np.load("expenses_sample_no.npy")}
             }
 
-def main():
-    var_data = read_data()
-    # print var_data
-    credit_data = CreditData(var_data, "orig")
-    # print credit_data
-    # f = credit_data.plot()
-    # numfigs += len(f)
 
-    gen_dict = {}
-    for i in credit_data.vars:
-        gen_dict[i] = {"yes": credit_data.vars[i].generate(50000, True), "no": credit_data.vars[i].generate(50000, False)}
+var_data = read_data()
+# print var_data
+credit_data = CreditData(var_data, "orig")
+# print credit_data
+# f = credit_data.plot()
+# numfigs += len(f)
 
-    gen_data = CreditData(gen_dict, "gen")
-    with open('gen_data.csv', 'w') as file:
-        data = gen_data.getdata()
-        writer = csv.writer(file)
-        writer.writerow(["age", "income", "expenses", "scores", "decision"])
-        for i in data:
-            writer.writerow(i)
-    # print(gen_data)
-    # g = gen_data.plot()
-    # plt.show()
-
-
-if __name__=="__main__":
-    main()
+gen_dict = {}
+for i in credit_data.vars:
+    gen_dict[i] = {"yes": credit_data.vars[i].generate(100000, True), "no": credit_data.vars[i].generate(100000, False)}
+    pass
+gen_data = CreditData(gen_dict, "gen")
+with open('gen_data.csv', 'wb') as file:
+    data = gen_data.getdata()
+    writer = csv.writer(file)
+    writer.writerow(["age", "income", "expenses", "scores", "decision"])
+    for i in data:
+        writer.writerow(i)
+# print(gen_data)
+# g = gen_data.plot()
+# plt.show()
