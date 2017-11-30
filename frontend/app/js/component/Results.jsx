@@ -30,7 +30,6 @@ export default class Results extends React.Component {
             >
                 {message}
             </p>
-            <br /><br />
             <p style={{ fontSize: '15px', textAlign: 'left', width: '100%' }} >
               Go to the Logo History page to see all your uploaded logos.
             </p>
