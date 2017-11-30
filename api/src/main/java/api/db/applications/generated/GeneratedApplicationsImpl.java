@@ -1,12 +1,9 @@
 package api.db.applications.generated;
 
 import api.db.applications.Applications;
-import api.db.users.Users;
 import com.speedment.common.annotation.GeneratedCode;
-import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.StringJoiner;
 
@@ -29,8 +26,8 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     private int creditScore;
     private int expenses;
     private String applicantId;
-    private String username;
     private Double result;
+    private String userId;
     
     protected GeneratedApplicationsImpl() {
         
@@ -72,13 +69,13 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     }
     
     @Override
-    public Optional<String> getUsername() {
-        return Optional.ofNullable(username);
+    public OptionalDouble getResult() {
+        return OptionalUtil.ofNullable(result);
     }
     
     @Override
-    public OptionalDouble getResult() {
-        return OptionalUtil.ofNullable(result);
+    public String getUserId() {
+        return userId;
     }
     
     @Override
@@ -124,24 +121,15 @@ public abstract class GeneratedApplicationsImpl implements Applications {
     }
     
     @Override
-    public Applications setUsername(String username) {
-        this.username = username;
-        return this;
-    }
-    
-    @Override
     public Applications setResult(Double result) {
         this.result = result;
         return this;
     }
     
     @Override
-    public Optional<Users> findUsername(Manager<Users> foreignManager) {
-        if (getUsername().isPresent()) {
-            return foreignManager.stream().filter(Users.USERNAME.equal(getUsername().get())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public Applications setUserId(String userId) {
+        this.userId = userId;
+        return this;
     }
     
     @Override
@@ -154,8 +142,8 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         sj.add("creditScore = "   + Objects.toString(getCreditScore()));
         sj.add("expenses = "      + Objects.toString(getExpenses()));
         sj.add("applicantId = "   + Objects.toString(getApplicantId()));
-        sj.add("username = "      + Objects.toString(OptionalUtil.unwrap(getUsername())));
         sj.add("result = "        + Objects.toString(OptionalUtil.unwrap(getResult())));
+        sj.add("userId = "        + Objects.toString(getUserId()));
         return "ApplicationsImpl " + sj.toString();
     }
     
@@ -171,9 +159,8 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         if (this.getCreditScore() != thatApplications.getCreditScore()) {return false; }
         if (this.getExpenses() != thatApplications.getExpenses()) {return false; }
         if (!Objects.equals(this.getApplicantId(), thatApplications.getApplicantId())) {return false; }
-        if (!Objects.equals(this.getUsername(), thatApplications.getUsername())) {return false; }
         if (!Objects.equals(this.getResult(), thatApplications.getResult())) {return false; }
-        return true;
+      return Objects.equals(this.getUserId(), thatApplications.getUserId());
     }
     
     @Override
@@ -186,8 +173,8 @@ public abstract class GeneratedApplicationsImpl implements Applications {
         hash = 31 * hash + Integer.hashCode(getCreditScore());
         hash = 31 * hash + Integer.hashCode(getExpenses());
         hash = 31 * hash + Objects.hashCode(getApplicantId());
-        hash = 31 * hash + Objects.hashCode(getUsername());
         hash = 31 * hash + Objects.hashCode(getResult());
+        hash = 31 * hash + Objects.hashCode(getUserId());
         return hash;
     }
 }

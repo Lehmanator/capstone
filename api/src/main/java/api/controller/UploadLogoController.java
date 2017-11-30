@@ -1,8 +1,10 @@
 package api.controller;
 
 import api.Constants;
+import api.TokenAuthenticator;
 import api.controller.query.ApiQuery;
 import api.controller.query.ImageRecognitionQuery;
+import api.controller.request.UploadApiRequest;
 import api.db.logos.LogosManager;
 import api.response.ApiResponse;
 import api.response.Error;
@@ -50,7 +52,10 @@ public class UploadLogoController {
   CompletableFuture<ApiResponse> upload(@RequestBody UploadApiRequest body) {
     String image = body.getImage();
     String name = body.getName();
-    String username = body.getUsername();
+    String userId = TokenAuthenticator.verifyToken(body.getToken());
+    if (userId == null) {
+      return CompletableFuture.completedFuture(TokenAuthenticator.getAuthenticationErrorResponse());
+    }
     try {
       S3Handler s3Handler = new S3Handler(S3Connector.getInstance().getAmazonS3());
       if (!image.isEmpty()) {
@@ -63,7 +68,7 @@ public class UploadLogoController {
 	      String imageType = image.split(",")[1];
         InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(imageType));
 
-        s3Handler.uploadImage(username, name, is, metadata);
+        s3Handler.uploadImage(userId, name, is, metadata);
 
         //Run Recognition
         ApiQuery query = new ImageRecognitionQuery(imageType);
@@ -84,8 +89,8 @@ public class UploadLogoController {
                     logger.info(response.toString());
                     LogoHandler handler = new LogoHandler(logos);
                     handler.addLogo(
-                        s3Handler.getImageUrl(username, name),
-                        username,
+                        s3Handler.getImageUrl(userId, name),
+                        userId,
                         probability.toString());
                     future.complete(response);
                   }

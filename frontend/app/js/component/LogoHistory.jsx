@@ -1,26 +1,17 @@
 import React from 'react';
+import CollapsablePanel from './CollapsablePanel';
 import PropTypes from 'prop-types';
 import constants from './constants';
 import AcceptedPic from '../../static/images/check-mark.png';
 import RejectedPic from '../../static/images/forbidden-mark.png';
 
-export default class LogoHistory extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { collapsed: true };
-    this.changeCollapsed = this.changeCollapsed.bind(this);
-  }
-
-  changeCollapsed() {
-    this.setState({ collapsed: !this.state.collapsed });
-  }
-
+export default class LogoHistory extends CollapsablePanel {
   renderImage() {
     let pic = null;
     if (this.props.imgSrc) {
       pic = this.props.imgSrc;
     }
-    return (<img src={pic} alt="Logo Uploaded" />);
+    return (<img src={pic} style={{ maxHeight: '100%', maxWidth: '100%' }} alt="Logo Uploaded" />);
   }
 
   renderImageThumbnail() {
@@ -43,63 +34,40 @@ export default class LogoHistory extends React.Component {
     return (<img src={accepted} style={{ height: 100 }} alt={alt} />);
   }
 
-  renderExpanded() {
-    let image = this.renderImage();
-    let probability = 0;
-    if (this.props.probability) {
-      probability = this.props.probability;
-    }
-    let probabilityDisplay = <h1>Probability: {probability}</h1>;
+  // SECTION: Overrides from CollapsablePanel
 
-    return (
-      <div>
-        <div className="panel-body">
-          {image}
-        </div>
-        <div className="panel-footer">{probabilityDisplay}</div>
-      </div>
-    );
-  }
-
-  render() {
+  renderHeading() {
     let name = 'ImageName';
     if (this.props.name) {
       name = this.props.name;
-    }
-
-    let expandableSection = null;
-    if (!this.state.collapsed) {
-      expandableSection = this.renderExpanded();
     }
 
     let resultImage = this.renderResultImage();
     let imageThumbnail = this.renderImageThumbnail();
 
     return (
-      <div>
-        <center>
-          <div style={{ width: '80%' }} >
-            <div className="panel-group">
-              <div className="panel panel-default">
-              <button onClick={this.changeCollapsed} style={{ width: '100%', height: '100%' }}>
-                <div className="panel-heading">
-                  <div className="row" >
-                    <div className="col-md-2"></div>
-                    <div className="col-md-6">
-                      <h1 style={{ textAlign: 'left' }} > {name} </h1>
-                    </div>
-                    <div className="col-md-2">{imageThumbnail}</div>
-                    <div className="col-md-2" >{resultImage}</div>
-                  </div>
-                </div>
-              </button>
-              {expandableSection}
-              </div>
-            </div>
-          </div>
-        </center>
+      <div className="row" >
+        <div className="col-md-2"></div>
+        <div className="col-md-6">
+          <h1 style={{ textAlign: 'left' }} > {name} </h1>
+        </div>
+        <div className="col-md-2">{imageThumbnail}</div>
+        <div className="col-md-2" >{resultImage}</div>
       </div>
     );
+  }
+
+  renderBody() {
+    return this.renderImage();
+  }
+
+  renderFooter() {
+    let probability = 0;
+    if (this.props.probability) {
+      probability = this.props.probability;
+    }
+    const probabilityDisplay = <h1>Probability: {probability}</h1>;
+    return probabilityDisplay;
   }
 }
 
