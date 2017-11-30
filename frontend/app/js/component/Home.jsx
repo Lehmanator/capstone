@@ -4,12 +4,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MLNavbar from './Navbar';
 import ImageUploadView from './ImageUploadView';
+import CCFormView from './CCFormView';
 
 class Home extends React.Component {
   render() {
     const appChildren = [
       { name: 'Upload Logo', value: <ImageUploadView /> },
-      { name: 'Credit Card Approval', value: <div><p>Goodbye</p></div> },
+      { name: 'Credit Card Approval', value: <CCFormView /> },
     ];
 
     return (
