@@ -3,50 +3,68 @@ import time
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
-from sklearn.externals.joblib import Parallel, delayed
-from multiprocessing import Pool
+from sklearn.externals.joblib import (Parallel,
+                                      delayed,
+                                      parallel_backend,
+                                      register_parallel_backend)
+from ipyparallel import Client
+from ipyparallel.joblib import IPythonParallelBackend
+# from multiprocessing import Pool
+
+
+# https://ipython.org/ipython-doc/3/parallel/parallel_process.html
 
 
 def train():
     X = []
     Y = []
 
-    print "Opening: data_gen/scaled_new.csv"
+    print("Opening: data_gen/scaled_new.csv")
 
     with open('data_gen/scaled_new.csv', 'r') as file:
         reader = csv.reader(file)
         next(reader, None)
         for row in reader:
-            nums = map(lambda x: float(x), row)
+            nums = list(map(lambda x: float(x), row))
             X.append(nums[0:4])
             Y.append(nums[-1])
 
-    print "Initializing model"
+    print("Initializing model")
 
     model = svm.SVC(
         kernel='linear',
         C=1,
         probability=True,
         verbose=True
-    ) #model is support vector classifier
+    ) # Model is support vector classifier
 
-    print "Running training now"
+    print("Running training now")
+    
+    # Create a client
+    c = Client(profile='myprofile')
+    print(c.ids)
+    bview = c.load_balanced_view()
 
-    model.fit(X,Y) # Fit SVM model based on given data
+    register_parallel_backend('ipyparallel', lambda :
+                              IPythonParallelBackend(view=bview))
 
-    print "Completed training"
+    # Run fit function concurrently
+    with parallel_backend('ipyparallel'):
+        model.fit(X,Y) # Fit SVM model based on given data
+
+    print("Completed training")
     return model
 
 
 def validate(model):
-    print "Running validation"
+    print("Running validation")
 
     joblib.dump(model, 'first_try_cc.pkl')
 
     X_test = []
     Y_test = []
 
-    print "Opening: data_gen/test_data.csv"
+    print("Opening: data_gen/test_data.csv")
 
     with open('data_gen/test_data.csv', 'r') as file:
         reader = csv.reader(file)
@@ -56,13 +74,13 @@ def validate(model):
             X_test.append(nums[0:4])
             Y_test.append(nums[-1])
 
-    print "Predicting"
+    print("Predicting")
 
     predicted = model.predict(X_test)
 
-    # get the accuracy
+    # Get the accuracy
     accuracy = accuracy_score(Y_test, predicted)
-    print accuracy
+    print(accuracy)
     return accuracy
 
 # model.predict(Z) #can then predict new values. 
@@ -76,9 +94,11 @@ def validate(model):
 if __name__ == '__main__':
     start_time = time.time()
     
-    p = Pool()
+    # p = Pool()
 
     model = train()
     accuracy = validate(model)
 
     end_time = time.time()
+    print("Start: " + start_time)
+    print("End  : " + end_time)
