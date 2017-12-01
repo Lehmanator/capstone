@@ -1,5 +1,6 @@
 import csv
 import time
+import os
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
@@ -16,6 +17,11 @@ from ipyparallel.joblib import IPythonParallelBackend
 # Install pip packages: ipyparallel
 # https://ipython.org/ipython-doc/3/parallel/parallel_process.html
 
+def start_engines():
+    print("Starting engines...")
+    os.system("ipython profile create --parallel --profile=myprofile")
+    os.system("ipcluster start -n 4 --profile=myprofile")
+    print("Engines started.")
 
 def train():
     X = []
@@ -96,7 +102,7 @@ def validate(model):
 if __name__ == '__main__':
     start_time = time.time()
     
-    # p = Pool()
+    start_engines()
 
     model = train()
     accuracy = validate(model)
