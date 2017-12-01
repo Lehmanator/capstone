@@ -11,7 +11,7 @@ from sklearn.externals.joblib import (Parallel,
 from ipyparallel import Client
 from ipyparallel.joblib import IPythonParallelBackend
 # from multiprocessing import Pool
-
+from threading import Thread
 # Run ipython cluster before running this script
 # Run using python3
 # Install pip packages: ipyparallel
@@ -102,7 +102,8 @@ def validate(model):
 if __name__ == '__main__':
     start_time = time.time()
     
-    start_engines()
+    t = Thread(target=start_engines)
+    t.start()
 
     model = train()
     accuracy = validate(model)
