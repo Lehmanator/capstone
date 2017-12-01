@@ -11,7 +11,9 @@ from ipyparallel import Client
 from ipyparallel.joblib import IPythonParallelBackend
 # from multiprocessing import Pool
 
-
+# Run ipython cluster before running this script
+# Run using python3
+# Install pip packages: ipyparallel
 # https://ipython.org/ipython-doc/3/parallel/parallel_process.html
 
 
