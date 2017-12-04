@@ -1,5 +1,5 @@
 
-const baseUrl = 'http://api-capitalfun-dev.us-east-2.elasticbeanstalk.com';
+const baseUrl = 'https://api.capitalone-ml.me';
 
 const constants = {
   uploadImageUrl: `${baseUrl}/upload`,
