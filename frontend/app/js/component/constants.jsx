@@ -6,7 +6,7 @@ const constants = {
   historyUrl: `${baseUrl}/getHistory`,
   ccUploadData: `${baseUrl}/creditCheck`,
   creditHistoryUrl: `${baseUrl}/getCreditCardHistory`,
-  positivityThreshold: 0.69,
+  positivityThreshold: 0.5,
   defaultUser: 'mayank',
 };
 
