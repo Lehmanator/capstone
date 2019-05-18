@@ -52387,12 +52387,12 @@ var CCFormView = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (CCFormView.__proto__ || Object.getPrototypeOf(CCFormView)).call(this, props));
 
     _this.state = {
-      name: '',
-      idNumber: '',
-      age: '',
-      income: '',
-      creditScore: '',
-      expenses: '',
+      name: "",
+      idNumber: "",
+      age: "",
+      income: "",
+      creditScore: "",
+      expenses: "",
       phase: phaseEnum.enterData,
       probability: 0.0
     };
@@ -52403,25 +52403,25 @@ var CCFormView = function (_React$Component) {
   }
 
   _createClass(CCFormView, [{
-    key: 'handleInputChange',
+    key: "handleInputChange",
     value: function handleInputChange(event) {
       var target = event.target;
       this.setState(_defineProperty({}, target.name, target.value));
     }
   }, {
-    key: 'submitFormWithToken',
+    key: "submitFormWithToken",
     value: function submitFormWithToken() {
       (0, _Base.makeRequestWithToken)(this.submitForm);
     }
   }, {
-    key: 'submitForm',
+    key: "submitForm",
     value: function submitForm(userToken) {
       var _this2 = this;
 
       this.setState({ phase: phaseEnum.displayResults });
       var messageHeaders = {};
-      messageHeaders['Access-Control-Allow-Origin'] = '*';
-      messageHeaders['content-type'] = 'application/json';
+      messageHeaders["Access-Control-Allow-Origin"] = "*";
+      messageHeaders["content-type"] = "application/json";
       var request = {
         token: userToken,
         applicantName: this.state.name,
@@ -52431,9 +52431,12 @@ var CCFormView = function (_React$Component) {
         creditScore: this.state.creditScore,
         expenses: this.state.expenses
       };
-      var messageInit = { method: 'POST',
+      var messageInit = {
+        method: "POST",
         headers: messageHeaders,
-        body: new Blob([JSON.stringify(request, null, 2)], { type: 'application/json' })
+        body: new Blob([JSON.stringify(request, null, 2)], {
+          type: "application/json"
+        })
       };
       console.log(messageInit); // eslint-disable-line no-console
 
@@ -52448,68 +52451,97 @@ var CCFormView = function (_React$Component) {
       });
     }
   }, {
-    key: 'renderDataEntry',
+    key: "renderDataEntry",
     value: function renderDataEntry() {
       return _react2.default.createElement(
-        'div',
-        { className: 'row', style: { margin: 'auto', padding: '15px',
-            width: '60%', borderRadius: '40px', borderStyle: 'solid'
-          } },
+        "div",
+        {
+          className: "row entryzone",
+          style: {
+            margin: "auto",
+            padding: "50px",
+            width: "50%",
+            borderRadius: "40px",
+            borderStyle: "solid"
+          }
+        },
         _react2.default.createElement(
-          'div',
-          { className: 'container-fluid credit-card-container' },
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'name', label: 'Name:', type: 'string'
+          "div",
+          { className: "container-fluid credit-card-container" },
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "name",
+            label: "Name:",
+            type: "string"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'idNumber', label: 'ID Number:', type: 'number'
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "idNumber",
+            label: "ID Number:",
+            type: "number"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'age', label: 'Age:', type: 'number'
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "age",
+            label: "Age:",
+            type: "number"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'income', label: 'Income:', type: 'number'
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "income",
+            label: "Income:",
+            type: "number"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'creditScore', label: 'Credit Score:', type: 'number'
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "creditScore",
+            label: "Credit Score:",
+            type: "number"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_FormField2.default, { handleInputChange: this.handleInputChange,
-            name: 'expenses', label: 'Expenses:', type: 'number'
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(_FormField2.default, {
+            handleInputChange: this.handleInputChange,
+            name: "expenses",
+            label: "Expenses:",
+            type: "number"
           }),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement("br", null),
           _react2.default.createElement(
-            'button',
-            { className: 'CCFormBtn', onClick: this.submitFormWithToken },
-            'Submit'
+            "button",
+            { className: "CCFormBtn", onClick: this.submitFormWithToken },
+            "Submit"
           )
         )
       );
     }
   }, {
-    key: 'renderDisplayResults',
+    key: "renderDisplayResults",
     value: function renderDisplayResults(width, height) {
-      return _react2.default.createElement(_CCResults2.default, { width: width, height: height,
-        probability: this.state.probability, name: this.state.name,
-        accepted: this.state.accepted, style: { margin: 'auto' }
+      return _react2.default.createElement(_CCResults2.default, {
+        width: width,
+        height: height,
+        probability: this.state.probability,
+        name: this.state.name,
+        accepted: this.state.accepted,
+        style: { margin: "auto" }
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var displayView = null;
 
-      var _width$height = { width: '60%', height: 500 },
+      var _width$height = { width: "60%", height: 500 },
           width = _width$height.width,
           height = _width$height.height;
 
@@ -52529,7 +52561,7 @@ var CCFormView = function (_React$Component) {
       }
 
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         displayView
       );
@@ -53254,31 +53286,32 @@ var FormField = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (FormField.__proto__ || Object.getPrototypeOf(FormField)).call(this, props));
 
     _this.state = {
-      data: ''
+      data: ""
     };
     _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
   _createClass(FormField, [{
-    key: 'handleChange',
+    key: "handleChange",
     value: function handleChange(event) {
       this.setState({ data: event.target.value });
       this.props.handleInputChange(event);
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'row' },
+        "div",
+        { className: "row" },
         _react2.default.createElement(
-          'label',
-          { className: 'col-sm-3' },
+          "label",
+          { className: "col-sm-3 formLabel" },
           this.props.label
         ),
-        _react2.default.createElement('input', { style: { border: 'none', borderBottom: '1px solid black' },
-          className: 'col-sm-9',
+        _react2.default.createElement("input", {
+          style: { border: "none", borderBottom: "2px solid navy" },
+          className: "col-sm-9 textBox",
           name: this.props.name,
           type: this.props.type,
           value: this.state.data,
@@ -54371,66 +54404,71 @@ var Navigation = function (_Component) {
   }
 
   _createClass(Navigation, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'container-fluid top-bar' },
+        "div",
+        { className: "container-fluid top-bar" },
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
+          "div",
+          { className: "row" },
           _react2.default.createElement(
-            'div',
-            { className: 'col-md-1' },
+            "div",
+            { className: "col-md-1" },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/' },
-              _react2.default.createElement('img', { src: _c1tech2.default, alt: 'Home', className: 'brand' })
+              { to: "/" },
+              _react2.default.createElement("img", { src: _c1tech2.default, alt: "Home", className: "brand" })
             )
           ),
           this.props.authenticated ? _react2.default.createElement(
-            'div',
-            null,
+            "div",
+            { className: "left-links" },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/history' },
-              _react2.default.createElement(_HistoryBtn2.default, { title: " Logo History", logo: _athleticsLogo2.default, className: 'col-md-2' })
+              { to: "/history" },
+              _react2.default.createElement(_HistoryBtn2.default, {
+                title: " Logo History",
+                logo: _athleticsLogo2.default,
+                className: "col-md-2"
+              })
             ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/credit-history' },
-              _react2.default.createElement(_HistoryBtn2.default, { title: " Credit Card Appoval History",
-                logo: _creditCard2.default, className: 'col-md-2'
+              { to: "/credit-history" },
+              _react2.default.createElement(_HistoryBtn2.default, {
+                title: " Credit Card Appoval History",
+                logo: _creditCard2.default,
+                className: "col-md-2"
               })
             )
-          ) : _react2.default.createElement('div', { className: 'col-md-4' }),
-          _react2.default.createElement('div', { className: 'col-md-4' }),
-          this.props.authenticated ? _react2.default.createElement(
-            'div',
-            null,
+          ) : _react2.default.createElement("div", { className: "col-md-4" }),
+          _react2.default.createElement(
+            "div",
+            { className: "col-md-4 right-links" },
+            this.props.authenticated ? _react2.default.createElement(
+              _reactRouterDom.Link,
+              { src: "", className: "col-md-1 user-links", to: "/logout" },
+              "Logout"
+            ) : _react2.default.createElement(
+              _reactRouterDom.Link,
+              { src: "", className: "col-md-1 user-links", to: "/login" },
+              "Login"
+            ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { src: '', className: 'col-md-1 user-links', to: '/logout' },
-              'Sign Out'
-            )
-          ) : _react2.default.createElement(
-            'div',
-            null,
+              { src: "#Help", className: "col-md-1 user-links", to: "#Help" },
+              "Help"
+            ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { src: '', className: 'col-md-1 user-links', to: '/login' },
-              'Login'
+              {
+                src: "#Settings",
+                className: "col-md-1 user-links",
+                to: "#Settings"
+              },
+              "Settings"
             )
-          ),
-          _react2.default.createElement(
-            'a',
-            { src: '', className: 'col-md-1 user-links' },
-            'Help'
-          ),
-          _react2.default.createElement(
-            'a',
-            { src: '', className: 'col-md-1 user-links' },
-            'Settings'
           )
         )
       );
