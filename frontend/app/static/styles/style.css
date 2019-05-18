@@ -48,6 +48,10 @@ body {
 }
 
 .navbar .navbar-nav {
+  width: 50%;
+  color: navy;
+  font-size: 2rem;
+  font-weight: 900;
   display: inline-block;
   float: none;
   vertical-align: top;
@@ -103,6 +107,7 @@ li:last-child {
 
 .ml-navbar {
   background-color: #fff;
+  color: navy;
   border-color: #fff;
 }
 
@@ -112,31 +117,39 @@ li:last-child {
 }
 
 .top-bar {
-  background-color: #222222;
-  padding: 15px;
+  background-color: navy;
+  padding: 0 15px;
   width: 100%;
-  -webkit-box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 10;
-  -moz-box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0,0,0,0.22);
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+.active {
+    color: navy;
+}
 .top-bar .brand {
   color: white;
-  height: 56px;
+  height: 40px;
   position: static;
-  margin-right: 15px;
+  padding-top: 10px;
+  padding-right: 15px;
   float: left;
   border: none;
+  transition: ease 1s;
 }
-
+.brand:hover {
+    background-color: rgba(255,255,255,0.2);
+}
 .nav-button {
   color: white;
   height: 56px;
   position: relative;
   overflow: hidden;
-  margin-right: 15px;
+  padding-left: 25px;
+  padding-right: 15px;
   float: left;
   border: none;
   background-color: rgba(0, 0, 0, 0);
@@ -148,11 +161,12 @@ li:last-child {
 }
 
 .nav-button img {
-  height: 50%;
+  height: 40%;
+  margin-right: 10px;
 }
 
 .nav-button:hover {
-  background-color: #404040;
+  background-color: rgba(255,255,255,0.2);
 }
 
 .nav-button:after {
@@ -170,7 +184,25 @@ li:last-child {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
+.user-links:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
 
+.user-links:hover {
+  background-color: rgba(0,0,255,0.3);
+}
 @keyframes ripple {
   0% {
     transform: scale(0, 0);
@@ -200,12 +232,30 @@ li:last-child {
 .nav-button:focus {
   outline: none;
 }
-
+.right-links {
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    float: left;
+    height: 95%;
+}
 .user-links {
   color: white;
+  height: 90%;
+  width: 70px;
+  display: inline-block;
+  padding-top: 14px;
+  float: left;
   position: relative;
-  margin-top: 15px;
-  text-align: right;
+  text-align: center;
+  align: center;
+  align-items: right;
+  vertical-align: middle;
+  -webkit-transition: ease 1s;
+  -moz-transition: ease 1s;
+  -ms-transition: ease 1s;
+  -o-transition: ease 1s;
+  transition: ease 0.5s;
 }
 
 .user-links:hover {
@@ -213,6 +263,19 @@ li:last-child {
   color: white;
 }
 
+.user-links:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.user-links:focus {
+  outline: none;
+}
+
+.user-links:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
 .uploadImage {
   width: 60%;
   height: 500px;
@@ -225,12 +288,37 @@ li:last-child {
 .dropzone {
   -webkit-border-radius: 40px;
   -moz-border-radius: 40px;
+  border-color: navy;
   border-radius: 40px;
   border-style: dashed;
+  border-width: 10px;
   margin-left:auto;
   margin-right:auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
+.dropzone:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.entryzone {
+  border: 10px solid navy;
+  border-width: 10px;
+  padding: 40px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.entryzone:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.textBox {
+    color: navy;
+    max-width: 65%;
+}
+.formLabel {
+    color: navy;
+    margin-right: 10px;
+    text-align: right;
+}
 .processingImage {
   display: flex;
   align-items: center;
@@ -247,6 +335,7 @@ li:last-child {
 
 .logo-history-box {
   color: black;
+  width: auto;
   height: 100px;
   overflow: hidden;
   margin-right: 15px;
