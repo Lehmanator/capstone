@@ -53,7 +53,7 @@
     "@material/button": "^0.26.0",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.7.4",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "firebase": "^4.6.2",
     "material-components-web": "^0.26.0",
     "prop-types": "latest",
