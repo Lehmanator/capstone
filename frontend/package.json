@@ -51,7 +51,7 @@
   "dependencies": {
     "@blueprintjs/core": "^1.33.0",
     "@material/button": "^0.26.0",
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.7.4",
     "bootstrap": "^3.3.7",
     "firebase": "^4.6.2",
